@@ -12,6 +12,7 @@ export default defineConfig({
       isSatellite: true,
       domain: 'app.onconjure.com',
       signInUrl: 'https://app.onconjure.com/sign-in',
+      signUpUrl: 'https://app.onconjure.com/sign-up',
     }),
   ],
 });

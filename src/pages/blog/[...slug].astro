@@ -1,0 +1,72 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+type Props = { post: CollectionEntry<'blog'> };
+const { post } = Astro.props as Props;
+const { Content } = await render(post);
+---
+<BaseLayout
+  title={`${post.data.title} — Conjure`}
+  description={post.data.excerpt}
+>
+  <article class="container post">
+    <header>
+      <h1>{post.data.title}</h1>
+      <time datetime={post.data.date.toISOString()}>
+        {post.data.date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
+      </time>
+    </header>
+    <div class="body">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post header {
+    margin-bottom: 2rem;
+  }
+  .post h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: 0.5rem;
+  }
+  .post time {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .body :global(h2) {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+  .body :global(p) {
+    color: var(--fg);
+  }
+  .body :global(code) {
+    font-family: var(--font-mono);
+    background: var(--border);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  .body :global(pre) {
+    background: #14141c;
+    padding: 1rem;
+    border-radius: var(--radius);
+    overflow-x: auto;
+  }
+</style>

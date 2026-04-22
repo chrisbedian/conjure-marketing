@@ -1,17 +1,53 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
+<BaseLayout title="Conjure">
+  <main class="splash">
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="56" height="56" fill="none">
+        <path d="M20 44 L42 22" stroke="#b79bff" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="44" cy="20" r="3" fill="#b79bff"/>
+        <path d="M44 14 L44 10 M48 16 L51 13 M50 20 L54 20" stroke="#b79bff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>Conjure</h1>
+    <p>AI-first design tool for professionals.</p>
+    <a href="https://app.onconjure.com" class="cta">Open app →</a>
+  </main>
+</BaseLayout>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<style>
+  .splash {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.25rem 4rem;
+  }
+  .mark {
+    margin-bottom: 1.5rem;
+  }
+  .splash h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 0.75rem;
+  }
+  .splash p {
+    font-size: 1.125rem;
+    max-width: 28rem;
+    margin-bottom: 2rem;
+  }
+  .cta {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-weight: 500;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .cta:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+</style>

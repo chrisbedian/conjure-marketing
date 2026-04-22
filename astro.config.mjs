@@ -1,5 +1,17 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import clerk from '@clerk/astro';
+import vercel from '@astrojs/vercel';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  site: 'https://onconjure.com',
+  output: 'server',
+  adapter: vercel(),
+  integrations: [
+    clerk({
+      isSatellite: true,
+      domain: 'app.onconjure.com',
+      signInUrl: 'https://app.onconjure.com/sign-in',
+    }),
+  ],
+});

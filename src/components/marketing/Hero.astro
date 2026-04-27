@@ -21,8 +21,8 @@
         </div>
 
         <h1 class="hero__title">
-          Direct the AI.<br />
-          Don't describe it.
+          <span class="hero__title-line">Direct the AI.</span><br />
+          <span class="hero__title-line">Don't describe it.</span>
         </h1>
         <p class="hero__subtitle">
           An AI design tool for design professionals. Built around your gestures, not your prompts.
@@ -181,6 +181,18 @@
     line-height: 1.02;
     letter-spacing: -0.025em;
     max-width: 16ch;
+  }
+  /* Each clause stays as one line at any viewport that can hold it. The
+     <br /> still creates the explicit break between the two lines; this
+     just prevents the browser from breaking *within* a clause when the
+     column is right at the boundary of the rendered text width. Allow
+     normal wrapping under 600px where the column gets too narrow for
+     the larger of the two clauses. */
+  .hero__title-line {
+    white-space: nowrap;
+  }
+  @media (max-width: 599px) {
+    .hero__title-line { white-space: normal; }
   }
 
   .hero__subtitle {

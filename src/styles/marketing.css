@@ -189,9 +189,16 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================================= */
 .layout-lines {
   position: fixed;
-  inset: 0;
+  top: 72px;       /* rest: below nav (top:8 + height:64) */
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 50;
   pointer-events: none;
+  transition: top var(--dur-mid) var(--ease-in-out);
+}
+.layout-lines.is-scrolled {
+  top: 64px;       /* scrolled: nav slides to top:0, lines follow */
 }
 .layout-lines-inner {
   position: absolute;
@@ -299,6 +306,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.01em;
+  line-height: 1;
 }
 
 .nav-links {
@@ -312,6 +320,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   color: var(--ink-soft);
   text-decoration: none;
+  line-height: 1;
   transition: color 150ms var(--ease-in-out);
 }
 .nav-links a:hover { color: var(--ink); }
@@ -321,6 +330,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #FFF;
   font-size: 14px;
   font-weight: 500;
+  line-height: 1;
   padding: 8px 16px;
   border-radius: 8px;
   text-decoration: none;

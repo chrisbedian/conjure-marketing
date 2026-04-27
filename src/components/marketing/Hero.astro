@@ -1,41 +1,42 @@
 ---
 /**
- * Hero — cream surface, centered.
- * The hero loop is the most important asset on the site. Until the founder
- * delivers /public/videos/hero-loop.{webm,mp4} + hero-loop-poster.jpg, the
- * <video> markup is wired but the parent shows --ink so the layout reads.
+ * Hero — editorial, anthropic-inspired.
+ * Left-anchored section label + massive headline + body + CTAs, then a
+ * full-column hero loop bracketed by hairlines. No flourishes (no wash,
+ * no LIVE pip) — typography and the loop carry the weight.
  *
- * Decoration:
- *  - Plum sparkle backdrop behind the title (Section 4a).
- *  - Plum closing period as a brand mark (4b).
- *  - LIVE status pip on the loop frame (4c).
- *  - Mono metadata strip below the loop (4d).
- *  - Animated arrow on the primary CTA (Section 8b — propagated here).
+ * Asset paths under /public/videos/ are wired but the founder's recordings
+ * land later. Until then the loop frame shows --ink at the right ratio.
  */
 ---
 <section class="hero">
-  <span class="section-marker" aria-hidden="true">00 / DIRECT</span>
-
-  <div class="hero__inner m-container">
-    <div class="hero__wash" aria-hidden="true"></div>
-
-    <h1 class="hero__title">
-      Direct the AI. Don't describe it.
-    </h1>
-    <p class="hero__subtitle">
-      An AI design tool for design professionals. Built around your gestures, not your prompts.
-    </p>
-
-    <div class="hero__cta-row">
-      <a href="https://app.onconjure.com" class="m-btn m-btn--primary m-btn--md cta__btn">
-        Open Conjure
-        <svg class="cta__btn-arrow" viewBox="0 0 14 14" aria-hidden="true">
-          <path d="M3 11 L11 3 M5 3 L11 3 L11 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-      </a>
-      <a href="/blog" class="m-btn m-btn--ghost m-btn--md">Read the blog</a>
+  <div class="m-section-left hero__intro">
+    <div class="m-section-left__inner">
+      <p class="section-label">00 / Direct</p>
+      <h1 class="hero__title">
+        Direct the AI.<br />
+        Don't describe it.
+      </h1>
+      <p class="hero__subtitle">
+        An AI design tool for design professionals. Built around your gestures, not your prompts.
+      </p>
+      <div class="hero__cta-row">
+        <a href="https://app.onconjure.com" class="m-btn m-btn--primary m-btn--md cta__btn">
+          Open Conjure
+          <svg class="cta__btn-arrow" viewBox="0 0 14 14" aria-hidden="true">
+            <path d="M3 11 L11 3 M5 3 L11 3 L11 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </a>
+        <a href="/blog" class="m-btn m-btn--ghost m-btn--md">Read the blog</a>
+      </div>
     </div>
+  </div>
 
+  <div class="m-section-left">
+    <hr class="m-divider" />
+  </div>
+
+  <div class="m-section-left hero__media-wrap">
     <div class="hero__loop" aria-label="A short loop of Conjure being used to edit a design">
       <img
         src="/videos/hero-loop-poster.jpg"
@@ -57,13 +58,11 @@
         <source src="/videos/hero-loop.webm" type="video/webm" />
         <source src="/videos/hero-loop.mp4"  type="video/mp4" />
       </video>
-
-      <div class="hero__loop-status" aria-hidden="true">
-        <span class="hero__loop-status-dot"></span>
-        <span class="hero__loop-status-label">LIVE</span>
-      </div>
     </div>
+  </div>
 
+  <div class="m-section-left">
+    <hr class="m-divider" />
     <p class="hero__loop-meta" aria-hidden="true">
       <span>RECORDED IN CONJURE</span>
       <span class="hero__loop-meta-sep">·</span>
@@ -77,82 +76,44 @@
 <style>
   .hero {
     background: var(--cream);
-    padding: 96px var(--gutter) 80px;
+    padding: 96px 0 80px;
     position: relative;
-    overflow: hidden;
   }
   @media (max-width: 767px) {
-    .hero { padding: 64px var(--gutter) 56px; }
+    .hero { padding: 64px 0 56px; }
   }
 
-  .hero__inner {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  }
-
-  /* Diffuse plum wash — colored breath behind the headline. No rays, no
-     points; just warmth. */
-  .hero__wash {
-    position: absolute;
-    top: -120px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: clamp(640px, 80vw, 1100px);
-    height: clamp(420px, 50vw, 640px);
-    pointer-events: none;
-    z-index: 0;
-    background: radial-gradient(
-      ellipse at center,
-      rgba(139, 45, 92, 0.22) 0%,
-      rgba(139, 45, 92, 0.10) 35%,
-      rgba(139, 45, 92, 0.03) 60%,
-      rgba(139, 45, 92, 0)    80%
-    );
-    filter: blur(20px);
-    opacity: 0;
-    animation: wash-fade-in 1200ms var(--ease-out) 80ms forwards;
-  }
-  @keyframes wash-fade-in {
-    to { opacity: 1; }
-  }
-
-  /* All inner content sits on top of the wash. */
-  .hero__inner > *:not(.hero__wash) {
-    position: relative;
-    z-index: 1;
+  .hero__intro .section-label {
+    margin-bottom: 32px;
   }
 
   .hero__title {
-    font-size: var(--text-hero);
+    font-size: clamp(3rem, 7.5vw, 6.5rem);
     font-weight: 700;
     color: var(--ink);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    max-width: 18ch;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    max-width: 16ch;
   }
 
   .hero__subtitle {
-    margin-top: 1.25rem;
+    margin-top: 28px;
     color: var(--ink-soft);
-    font-size: var(--text-lead);
-    font-weight: 500;
-    line-height: 1.4;
-    max-width: 640px;
+    font-size: clamp(1.0625rem, 1.4vw, 1.375rem);
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 540px;
   }
 
   .hero__cta-row {
-    margin-top: 2rem;
+    margin-top: 40px;
     display: inline-flex;
     align-items: center;
     gap: 16px;
     flex-wrap: wrap;
-    justify-content: center;
   }
 
-  /* Animated arrow inside the primary CTA (Hero + CTA section reuse this). */
+  /* Animated arrow inside the primary CTA. */
   .cta__btn {
     display: inline-flex;
     align-items: center;
@@ -171,15 +132,23 @@
     .cta__btn:hover .cta__btn-arrow { transform: none; }
   }
 
+  /* Hairlines bracket the hero loop, full layout-column width. */
+  .m-divider { margin-block: 64px; }
+  @media (max-width: 767px) {
+    .m-divider { margin-block: 40px; }
+  }
+
+  .hero__media-wrap {
+    /* The loop container fills the layout column, with --ink edges that
+       feather cleanly into the cream surface. */
+  }
+
   .hero__loop {
-    margin-top: 56px;
-    width: 100%;
-    max-width: var(--max-content);
-    aspect-ratio: 16 / 10;
     position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
     background: var(--ink);
     border: 1px solid rgba(26, 26, 31, 0.10);
-    border-radius: 16px;
     box-shadow: var(--shadow-lg);
     overflow: hidden;
   }
@@ -198,49 +167,13 @@
   .hero__loop-video.is-playing {
     opacity: 1;
   }
-
-  /* LIVE status pip on the hero loop frame. */
-  .hero__loop-status {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 10px;
-    border-radius: 999px;
-    background: rgba(26, 26, 31, 0.72);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 2;
-  }
-  .hero__loop-status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--plum);
-    box-shadow: 0 0 0 0 var(--plum);
-    animation: status-pulse 2000ms var(--ease-out) infinite;
-  }
-  .hero__loop-status-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    color: rgba(255, 255, 255, 0.85);
-  }
-  @keyframes status-pulse {
-    0%   { box-shadow: 0 0 0 0   rgba(139, 45, 92, 0.6); }
-    70%  { box-shadow: 0 0 0 8px rgba(139, 45, 92, 0); }
-    100% { box-shadow: 0 0 0 0   rgba(139, 45, 92, 0); }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .hero__loop-status-dot { animation: none; }
+    .hero__loop-video { opacity: 1; transition: none; }
   }
 
-  /* Mono metadata strip below the loop (film-slate vibe). */
+  /* Mono caption, sits just under the lower hairline like a film slate. */
   .hero__loop-meta {
-    margin-top: 16px;
+    margin-top: 24px;
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
@@ -248,27 +181,25 @@
     display: inline-flex;
     gap: 10px;
     align-items: center;
+    letter-spacing: 0.04em;
   }
   .hero__loop-meta-sep {
-    color: var(--ink-quiet);
     opacity: 0.5;
   }
+  .hero .m-divider + .hero__loop-meta {
+    margin-top: 24px;
+  }
 
-  /* Page-load staggered fade-in (hero only, runs once) */
+  /* Page-load staggered fade-in (hero only, runs once). */
   @media (prefers-reduced-motion: no-preference) {
-    .hero__title    { animation: hero-fade-in 700ms var(--ease-out) 160ms both; }
-    .hero__subtitle { animation: hero-fade-in 700ms var(--ease-out) 240ms both; }
-    .hero__cta-row  { animation: hero-fade-in 700ms var(--ease-out) 320ms both; }
-    .hero__loop     { animation: hero-fade-in 800ms var(--ease-out) 480ms both; }
-    .hero__loop-meta{ animation: hero-fade-in 600ms var(--ease-out) 720ms both; }
+    .hero__intro .section-label { animation: hero-fade-in 600ms var(--ease-out)   0ms both; }
+    .hero__title                 { animation: hero-fade-in 700ms var(--ease-out)  80ms both; }
+    .hero__subtitle              { animation: hero-fade-in 700ms var(--ease-out) 200ms both; }
+    .hero__cta-row               { animation: hero-fade-in 700ms var(--ease-out) 320ms both; }
+    .hero__media-wrap            { animation: hero-fade-in 800ms var(--ease-out) 480ms both; }
     @keyframes hero-fade-in {
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-  }
-
-  /* Reduced motion: skip the cross-fade — show the video immediately. */
-  @media (prefers-reduced-motion: reduce) {
-    .hero__loop-video { opacity: 1; transition: none; }
   }
 </style>

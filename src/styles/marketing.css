@@ -121,35 +121,34 @@ h1, h2, h3, h4, h5, h6 {
   padding-inline: var(--gutter);
 }
 
-/* ---------- Section marker (chapter identifier) ----------
-   Sits 16px inside the left layout line at every viewport. The line itself
-   lives at left:16px until 1304px, then snaps to the inner edge of the
-   centered 1272px column — the marker tracks both regimes. */
-.section-marker {
-  position: absolute;
-  top: 32px;
-  left: 32px;
+/* ---------- Section label (in-flow chapter identifier) ----------
+   Anthropic-style mono uppercase label that sits above each section's
+   headline, in the same column as the body content. */
+.section-label {
+  display: block;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--ink-quiet);
-  z-index: 2;
+  margin: 0;
 }
-@media (min-width: 1304px) {
-  .section-marker {
-    left: calc((100vw - 1272px) / 2 + 16px);
-  }
+.cta .section-label {
+  color: rgba(255, 255, 255, 0.4);
 }
-@media (max-width: 767px) {
-  .section-marker {
-    top: 24px;
-    left: 24px;
-    font-size: 10px;
-  }
+
+/* ---------- Hairline divider ----------
+   Sits inside .m-section-left so it inherits the layout-line geometry —
+   spans the full layout-line column at every viewport. */
+.m-divider {
+  border: none;
+  border-top: 1px solid rgba(26, 26, 31, 0.10);
+  margin: 0;
+  width: 100%;
 }
-.cta .section-marker {
-  color: rgba(255, 255, 255, 0.32);
+.cta .m-divider {
+  border-top-color: rgba(255, 255, 255, 0.10);
 }
 
 /* ---------- Left-anchored section column ----------

@@ -3,7 +3,7 @@ interface Props {
   title: string;
   description: string;
   videoSlug: string;   /* e.g. "selection" — resolves to /videos/gesture-selection.{webm,mp4} */
-  numeral: string;     /* "01" | "02" | "03" | "04" — corner ID on the tile media */
+  numeral: string;     /* "01" | "02" | "03" | "04" */
   delayMs?: number;
 }
 const { title, description, videoSlug, numeral, delayMs = 0 } = Astro.props;
@@ -12,8 +12,12 @@ const webmSrc   = `/videos/gesture-${videoSlug}.webm`;
 const mp4Src    = `/videos/gesture-${videoSlug}.mp4`;
 ---
 <article class="tile reveal" style={`transition-delay: ${delayMs}ms;`}>
-  <div class="tile__media" aria-label={`${title} gesture demo`}>
+  <hr class="tile__rule" />
+  <header class="tile__head">
     <span class="tile__numeral" aria-hidden="true">{numeral}</span>
+    <h3 class="tile__title">{title}</h3>
+  </header>
+  <div class="tile__media" aria-label={`${title} gesture demo`}>
     <img
       src={posterSrc}
       alt=""
@@ -35,7 +39,6 @@ const mp4Src    = `/videos/gesture-${videoSlug}.mp4`;
       <source data-src={mp4Src}  type="video/mp4" />
     </video>
   </div>
-  <h3 class="tile__title">{title}</h3>
   <p class="tile__desc">{description}</p>
 </article>
 
@@ -45,54 +48,49 @@ const mp4Src    = `/videos/gesture-${videoSlug}.mp4`;
     flex-direction: column;
   }
 
+  /* Anthropic-style hairline at the top of each card. */
+  .tile__rule {
+    border: none;
+    border-top: 1px solid rgba(26, 26, 31, 0.10);
+    margin: 0 0 20px;
+    width: 100%;
+  }
+
+  .tile__head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .tile__numeral {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--plum);
+    letter-spacing: 0.04em;
+  }
+  .tile__title {
+    font-family: var(--font-sans);
+    font-size: clamp(1.25rem, 1.75vw, 1.5rem);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
   .tile__media {
     position: relative;
     aspect-ratio: 4 / 3;
     background: var(--ink);
-    border: 1px solid rgba(26, 26, 31, 0.10);
-    border-radius: 12px;
+    border: 1px solid rgba(26, 26, 31, 0.08);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    --tile-glow-opacity: 0;
-    transition:
-      transform   var(--dur-mid) var(--ease-out),
-      box-shadow  var(--dur-mid) var(--ease-out);
-  }
-  /* Plum bottom-edge glow on hover. ::after sits inside the media frame, so
-     it doesn't translate when the card lifts. */
-  .tile__media::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: var(--plum);
-    opacity: var(--tile-glow-opacity);
-    transition: opacity var(--dur-mid) var(--ease-out);
-    z-index: 3;
-    pointer-events: none;
+    transition: transform var(--dur-mid) var(--ease-out);
   }
   .tile:hover .tile__media {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    --tile-glow-opacity: 1;
+    transform: translateY(-3px);
   }
   @media (prefers-reduced-motion: reduce) {
     .tile:hover .tile__media { transform: none; }
-  }
-
-  /* Mono numeral pinned in the top-left of the dark video frame. */
-  .tile__numeral {
-    position: absolute;
-    top: 12px;
-    left: 14px;
-    z-index: 2;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--plum-tint);
-    letter-spacing: 0.04em;
   }
 
   .tile__poster,
@@ -114,16 +112,11 @@ const mp4Src    = `/videos/gesture-${videoSlug}.mp4`;
     .tile__video { opacity: 1; transition: none; }
   }
 
-  .tile__title {
-    margin-top: 1.5rem;
-    font-size: var(--text-h3);
-    font-weight: 600;
-    color: var(--ink);
-  }
   .tile__desc {
-    margin-top: 0.5rem;
-    color: var(--ink-muted);
+    margin-top: 20px;
+    color: var(--ink-soft);
     font-size: var(--text-body);
     line-height: 1.55;
+    max-width: 36ch;
   }
 </style>

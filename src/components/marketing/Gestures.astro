@@ -3,25 +3,25 @@ import GestureTile from './GestureTile.astro';
 
 const tiles = [
   {
-    title: 'Selection.',
+    title: 'Selection',
     description: "Click to point. The AI works on what you've chosen, nothing else.",
     videoSlug: 'selection',
     numeral: '01',
   },
   {
-    title: 'Reference.',
+    title: 'Reference',
     description: 'Drop in an image. The AI matches the look without you describing it.',
     videoSlug: 'reference',
     numeral: '02',
   },
   {
-    title: 'Pins.',
+    title: 'Pins',
     description: 'Mark a spot. The AI focuses there — no other layer is at risk.',
     videoSlug: 'pins',
     numeral: '03',
   },
   {
-    title: 'Locks.',
+    title: 'Locks',
     description: "Lock what's done. The AI won't touch it, no matter what you ask for next.",
     videoSlug: 'locks',
     numeral: '04',
@@ -29,25 +29,27 @@ const tiles = [
 ];
 ---
 <section class="gestures">
-  <span class="section-marker" aria-hidden="true">02 / VOCABULARY</span>
+  <div class="m-section-left">
+    <hr class="m-divider" />
+    <header class="gestures__header reveal">
+      <p class="section-label">02 / Vocabulary</p>
+      <h2 class="gestures__title">Direction at the speed of design.</h2>
+      <p class="gestures__lead">
+        Every channel is a way to tell the AI what you mean — without a prompt box, without copy-pasting, without explaining yourself.
+      </p>
+    </header>
 
-  <header class="gestures__header reveal">
-    <h2 class="gestures__title">Direction at the speed of design.</h2>
-    <p class="gestures__lead">
-      Every channel is a way to tell the AI what you mean — without a prompt box, without copy-pasting, without explaining yourself.
-    </p>
-  </header>
-
-  <div class="gestures__grid">
-    {tiles.map((tile, i) => (
-      <GestureTile
-        title={tile.title}
-        description={tile.description}
-        videoSlug={tile.videoSlug}
-        numeral={tile.numeral}
-        delayMs={i * 120}
-      />
-    ))}
+    <div class="gestures__grid">
+      {tiles.map((tile, i) => (
+        <GestureTile
+          title={tile.title}
+          description={tile.description}
+          videoSlug={tile.videoSlug}
+          numeral={tile.numeral}
+          delayMs={i * 120}
+        />
+      ))}
+    </div>
   </div>
 </section>
 
@@ -61,54 +63,49 @@ const tiles = [
     .gestures { padding: 80px 0; }
   }
 
-  /* Header + grid both share the .m-section-left geometry so the leftmost
-     tile, the headline, and the section marker all sit on the same x-axis. */
-  .gestures__header,
-  .gestures__grid {
-    padding-inline: 32px;
+  .gestures__header {
+    margin-top: 56px;
+    margin-bottom: 80px;
+    max-width: 720px;
+    text-align: left;
   }
-  @media (min-width: 1304px) {
-    .gestures__header,
-    .gestures__grid {
-      padding-inline: calc((100vw - 1272px) / 2 + 16px);
-    }
+  .gestures__header .section-label {
+    margin-bottom: 24px;
   }
   @media (max-width: 767px) {
-    .gestures__header,
-    .gestures__grid {
-      padding-inline: 24px;
+    .gestures__header {
+      margin-top: 40px;
+      margin-bottom: 56px;
     }
-  }
-
-  .gestures__header {
-    margin-bottom: 64px;
-    text-align: left;
   }
 
   .gestures__title {
-    font-size: var(--text-h2);
+    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
     font-weight: 700;
     color: var(--ink);
     letter-spacing: -0.02em;
     line-height: 1.1;
   }
   .gestures__lead {
-    margin: 24px 0 0;
+    margin: 28px 0 0;
     max-width: 560px;
     color: var(--ink-soft);
-    font-size: var(--text-body);
+    font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
     line-height: 1.55;
   }
 
+  /* Grid of tiles. Each tile is a self-contained anthropic-style card —
+     own top hairline + internal structure (see GestureTile). */
   .gestures__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px;
+    column-gap: 32px;
+    row-gap: 56px;
   }
   @media (max-width: 767px) {
     .gestures__grid {
       grid-template-columns: 1fr;
-      gap: 24px;
+      row-gap: 40px;
     }
   }
 </style>

@@ -153,11 +153,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ---------- Left-anchored section column ----------
-   Used by Thesis, Gestures header, and CTA. The padding tracks the same
-   layout-line geometry as .section-marker so content reads off the marker. */
+   Used by Thesis, Gestures header/grid, and CTA. Full viewport width with
+   padding-inline that mirrors the .section-marker's geometry on the left
+   AND the right (so content spans the layout-line column with 16px breathing
+   room). No centering — content's left edge sits flush with the marker. */
 .m-section-left {
-  max-width: var(--max-content);
-  margin: 0 auto;
   padding-inline: 32px;
 }
 @media (min-width: 1304px) {

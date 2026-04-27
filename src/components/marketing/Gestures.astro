@@ -31,26 +31,23 @@ const tiles = [
 <section class="gestures">
   <span class="section-marker" aria-hidden="true">02 / VOCABULARY</span>
 
-  <div class="m-container">
-    <header class="gestures__header reveal">
-      <p class="gestures__eyebrow">02 / VOCABULARY</p>
-      <h2 class="gestures__title">Direction at the speed of design.</h2>
-      <p class="gestures__lead">
-        Every channel is a way to tell the AI what you mean — without a prompt box, without copy-pasting, without explaining yourself.
-      </p>
-    </header>
+  <header class="gestures__header reveal">
+    <h2 class="gestures__title">Direction at the speed of design.</h2>
+    <p class="gestures__lead">
+      Every channel is a way to tell the AI what you mean — without a prompt box, without copy-pasting, without explaining yourself.
+    </p>
+  </header>
 
-    <div class="gestures__grid">
-      {tiles.map((tile, i) => (
-        <GestureTile
-          title={tile.title}
-          description={tile.description}
-          videoSlug={tile.videoSlug}
-          numeral={tile.numeral}
-          delayMs={i * 120}
-        />
-      ))}
-    </div>
+  <div class="gestures__grid">
+    {tiles.map((tile, i) => (
+      <GestureTile
+        title={tile.title}
+        description={tile.description}
+        videoSlug={tile.videoSlug}
+        numeral={tile.numeral}
+        delayMs={i * 120}
+      />
+    ))}
   </div>
 </section>
 
@@ -64,23 +61,23 @@ const tiles = [
     .gestures { padding: 80px 0; }
   }
 
+  /* Left-anchored header, geometry matches .section-marker / .m-section-left. */
   .gestures__header {
-    max-width: 720px;
+    max-width: var(--max-content);
     margin: 0 auto 64px;
-    text-align: center;
-    padding-inline: var(--gutter);
+    padding-inline: 32px;
+    text-align: left;
   }
-  .gestures__eyebrow {
-    font-family: var(--font-mono);
-    color: var(--plum);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0;
-    text-transform: none;
-    margin: 0;
+  @media (min-width: 1304px) {
+    .gestures__header {
+      padding-inline: calc((100vw - 1272px) / 2 + 16px);
+    }
   }
+  @media (max-width: 767px) {
+    .gestures__header { padding-inline: 24px; }
+  }
+
   .gestures__title {
-    margin-top: 16px;
     font-size: var(--text-h2);
     font-weight: 700;
     color: var(--ink);
@@ -88,7 +85,7 @@ const tiles = [
     line-height: 1.1;
   }
   .gestures__lead {
-    margin: 24px auto 0;
+    margin: 24px 0 0;
     max-width: 560px;
     color: var(--ink-soft);
     font-size: var(--text-body);

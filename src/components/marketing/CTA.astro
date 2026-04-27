@@ -3,26 +3,27 @@
 <section class="cta reveal">
   <span class="section-marker" aria-hidden="true">03 / OPEN</span>
 
-  <div class="cta__inner m-container">
-    <h2 class="cta__title">Ready to direct?</h2>
-    <p class="cta__sub">Open Conjure and try a real edit. No prompt box required.</p>
-    <a href="https://app.onconjure.com" class="m-btn m-btn--primary m-btn--lg cta__btn">
-      Open Conjure
-      <svg class="cta__btn-arrow" viewBox="0 0 14 14" aria-hidden="true">
-        <path d="M3 11 L11 3 M5 3 L11 3 L11 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
-    </a>
+  <div class="m-section-left">
+    <div class="m-section-left__inner cta__inner">
+      <h2 class="cta__title">Ready to direct?</h2>
+      <p class="cta__sub">Open Conjure and try a real edit. No prompt box required.</p>
+      <a href="https://app.onconjure.com" class="m-btn m-btn--primary m-btn--lg cta__btn">
+        Open Conjure
+        <svg class="cta__btn-arrow" viewBox="0 0 14 14" aria-hidden="true">
+          <path d="M3 11 L11 3 M5 3 L11 3 L11 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </a>
+    </div>
   </div>
 </section>
 
 <style>
   .cta {
     background: var(--ink);
-    padding: 120px var(--gutter);
+    padding: 120px 0;
     position: relative;
   }
-  /* Plum hairline framing the top of the dark band — a frame indicator,
-     like the strip across the top of an Anthropic publication. */
+  /* Plum hairline framing the top of the dark band. */
   .cta::before {
     content: '';
     position: absolute;
@@ -34,15 +35,13 @@
     opacity: 0.55;
   }
   @media (max-width: 767px) {
-    .cta { padding: 96px var(--gutter); }
+    .cta { padding: 96px 0; }
   }
 
   .cta__inner {
-    max-width: 720px;
-    text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .cta__title {

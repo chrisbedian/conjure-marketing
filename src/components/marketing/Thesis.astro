@@ -3,38 +3,27 @@
 <section class="thesis reveal">
   <span class="section-marker" aria-hidden="true">01 / THESIS</span>
 
-  <div class="thesis__inner m-container">
-    <h2 class="thesis__title">
-      The AI is the properties panel.<br />
-      There's no <span class="thesis__strike">prompt box</span>.
-    </h2>
-
-    <svg class="thesis__spark" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 2 L13.5 10.5 L22 12 L13.5 13.5 L12 22 L10.5 13.5 L2 12 L10.5 10.5 Z" fill="currentColor"/>
-    </svg>
-
-    <p class="thesis__body">
-      Conjure replaces typed prompts with the gestures designers already use — selecting a layer, dropping a pin, attaching a reference, locking what's done. The AI reads the room and executes precisely what you point at.
-    </p>
+  <div class="m-section-left">
+    <div class="m-section-left__inner">
+      <h2 class="thesis__title">
+        The AI is the properties panel.<br />
+        There's no <span class="thesis__strike">prompt box</span>.
+      </h2>
+      <p class="thesis__body">
+        Conjure replaces typed prompts with the gestures designers already use — selecting a layer, dropping a pin, attaching a reference, locking what's done. The AI reads the room and executes precisely what you point at.
+      </p>
+    </div>
   </div>
 </section>
 
 <style>
   .thesis {
     background: var(--cream-soft);
-    padding: 160px var(--gutter);
+    padding: 160px 0;
     position: relative;
   }
   @media (max-width: 767px) {
-    .thesis { padding: 96px var(--gutter); }
-  }
-
-  .thesis__inner {
-    max-width: 920px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    .thesis { padding: 96px 0; }
   }
 
   .thesis__title {
@@ -75,36 +64,11 @@
     }
   }
 
-  /* Plum sparkle marginalia — closes the thesis like a punctuation mark. */
-  .thesis__spark {
-    width: 20px;
-    height: 20px;
-    color: var(--plum);
-    margin-top: 24px;
-    opacity: 0;
-    transform: scale(0.6) rotate(-30deg);
-    transition:
-      opacity   500ms var(--ease-out) 600ms,
-      transform 500ms var(--ease-out) 600ms;
-  }
-  .thesis.is-visible .thesis__spark {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .thesis__spark {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-  }
-
   .thesis__body {
     margin-top: 2rem;
     color: var(--ink-soft);
     font-size: var(--text-lead);
     font-weight: 400;
     line-height: 1.55;
-    max-width: 640px;
   }
 </style>

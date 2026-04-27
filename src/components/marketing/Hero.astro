@@ -17,28 +17,10 @@
   <span class="section-marker" aria-hidden="true">00 / DIRECT</span>
 
   <div class="hero__inner m-container">
-    <div class="hero__sparkle" aria-hidden="true">
-      <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="sparkleGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stop-color="#8B2D5C" stop-opacity="0.55"/>
-            <stop offset="40%"  stop-color="#8B2D5C" stop-opacity="0.18"/>
-            <stop offset="100%" stop-color="#8B2D5C" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <circle cx="240" cy="240" r="240" fill="url(#sparkleGlow)"/>
-        <g transform="translate(240,240)" stroke="#8B2D5C" stroke-width="1.2" stroke-linecap="round" opacity="0.45">
-          <line x1="-160" y1="0"    x2="160" y2="0"/>
-          <line x1="0"    y1="-160" x2="0"   y2="160"/>
-          <line x1="-110" y1="-110" x2="110" y2="110"/>
-          <line x1="-110" y1="110"  x2="110" y2="-110"/>
-        </g>
-        <circle cx="240" cy="240" r="5" fill="#8B2D5C" opacity="0.85"/>
-      </svg>
-    </div>
+    <div class="hero__wash" aria-hidden="true"></div>
 
     <h1 class="hero__title">
-      Direct the AI. Don't describe it<span class="hero__title-mark">.</span>
+      Direct the AI. Don't describe it.
     </h1>
     <p class="hero__subtitle">
       An AI design tool for design professionals. Built around your gestures, not your prompts.
@@ -111,37 +93,34 @@
     position: relative;
   }
 
-  /* Plum sparkle backdrop sits behind everything in the inner column. */
-  .hero__sparkle {
+  /* Diffuse plum wash — colored breath behind the headline. No rays, no
+     points; just warmth. */
+  .hero__wash {
     position: absolute;
-    top: 40px;
+    top: -120px;
     left: 50%;
     transform: translateX(-50%);
-    width: clamp(420px, 48vw, 640px);
-    aspect-ratio: 1 / 1;
+    width: clamp(640px, 80vw, 1100px);
+    height: clamp(420px, 50vw, 640px);
     pointer-events: none;
     z-index: 0;
-    mix-blend-mode: multiply;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(139, 45, 92, 0.22) 0%,
+      rgba(139, 45, 92, 0.10) 35%,
+      rgba(139, 45, 92, 0.03) 60%,
+      rgba(139, 45, 92, 0)    80%
+    );
+    filter: blur(20px);
     opacity: 0;
-    animation:
-      sparkle-fade-in 1200ms var(--ease-out) 80ms forwards,
-      sparkle-pulse   6000ms var(--ease-in-out) 1280ms infinite;
+    animation: wash-fade-in 1200ms var(--ease-out) 80ms forwards;
   }
-  @keyframes sparkle-fade-in {
+  @keyframes wash-fade-in {
     to { opacity: 1; }
   }
-  @keyframes sparkle-pulse {
-    0%, 100% { transform: translateX(-50%) scale(1); }
-    50%      { transform: translateX(-50%) scale(1.04); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hero__sparkle {
-      animation: sparkle-fade-in 600ms var(--ease-out) 0ms forwards;
-    }
-  }
 
-  /* All inner content sits on top of the sparkle. */
-  .hero__inner > *:not(.hero__sparkle) {
+  /* All inner content sits on top of the wash. */
+  .hero__inner > *:not(.hero__wash) {
     position: relative;
     z-index: 1;
   }
@@ -153,12 +132,6 @@
     line-height: 1.05;
     letter-spacing: -0.02em;
     max-width: 18ch;
-  }
-  .hero__title-mark {
-    color: var(--plum);
-    font-size: 1.1em;
-    display: inline-block;
-    transform: translateY(0.04em);
   }
 
   .hero__subtitle {

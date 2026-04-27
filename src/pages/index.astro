@@ -1,5 +1,6 @@
 ---
 import '../styles/marketing.css';
+import LayoutLines from '../components/marketing/LayoutLines.astro';
 import Nav from '../components/marketing/Nav.astro';
 import Hero from '../components/marketing/Hero.astro';
 import Thesis from '../components/marketing/Thesis.astro';
@@ -40,6 +41,7 @@ export const prerender = true;
     />
   </head>
   <body>
+    <LayoutLines />
     <Nav />
     <main id="main">
       <Hero />

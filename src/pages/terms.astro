@@ -1,5 +1,6 @@
 ---
 import '../styles/marketing.css';
+import LayoutLines from '../components/marketing/LayoutLines.astro';
 import Nav from '../components/marketing/Nav.astro';
 import Footer from '../components/marketing/Footer.astro';
 
@@ -22,6 +23,7 @@ export const prerender = true;
     />
   </head>
   <body>
+    <LayoutLines />
     <Nav />
     <main class="legal m-container">
       <h1>Terms</h1>
@@ -51,7 +53,7 @@ export const prerender = true;
         line-height: 1.6;
       }
       .legal a {
-        color: var(--indigo);
+        color: var(--plum);
         text-decoration: underline;
         text-underline-offset: 3px;
       }

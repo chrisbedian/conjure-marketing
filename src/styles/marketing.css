@@ -16,12 +16,17 @@
   --ink-muted:       #57575E;
   --ink-quiet:       #8A8A92;
 
-  /* Accents (use sparingly) */
-  --indigo:          #6366F1;
-  --indigo-deep:     #4F46E5;
+  /* Brand — plum. Primary accent for CTA fills, focus rings, link color. */
+  --plum:            #8B2D5C;
+  --plum-deep:       #6E2349;
+  --plum-tint:       #C28BAA;
+  --plum-wash:       rgba(139, 45, 92, 0.08);
 
   /* Reserved for future AI-moment punctuation only — not a UI accent. */
   --ai-green:        #10B981;
+
+  /* Destructive / validation only — never a brand surface. Plum is brand; red is alarm. */
+  --error:           #EF4444;
 
   /* Shadows */
   --shadow-sm:       0 1px 2px rgba(5, 5, 7, 0.04), 0 1px 3px rgba(5, 5, 7, 0.06);
@@ -81,7 +86,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------- Focus ---------- */
 :focus { outline: none; }
 :focus-visible {
-  outline: 2px solid var(--indigo);
+  outline: 2px solid var(--plum);
   outline-offset: 3px;
   transition: outline-color 150ms var(--ease-in-out);
 }
@@ -112,11 +117,11 @@ h1, h2, h3, h4, h5, h6 {
     transform       var(--dur-base) var(--ease-in-out);
 }
 .m-btn--primary {
-  background: var(--indigo);
+  background: var(--plum);
   color: #FFFFFF;
 }
 .m-btn--primary:hover {
-  background: var(--indigo-deep);
+  background: var(--plum-deep);
 }
 .m-btn--ghost {
   background: transparent;

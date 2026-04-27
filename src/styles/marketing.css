@@ -216,22 +216,23 @@ h1, h2, h3, h4, h5, h6 {
 
 /* =========================================================================
    Marketing nav — floating cream-glass capsule that tightens to a flush
-   band on scroll. Width tracks the column between the layout lines exactly
-   so the nav (and its bottom border) never overlap or extend past them.
-     - viewport <= 1272: lines at 16px inset → nav = calc(100% - 32px), max 1240
-     - viewport >  1304: lines snap to 0/1272 of the 1272 container → nav = 1272
-     - the 1272–1304 range tracks via the same max-width breakpoint as the lines
-   The bottom border is always on (cream-on-cream, 8% ink), regardless of scroll
-   state — its visible width is bounded by the vertical lines because it lives
-   on the nav itself, not a full-viewport horizontal line.
+   band on scroll. Width is inset 8px inward from the layout-line column
+   on each side so the lines pass *beside* the nav (z=100), not under it.
+   The lines (z=50) would otherwise be hidden where the nav fills.
+     - viewport <= 1272: lines at 16px inset (column = vw - 32),
+       nav = calc(100% - 48px), max 1224     (8px gap each side)
+     - viewport >  1304: lines snap to 0/1272 of the 1272 container,
+       nav max 1256                            (8px gap each side)
+   The bottom border is always on (8% ink), regardless of scroll state —
+   bounded by the lines because it lives on the nav itself.
    ========================================================================= */
 .marketing-nav {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   top: 8px;
-  width: calc(100% - 32px);
-  max-width: 1240px;
+  width: calc(100% - 48px);
+  max-width: 1224px;
   height: 64px;
   z-index: 100;
   border-radius: 8px;
@@ -249,7 +250,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (min-width: 1304px) {
-  .marketing-nav { max-width: 1272px; }
+  .marketing-nav { max-width: 1256px; }
 }
 
 .marketing-nav.is-scrolled {

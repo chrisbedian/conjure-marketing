@@ -128,15 +128,17 @@
     margin-bottom: 32px;
   }
 
-  /* Two-column upper hero. Stacks at <900px. */
+  /* Two-column upper hero. Wider left (2fr) so the title has room without
+     overflowing into the mini loop on no-wrap. Stacks at <=1099px — below
+     that the title at 8vw is too wide to share a row with the mini loop. */
   .hero__top {
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
     gap: 64px;
     align-items: center;
     margin-bottom: 56px;
   }
-  @media (max-width: 899px) {
+  @media (max-width: 1099px) {
     .hero__top {
       grid-template-columns: 1fr;
       gap: 40px;
@@ -247,9 +249,9 @@
     box-shadow: var(--shadow-md);
     border: 1px solid rgba(26, 26, 31, 0.10);
   }
-  /* Below 900px the layout stacks single-column; let the mini fill the
+  /* Below 1100px the layout stacks single-column; let the mini fill the
      full column flush-left, matching the text above. */
-  @media (max-width: 899px) {
+  @media (max-width: 1099px) {
     .hero__mini {
       margin-left: 0;
       max-width: none;

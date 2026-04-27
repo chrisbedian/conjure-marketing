@@ -118,8 +118,10 @@
     padding: 96px 0 80px;
     position: relative;
   }
+  /* Mobile: keep the same 32px gap between nav (64px tall, fixed) and the
+     section-label as desktop has — drop only the bottom padding. */
   @media (max-width: 767px) {
-    .hero { padding: 64px 0 56px; }
+    .hero { padding: 96px 0 56px; }
   }
 
   .hero__intro .section-label {

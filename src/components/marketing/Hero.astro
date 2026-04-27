@@ -184,6 +184,13 @@
     letter-spacing: -0.025em;
     max-width: 16ch;
   }
+  /* When the hero stacks single-column the headline gets the full layout
+     column to itself, so scale it more aggressively. */
+  @media (max-width: 899px) {
+    .hero__title {
+      font-size: clamp(3rem, 9vw, 5.75rem);
+    }
+  }
   /* Each clause stays as one line at any viewport that can hold it. The
      <br /> still creates the explicit break between the two lines; this
      just prevents the browser from breaking *within* a clause when the

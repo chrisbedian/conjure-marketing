@@ -1,0 +1,89 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="footer__inner m-container">
+    <div class="footer__row">
+      <a href="/" class="footer__brand" aria-label="Conjure home">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+          <path d="M6 18 L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="18" cy="6" r="1.5" fill="currentColor"/>
+          <path d="M18 2.5 L18 0.5 M21 3 L22.5 1.5 M22 6 L24 6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+        </svg>
+        <span class="footer__wordmark">Conjure</span>
+      </a>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="/blog">Blog</a>
+        <a href="https://app.onconjure.com">Open app</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </nav>
+    </div>
+    <div class="footer__meta">
+      <p class="footer__copy">
+        &copy; {year} Lume Grid. Conjure is a product of Lume Grid.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--ink);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 56px 0;
+  }
+
+  .footer__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #FAFAFA;
+  }
+  .footer__wordmark {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .footer__nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer__nav a {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: var(--text-small);
+    transition: color 150ms var(--ease-in-out);
+  }
+  .footer__nav a:hover {
+    color: #FAFAFA;
+  }
+
+  .footer__meta {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer__copy {
+    font-size: var(--text-small);
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+  }
+
+  @media (max-width: 567px) {
+    .footer__nav { gap: 16px; }
+  }
+</style>

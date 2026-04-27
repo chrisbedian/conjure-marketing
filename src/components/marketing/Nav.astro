@@ -1,0 +1,96 @@
+---
+---
+<nav class="m-nav" id="m-nav" aria-label="Primary">
+  <div class="m-nav__inner m-container">
+    <a href="/" class="m-nav__brand" aria-label="Conjure home">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
+        <path d="M6 18 L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="18" cy="6" r="1.5" fill="currentColor"/>
+        <path d="M18 2.5 L18 0.5 M21 3 L22.5 1.5 M22 6 L24 6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+      </svg>
+      <span class="m-nav__wordmark">Conjure</span>
+    </a>
+
+    <div class="m-nav__right">
+      <a href="/blog" class="m-nav__link m-nav__link--blog">Blog</a>
+      <a href="https://app.onconjure.com" class="m-btn m-btn--primary m-btn--sm">Open app</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .m-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: 64px;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color   var(--dur-mid) var(--ease-in-out),
+      border-color       var(--dur-mid) var(--ease-in-out),
+      backdrop-filter    var(--dur-mid) var(--ease-in-out),
+      -webkit-backdrop-filter var(--dur-mid) var(--ease-in-out);
+  }
+
+  .m-nav.is-scrolled {
+    background-color: rgba(236, 233, 224, 0.78); /* --cream w/ alpha */
+    border-bottom-color: var(--cream-deep);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .m-nav__inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .m-nav__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ink);
+  }
+  .m-nav__wordmark {
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .m-nav__right {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .m-nav__link {
+    color: var(--ink-soft);
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 150ms var(--ease-in-out);
+  }
+  .m-nav__link:hover {
+    color: var(--ink);
+  }
+
+  /* Page-load fade for nav */
+  @media (prefers-reduced-motion: no-preference) {
+    .m-nav__brand {
+      animation: nav-fade-in 600ms var(--ease-out) 0ms both;
+    }
+    .m-nav__right {
+      animation: nav-fade-in 600ms var(--ease-out) 80ms both;
+    }
+    @keyframes nav-fade-in {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  /* Mobile: hide Blog link in nav (per spec — no hamburger for v1) */
+  @media (max-width: 767px) {
+    .m-nav__link--blog { display: none; }
+    .m-nav__right { gap: 0; }
+  }
+</style>

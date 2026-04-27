@@ -1,0 +1,135 @@
+---
+/**
+ * Hero — cream surface, centered.
+ * The hero loop is the most important asset on the site. Until the founder
+ * delivers /public/videos/hero-loop.{webm,mp4} + hero-loop-poster.jpg, the
+ * <video> markup is wired but the parent shows --ink so the layout reads.
+ */
+---
+<section class="hero">
+  <div class="hero__inner m-container">
+    <h1 class="hero__title">
+      Direct the AI. Don't describe it.
+    </h1>
+    <p class="hero__subtitle">
+      An AI design tool for design professionals. Built around your gestures, not your prompts.
+    </p>
+
+    <div class="hero__cta-row">
+      <a href="https://app.onconjure.com" class="m-btn m-btn--primary m-btn--md">Open Conjure</a>
+      <a href="/blog" class="m-btn m-btn--ghost m-btn--md">Read the blog</a>
+    </div>
+
+    <div class="hero__loop" aria-label="A short loop of Conjure being used to edit a design">
+      <img
+        src="/videos/hero-loop-poster.jpg"
+        alt=""
+        class="hero__loop-poster"
+        decoding="async"
+        fetchpriority="high"
+      />
+      <video
+        class="hero__loop-video"
+        data-crossfade
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="/videos/hero-loop-poster.jpg"
+      >
+        <source src="/videos/hero-loop.webm" type="video/webm" />
+        <source src="/videos/hero-loop.mp4"  type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: var(--cream);
+    padding: 96px var(--gutter) 80px;
+  }
+  @media (max-width: 767px) {
+    .hero { padding: 64px var(--gutter) 56px; }
+  }
+
+  .hero__inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__title {
+    font-size: var(--text-hero);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 18ch;
+  }
+
+  .hero__subtitle {
+    margin-top: 1.25rem;
+    color: var(--ink-soft);
+    font-size: var(--text-lead);
+    font-weight: 500;
+    line-height: 1.4;
+    max-width: 640px;
+  }
+
+  .hero__cta-row {
+    margin-top: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero__loop {
+    margin-top: 56px;
+    width: 100%;
+    max-width: var(--max-content);
+    aspect-ratio: 16 / 10;
+    position: relative;
+    background: var(--ink);
+    border: 1px solid rgba(5, 5, 7, 0.08);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+  .hero__loop-poster,
+  .hero__loop-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero__loop-video {
+    opacity: 0;
+    transition: opacity 200ms var(--ease-in-out);
+  }
+  .hero__loop-video.is-playing {
+    opacity: 1;
+  }
+
+  /* Page-load staggered fade-in (hero only, runs once) */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__title    { animation: hero-fade-in 700ms var(--ease-out) 160ms both; }
+    .hero__subtitle { animation: hero-fade-in 700ms var(--ease-out) 240ms both; }
+    .hero__cta-row  { animation: hero-fade-in 700ms var(--ease-out) 320ms both; }
+    .hero__loop     { animation: hero-fade-in 800ms var(--ease-out) 480ms both; }
+    @keyframes hero-fade-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  /* Reduced motion: skip the cross-fade — show the video immediately. */
+  @media (prefers-reduced-motion: reduce) {
+    .hero__loop-video { opacity: 1; transition: none; }
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+import '../styles/marketing.css';
+import Nav from '../components/marketing/Nav.astro';
+import Footer from '../components/marketing/Footer.astro';
+
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Privacy — Conjure</title>
+    <meta name="description" content="Conjure privacy policy." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    />
+  </head>
+  <body>
+    <Nav />
+    <main class="legal m-container">
+      <h1>Privacy</h1>
+      <p>Our privacy policy is forthcoming. Reach out to <a href="mailto:hello@onconjure.com">hello@onconjure.com</a> for questions in the meantime.</p>
+    </main>
+    <Footer />
+
+    <script>
+      import '../scripts/nav-scroll';
+    </script>
+
+    <style>
+      .legal {
+        padding: 96px var(--gutter) 160px;
+        max-width: 720px;
+      }
+      .legal h1 {
+        font-size: var(--text-h2);
+        font-weight: 700;
+        color: var(--ink);
+        letter-spacing: -0.02em;
+        margin-bottom: 1.5rem;
+      }
+      .legal p {
+        color: var(--ink-soft);
+        font-size: var(--text-body);
+        line-height: 1.6;
+      }
+      .legal a {
+        color: var(--indigo);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+    </style>
+  </body>
+</html>

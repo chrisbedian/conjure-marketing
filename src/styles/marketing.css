@@ -1,0 +1,175 @@
+/* =========================================================================
+   Conjure marketing — design tokens, reset, base.
+   Imported only by marketing pages (splash, privacy, terms). Does not bleed
+   into the blog, which uses its own BaseLayout + global.css.
+   ========================================================================= */
+
+:root {
+  /* Surfaces */
+  --cream:           #ECE9E0;
+  --cream-soft:      #F4F1E9;
+  --cream-deep:      #DDD9CD;
+
+  /* Text */
+  --ink:             #050507;
+  --ink-soft:        #1A1A1F;
+  --ink-muted:       #57575E;
+  --ink-quiet:       #8A8A92;
+
+  /* Accents (use sparingly) */
+  --indigo:          #6366F1;
+  --indigo-deep:     #4F46E5;
+
+  /* Reserved for future AI-moment punctuation only — not a UI accent. */
+  --ai-green:        #10B981;
+
+  /* Shadows */
+  --shadow-sm:       0 1px 2px rgba(5, 5, 7, 0.04), 0 1px 3px rgba(5, 5, 7, 0.06);
+  --shadow-md:       0 4px 12px rgba(5, 5, 7, 0.06), 0 12px 32px rgba(5, 5, 7, 0.08);
+  --shadow-lg:       0 12px 32px rgba(5, 5, 7, 0.08), 0 32px 64px rgba(5, 5, 7, 0.10);
+
+  /* Type */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+  --text-hero:   clamp(3rem, 6vw, 5.5rem);
+  --text-h2:     clamp(2rem, 3.5vw, 3rem);
+  --text-h3:     1.5rem;
+  --text-lead:   1.25rem;
+  --text-body:   1.0625rem;
+  --text-small:  0.875rem;
+
+  /* Animation */
+  --ease-out:        cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:     cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-sharp:  cubic-bezier(0.25, 1, 0.5, 1);
+  --dur-fast:    120ms;
+  --dur-base:    180ms;
+  --dur-mid:     240ms;
+  --dur-slow:    600ms;
+  --dur-reveal:  800ms;
+
+  /* Layout */
+  --max-content: 1120px;
+  --gutter:      1.5rem;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; }
+html, body { min-height: 100%; }
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { background: none; border: none; padding: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; padding: 0; }
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* ---------- Focus ---------- */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 3px;
+  transition: outline-color 150ms var(--ease-in-out);
+}
+
+/* ---------- Container ---------- */
+.m-container {
+  max-width: var(--max-content);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Buttons ---------- */
+.m-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-base) var(--ease-in-out),
+    color           var(--dur-base) var(--ease-in-out),
+    border-color    var(--dur-base) var(--ease-in-out),
+    transform       var(--dur-base) var(--ease-in-out);
+}
+.m-btn--primary {
+  background: var(--indigo);
+  color: #FFFFFF;
+}
+.m-btn--primary:hover {
+  background: var(--indigo-deep);
+}
+.m-btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--cream-deep);
+}
+.m-btn--ghost:hover {
+  border-color: var(--ink-muted);
+}
+.m-btn--sm { padding: 14px 22px; font-size: 15px; }
+.m-btn--md { padding: 16px 28px; font-size: 16px; }
+.m-btn--lg { padding: 18px 32px; font-size: 17px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .m-btn--primary:hover { transform: scale(1.02); }
+}
+
+/* ---------- Scroll reveals ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity   var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    transform: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- A11y helpers ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

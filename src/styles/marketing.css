@@ -257,7 +257,6 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(236, 233, 224, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
 }
 
 .marketing-nav.is-scrolled {

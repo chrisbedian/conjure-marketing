@@ -247,8 +247,13 @@
     box-shadow: var(--shadow-md);
     border: 1px solid rgba(26, 26, 31, 0.10);
   }
+  /* Below 900px the layout stacks single-column; let the mini fill the
+     full column flush-left, matching the text above. */
   @media (max-width: 899px) {
-    .hero__mini { margin: 0 auto; max-width: 360px; }
+    .hero__mini {
+      margin-left: 0;
+      max-width: none;
+    }
   }
   .hero__mini-svg {
     display: block;

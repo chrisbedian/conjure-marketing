@@ -177,7 +177,7 @@
   }
 
   .hero__title {
-    font-size: clamp(3rem, 6vw, 5.75rem);
+    font-size: clamp(3rem, 8vw, 5.75rem);
     font-weight: 700;
     color: var(--ink);
     line-height: 1.02;
@@ -247,8 +247,13 @@
     box-shadow: var(--shadow-md);
     border: 1px solid rgba(26, 26, 31, 0.10);
   }
+  /* Below 900px the layout stacks single-column; let the mini fill the
+     full column flush-left, matching the text above. */
   @media (max-width: 899px) {
-    .hero__mini { margin: 0 auto; max-width: 360px; }
+    .hero__mini {
+      margin-left: 0;
+      max-width: none;
+    }
   }
   .hero__mini-svg {
     display: block;

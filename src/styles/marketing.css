@@ -218,24 +218,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* =========================================================================
-   Marketing nav — ported from LumeGrid Header.astro.
-     - At rest (top of page): fully transparent, no border, no shadow.
-       The vertical lines pass straight through the (invisible) nav.
-     - On hover or once scrolled: cream-glass fill, blur, soft shadow.
-     - The `nav-h-line` (always visible, full viewport width) acts as the
-       always-on bottom border, intersecting the vertical lines as a grid.
-   Geometry mirrors LumeGrid so layout reads consistently:
-     outer width: calc(100% - 36px), max 1272px
-     padding-x:   20px
-     inner box:   max 1232px, mx-auto
+   Marketing nav.
+     - Outer band: full viewport width — background extends edge-to-edge.
+     - Inner content: max 1232px, mx-auto, so logo / links / CTA stay in
+       the same positions they were when the nav was max-1272 floating.
+     - At rest (top of page): fully transparent. Vertical lines pass through.
+     - On hover or once scrolled: cream-glass fill, blur. Background is
+       full-width so it forms a continuous band, not a centered capsule.
+     - The `nav-h-line` (always visible, full viewport width) is the bottom
+       divider, intersecting the vertical lines as a grid.
    ========================================================================= */
 .marketing-nav {
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   top: 8px;
-  width: calc(100% - 36px);
-  max-width: 1272px;
+  width: 100%;
   height: 64px;
   z-index: 100;
   padding: 0 20px;

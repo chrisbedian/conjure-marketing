@@ -239,23 +239,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 64px;
   z-index: 100;
   padding: 0 20px;
-  background: transparent;
-  border: 1px solid transparent;
-  box-shadow: none;
-  transition:
-    background-color        var(--dur-base) var(--ease-in-out),
-    border-color            var(--dur-base) var(--ease-in-out),
-    box-shadow              var(--dur-base) var(--ease-in-out),
-    backdrop-filter         var(--dur-base) var(--ease-in-out),
-    -webkit-backdrop-filter var(--dur-base) var(--ease-in-out);
-}
-
-/* Hover (desktop) and scrolled both light up the cream-glass capsule. */
-.marketing-nav:hover,
-.marketing-nav.is-scrolled {
-  background: rgba(236, 233, 224, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--cream);
 }
 
 .nav-inner {

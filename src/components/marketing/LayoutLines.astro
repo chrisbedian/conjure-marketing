@@ -8,7 +8,7 @@
  * band — that's intentional; the rhythm is cream-only.
  *
  * z-index 50 sits below the floating nav (z-index 100) and above section
- * content (z-index auto/0).
+ * content. Styles live globally in `src/styles/marketing.css`.
  */
 ---
 <div class="layout-lines" aria-hidden="true">
@@ -17,40 +17,3 @@
     <div class="layout-line-v layout-line-right"></div>
   </div>
 </div>
-
-<style>
-  .layout-lines {
-    position: fixed;
-    inset: 0;
-    z-index: 50;
-    pointer-events: none;
-  }
-
-  .layout-lines-inner {
-    position: absolute;
-    inset: 0;
-    max-width: 1272px;
-    margin: 0 auto;
-  }
-
-  .layout-line-v {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background-color: rgba(5, 5, 7, 0.06);
-  }
-
-  .layout-line-left  { left: 16px; }
-  .layout-line-right { right: 16px; }
-
-  /* Past 1272 + 16*2 = 1304px, snap lines flush to the content edge. */
-  @media (min-width: 1304px) {
-    .layout-line-left  { left: 0; }
-    .layout-line-right { right: 0; }
-  }
-
-  @media (max-width: 639px) {
-    .layout-line-v { display: none; }
-  }
-</style>

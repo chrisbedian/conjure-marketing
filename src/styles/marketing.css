@@ -10,9 +10,11 @@
   --cream-soft:      #F4F1E9;
   --cream-deep:      #DDD9CD;
 
-  /* Text */
-  --ink:             #050507;
-  --ink-soft:        #1A1A1F;
+  /* Text + dark surfaces. Ink ramp lifts off pure black so dark surfaces read
+     as "designed dark gray," not "void." 16-pt luminance gap between --ink and
+     --ink-soft gives every dark surface a usable second layer. */
+  --ink:             #1A1A1F;
+  --ink-soft:        #2A2A30;
   --ink-muted:       #57575E;
   --ink-quiet:       #8A8A92;
 
@@ -28,10 +30,11 @@
   /* Destructive / validation only — never a brand surface. Plum is brand; red is alarm. */
   --error:           #EF4444;
 
-  /* Shadows */
-  --shadow-sm:       0 1px 2px rgba(5, 5, 7, 0.04), 0 1px 3px rgba(5, 5, 7, 0.06);
-  --shadow-md:       0 4px 12px rgba(5, 5, 7, 0.06), 0 12px 32px rgba(5, 5, 7, 0.08);
-  --shadow-lg:       0 12px 32px rgba(5, 5, 7, 0.08), 0 32px 64px rgba(5, 5, 7, 0.10);
+  /* Shadows. Re-tuned for the lifted ink — alpha bumped so shadows register
+     at the same visual weight on cream as before. */
+  --shadow-sm:       0 1px 2px rgba(26, 26, 31, 0.06), 0 1px 3px rgba(26, 26, 31, 0.08);
+  --shadow-md:       0 4px 12px rgba(26, 26, 31, 0.08), 0 12px 32px rgba(26, 26, 31, 0.10);
+  --shadow-lg:       0 12px 32px rgba(26, 26, 31, 0.10), 0 32px 64px rgba(26, 26, 31, 0.12);
 
   /* Type */
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
@@ -201,7 +204,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: rgba(5, 5, 7, 0.06);
+  background-color: rgba(26, 26, 31, 0.08);
 }
 .layout-line-left  { left: 16px; }
 .layout-line-right { right: 16px; }
@@ -280,7 +283,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(-50%);
   width: 100vw;
   height: 1px;
-  background-color: rgba(5, 5, 7, 0.06);
+  background-color: rgba(26, 26, 31, 0.08);
   pointer-events: none;
 }
 @media (max-width: 639px) {

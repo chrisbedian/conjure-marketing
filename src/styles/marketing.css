@@ -216,36 +216,45 @@ h1, h2, h3, h4, h5, h6 {
 
 /* =========================================================================
    Marketing nav — floating cream-glass capsule that tightens to a flush
-   band on scroll. Default: 8px from top, 8px radius, blur 12px. Scrolled:
-   top:0, radius:0, 1px bottom border, soft shadow, blur 16px.
+   band on scroll. Width tracks the column between the layout lines exactly
+   so the nav (and its bottom border) never overlap or extend past them.
+     - viewport <= 1272: lines at 16px inset → nav = calc(100% - 32px), max 1240
+     - viewport >  1304: lines snap to 0/1272 of the 1272 container → nav = 1272
+     - the 1272–1304 range tracks via the same max-width breakpoint as the lines
+   The bottom border is always on (cream-on-cream, 8% ink), regardless of scroll
+   state — its visible width is bounded by the vertical lines because it lives
+   on the nav itself, not a full-viewport horizontal line.
    ========================================================================= */
 .marketing-nav {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   top: 8px;
-  width: calc(100% - 36px);
-  max-width: 1272px;
+  width: calc(100% - 32px);
+  max-width: 1240px;
   height: 64px;
   z-index: 100;
   border-radius: 8px;
   background: rgba(236, 233, 224, 0.72);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgba(5, 5, 7, 0.08);
   box-shadow: none;
   transition:
     top                 var(--dur-mid) var(--ease-in-out),
     border-radius       var(--dur-mid) var(--ease-in-out),
-    border-bottom-color var(--dur-mid) var(--ease-in-out),
     backdrop-filter     var(--dur-mid) var(--ease-in-out),
     -webkit-backdrop-filter var(--dur-mid) var(--ease-in-out),
     box-shadow          var(--dur-mid) var(--ease-in-out);
 }
+
+@media (min-width: 1304px) {
+  .marketing-nav { max-width: 1272px; }
+}
+
 .marketing-nav.is-scrolled {
   top: 0;
   border-radius: 0;
-  border-bottom-color: rgba(5, 5, 7, 0.08);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 2px 12px rgba(5, 5, 7, 0.04);

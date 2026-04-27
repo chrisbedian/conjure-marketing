@@ -1,10 +1,17 @@
 ---
 ---
 <section class="cta reveal">
+  <span class="section-marker" aria-hidden="true">03 / OPEN</span>
+
   <div class="cta__inner m-container">
     <h2 class="cta__title">Ready to direct?</h2>
     <p class="cta__sub">Open Conjure and try a real edit. No prompt box required.</p>
-    <a href="https://app.onconjure.com" class="m-btn m-btn--primary m-btn--lg">Open Conjure</a>
+    <a href="https://app.onconjure.com" class="m-btn m-btn--primary m-btn--lg cta__btn">
+      Open Conjure
+      <svg class="cta__btn-arrow" viewBox="0 0 14 14" aria-hidden="true">
+        <path d="M3 11 L11 3 M5 3 L11 3 L11 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </a>
   </div>
 </section>
 
@@ -12,6 +19,19 @@
   .cta {
     background: var(--ink);
     padding: 120px var(--gutter);
+    position: relative;
+  }
+  /* Plum hairline framing the top of the dark band — a frame indicator,
+     like the strip across the top of an Anthropic publication. */
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--plum);
+    opacity: 0.55;
   }
   @media (max-width: 767px) {
     .cta { padding: 96px var(--gutter); }
@@ -41,5 +61,24 @@
   }
   .cta .m-btn {
     margin-top: 40px;
+  }
+
+  /* Animated arrow (matches the Hero primary CTA pattern). */
+  .cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cta__btn-arrow {
+    width: 14px;
+    height: 14px;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .cta__btn:hover .cta__btn-arrow {
+    transform: translate(2px, -2px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cta__btn-arrow { transition: none; }
+    .cta__btn:hover .cta__btn-arrow { transform: none; }
   }
 </style>

@@ -23,6 +23,11 @@ const year = new Date().getFullYear();
       <p class="footer__copy">
         &copy; {year} Lume Grid. Conjure is a product of Lume Grid.
       </p>
+      <p class="footer__set-in">
+        SET IN PLUS JAKARTA SANS &amp; JETBRAINS MONO
+        <span class="footer__set-in-sep">·</span>
+        BUILT WITH ASTRO
+      </p>
     </div>
   </div>
 </footer>
@@ -81,6 +86,20 @@ const year = new Date().getFullYear();
     font-size: var(--text-small);
     color: rgba(255, 255, 255, 0.4);
     margin: 0;
+  }
+
+  /* Designer-credit metadata, mono. Three items max — more reads as bragging. */
+  .footer__set-in {
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.32);
+  }
+  .footer__set-in-sep {
+    margin: 0 8px;
+    opacity: 0.5;
   }
 
   @media (max-width: 567px) {

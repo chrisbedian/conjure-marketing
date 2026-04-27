@@ -1,0 +1,65 @@
+---
+/**
+ * Poster — typographic chapter divider between Thesis and Gestures.
+ * Decorative (aria-hidden); the same content reads in the Gestures header.
+ */
+---
+<section class="poster reveal" aria-hidden="true">
+  <div class="m-container poster__inner">
+    <span class="poster__numeral">04</span>
+    <div class="poster__caption">
+      <p class="poster__line">FOUR GESTURES.</p>
+      <p class="poster__line poster__line--soft">ZERO PROMPTS.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .poster {
+    background: var(--cream);
+    padding: 80px var(--gutter) 40px;
+    position: relative;
+  }
+
+  .poster__inner {
+    display: flex;
+    align-items: center;
+    gap: clamp(32px, 6vw, 80px);
+  }
+
+  .poster__numeral {
+    font-family: var(--font-mono);
+    font-size: clamp(120px, 22vw, 280px);
+    font-weight: 500;
+    line-height: 0.9;
+    color: var(--plum);
+    letter-spacing: -0.04em;
+    flex-shrink: 0;
+  }
+
+  .poster__caption {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .poster__line {
+    font-family: var(--font-mono);
+    font-size: clamp(20px, 3vw, 36px);
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .poster__line--soft {
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 639px) {
+    .poster__inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  }
+</style>

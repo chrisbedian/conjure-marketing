@@ -4,19 +4,53 @@
  * The hero loop is the most important asset on the site. Until the founder
  * delivers /public/videos/hero-loop.{webm,mp4} + hero-loop-poster.jpg, the
  * <video> markup is wired but the parent shows --ink so the layout reads.
+ *
+ * Decoration:
+ *  - Plum sparkle backdrop behind the title (Section 4a).
+ *  - Plum closing period as a brand mark (4b).
+ *  - LIVE status pip on the loop frame (4c).
+ *  - Mono metadata strip below the loop (4d).
+ *  - Animated arrow on the primary CTA (Section 8b — propagated here).
  */
 ---
 <section class="hero">
+  <span class="section-marker" aria-hidden="true">00 / DIRECT</span>
+
   <div class="hero__inner m-container">
+    <div class="hero__sparkle" aria-hidden="true">
+      <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="sparkleGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#8B2D5C" stop-opacity="0.55"/>
+            <stop offset="40%"  stop-color="#8B2D5C" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#8B2D5C" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="240" cy="240" r="240" fill="url(#sparkleGlow)"/>
+        <g transform="translate(240,240)" stroke="#8B2D5C" stroke-width="1.2" stroke-linecap="round" opacity="0.45">
+          <line x1="-160" y1="0"    x2="160" y2="0"/>
+          <line x1="0"    y1="-160" x2="0"   y2="160"/>
+          <line x1="-110" y1="-110" x2="110" y2="110"/>
+          <line x1="-110" y1="110"  x2="110" y2="-110"/>
+        </g>
+        <circle cx="240" cy="240" r="5" fill="#8B2D5C" opacity="0.85"/>
+      </svg>
+    </div>
+
     <h1 class="hero__title">
-      Direct the AI. Don't describe it.
+      Direct the AI. Don't describe it<span class="hero__title-mark">.</span>
     </h1>
     <p class="hero__subtitle">
       An AI design tool for design professionals. Built around your gestures, not your prompts.
     </p>
 
     <div class="hero__cta-row">
-      <a href="https://app.onconjure.com" class="m-btn m-btn--primary m-btn--md">Open Conjure</a>
+      <a href="https://app.onconjure.com" class="m-btn m-btn--primary m-btn--md cta__btn">
+        Open Conjure
+        <svg class="cta__btn-arrow" viewBox="0 0 14 14" aria-hidden="true">
+          <path d="M3 11 L11 3 M5 3 L11 3 L11 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </a>
       <a href="/blog" class="m-btn m-btn--ghost m-btn--md">Read the blog</a>
     </div>
 
@@ -41,7 +75,20 @@
         <source src="/videos/hero-loop.webm" type="video/webm" />
         <source src="/videos/hero-loop.mp4"  type="video/mp4" />
       </video>
+
+      <div class="hero__loop-status" aria-hidden="true">
+        <span class="hero__loop-status-dot"></span>
+        <span class="hero__loop-status-label">LIVE</span>
+      </div>
     </div>
+
+    <p class="hero__loop-meta" aria-hidden="true">
+      <span>RECORDED IN CONJURE</span>
+      <span class="hero__loop-meta-sep">·</span>
+      <span>NO EDITS</span>
+      <span class="hero__loop-meta-sep">·</span>
+      <span>6.2s LOOP</span>
+    </p>
   </div>
 </section>
 
@@ -49,6 +96,8 @@
   .hero {
     background: var(--cream);
     padding: 96px var(--gutter) 80px;
+    position: relative;
+    overflow: hidden;
   }
   @media (max-width: 767px) {
     .hero { padding: 64px var(--gutter) 56px; }
@@ -59,6 +108,42 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+  }
+
+  /* Plum sparkle backdrop sits behind everything in the inner column. */
+  .hero__sparkle {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(420px, 48vw, 640px);
+    aspect-ratio: 1 / 1;
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: multiply;
+    opacity: 0;
+    animation:
+      sparkle-fade-in 1200ms var(--ease-out) 80ms forwards,
+      sparkle-pulse   6000ms var(--ease-in-out) 1280ms infinite;
+  }
+  @keyframes sparkle-fade-in {
+    to { opacity: 1; }
+  }
+  @keyframes sparkle-pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50%      { transform: translateX(-50%) scale(1.04); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__sparkle {
+      animation: sparkle-fade-in 600ms var(--ease-out) 0ms forwards;
+    }
+  }
+
+  /* All inner content sits on top of the sparkle. */
+  .hero__inner > *:not(.hero__sparkle) {
+    position: relative;
+    z-index: 1;
   }
 
   .hero__title {
@@ -68,6 +153,12 @@
     line-height: 1.05;
     letter-spacing: -0.02em;
     max-width: 18ch;
+  }
+  .hero__title-mark {
+    color: var(--plum);
+    font-size: 1.1em;
+    display: inline-block;
+    transform: translateY(0.04em);
   }
 
   .hero__subtitle {
@@ -86,6 +177,25 @@
     gap: 16px;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  /* Animated arrow inside the primary CTA (Hero + CTA section reuse this). */
+  .cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cta__btn-arrow {
+    width: 14px;
+    height: 14px;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .cta__btn:hover .cta__btn-arrow {
+    transform: translate(2px, -2px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cta__btn-arrow { transition: none; }
+    .cta__btn:hover .cta__btn-arrow { transform: none; }
   }
 
   .hero__loop {
@@ -116,12 +226,68 @@
     opacity: 1;
   }
 
+  /* LIVE status pip on the hero loop frame. */
+  .hero__loop-status {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(26, 26, 31, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2;
+  }
+  .hero__loop-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--plum);
+    box-shadow: 0 0 0 0 var(--plum);
+    animation: status-pulse 2000ms var(--ease-out) infinite;
+  }
+  .hero__loop-status-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  @keyframes status-pulse {
+    0%   { box-shadow: 0 0 0 0   rgba(139, 45, 92, 0.6); }
+    70%  { box-shadow: 0 0 0 8px rgba(139, 45, 92, 0); }
+    100% { box-shadow: 0 0 0 0   rgba(139, 45, 92, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__loop-status-dot { animation: none; }
+  }
+
+  /* Mono metadata strip below the loop (film-slate vibe). */
+  .hero__loop-meta {
+    margin-top: 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-quiet);
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .hero__loop-meta-sep {
+    color: var(--ink-quiet);
+    opacity: 0.5;
+  }
+
   /* Page-load staggered fade-in (hero only, runs once) */
   @media (prefers-reduced-motion: no-preference) {
     .hero__title    { animation: hero-fade-in 700ms var(--ease-out) 160ms both; }
     .hero__subtitle { animation: hero-fade-in 700ms var(--ease-out) 240ms both; }
     .hero__cta-row  { animation: hero-fade-in 700ms var(--ease-out) 320ms both; }
     .hero__loop     { animation: hero-fade-in 800ms var(--ease-out) 480ms both; }
+    .hero__loop-meta{ animation: hero-fade-in 600ms var(--ease-out) 720ms both; }
     @keyframes hero-fade-in {
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }

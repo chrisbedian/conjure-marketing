@@ -6,28 +6,34 @@ const tiles = [
     title: 'Selection.',
     description: "Click to point. The AI works on what you've chosen, nothing else.",
     videoSlug: 'selection',
+    numeral: '01',
   },
   {
     title: 'Reference.',
     description: 'Drop in an image. The AI matches the look without you describing it.',
     videoSlug: 'reference',
+    numeral: '02',
   },
   {
     title: 'Pins.',
     description: 'Mark a spot. The AI focuses there — no other layer is at risk.',
     videoSlug: 'pins',
+    numeral: '03',
   },
   {
     title: 'Locks.',
     description: "Lock what's done. The AI won't touch it, no matter what you ask for next.",
     videoSlug: 'locks',
+    numeral: '04',
   },
 ];
 ---
 <section class="gestures">
+  <span class="section-marker" aria-hidden="true">02 / VOCABULARY</span>
+
   <div class="m-container">
     <header class="gestures__header reveal">
-      <p class="gestures__eyebrow">THE GESTURE VOCABULARY</p>
+      <p class="gestures__eyebrow">02 / VOCABULARY</p>
       <h2 class="gestures__title">Direction at the speed of design.</h2>
       <p class="gestures__lead">
         Every channel is a way to tell the AI what you mean — without a prompt box, without copy-pasting, without explaining yourself.
@@ -40,6 +46,7 @@ const tiles = [
           title={tile.title}
           description={tile.description}
           videoSlug={tile.videoSlug}
+          numeral={tile.numeral}
           delayMs={i * 120}
         />
       ))}
@@ -51,6 +58,7 @@ const tiles = [
   .gestures {
     background: var(--cream);
     padding: 120px 0;
+    position: relative;
   }
   @media (max-width: 767px) {
     .gestures { padding: 80px 0; }
@@ -63,11 +71,12 @@ const tiles = [
     padding-inline: var(--gutter);
   }
   .gestures__eyebrow {
+    font-family: var(--font-mono);
     color: var(--plum);
     font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
     margin: 0;
   }
   .gestures__title {

@@ -1,11 +1,18 @@
 ---
 ---
 <section class="thesis reveal">
+  <span class="section-marker" aria-hidden="true">01 / THESIS</span>
+
   <div class="thesis__inner m-container">
     <h2 class="thesis__title">
       The AI is the properties panel.<br />
-      There's no prompt box.
+      There's no <span class="thesis__strike">prompt box</span>.
     </h2>
+
+    <svg class="thesis__spark" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2 L13.5 10.5 L22 12 L13.5 13.5 L12 22 L10.5 13.5 L2 12 L10.5 10.5 Z" fill="currentColor"/>
+    </svg>
+
     <p class="thesis__body">
       Conjure replaces typed prompts with the gestures designers already use — selecting a layer, dropping a pin, attaching a reference, locking what's done. The AI reads the room and executes precisely what you point at.
     </p>
@@ -16,6 +23,7 @@
   .thesis {
     background: var(--cream-soft);
     padding: 160px var(--gutter);
+    position: relative;
   }
   @media (max-width: 767px) {
     .thesis { padding: 96px var(--gutter); }
@@ -35,6 +43,60 @@
     color: var(--ink);
     line-height: 1.1;
     letter-spacing: -0.02em;
+  }
+
+  /* Plum strikethrough draws across "prompt box" when the section reveals. */
+  .thesis__strike {
+    position: relative;
+    display: inline-block;
+  }
+  .thesis__strike::after {
+    content: '';
+    position: absolute;
+    left: -4px;
+    right: -4px;
+    top: 52%;
+    height: 4px;
+    background: var(--plum);
+    transform: scaleX(0);
+    transform-origin: left center;
+    border-radius: 2px;
+  }
+  .thesis.is-visible .thesis__strike::after {
+    animation: strike-draw 600ms var(--ease-out) 320ms forwards;
+  }
+  @keyframes strike-draw {
+    to { transform: scaleX(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .thesis__strike::after {
+      transform: scaleX(1);
+      animation: none;
+    }
+  }
+
+  /* Plum sparkle marginalia — closes the thesis like a punctuation mark. */
+  .thesis__spark {
+    width: 20px;
+    height: 20px;
+    color: var(--plum);
+    margin-top: 24px;
+    opacity: 0;
+    transform: scale(0.6) rotate(-30deg);
+    transition:
+      opacity   500ms var(--ease-out) 600ms,
+      transform 500ms var(--ease-out) 600ms;
+  }
+  .thesis.is-visible .thesis__spark {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .thesis__spark {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 
   .thesis__body {

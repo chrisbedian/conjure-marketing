@@ -3,15 +3,17 @@ interface Props {
   title: string;
   description: string;
   videoSlug: string;   /* e.g. "selection" — resolves to /videos/gesture-selection.{webm,mp4} */
+  numeral: string;     /* "01" | "02" | "03" | "04" — corner ID on the tile media */
   delayMs?: number;
 }
-const { title, description, videoSlug, delayMs = 0 } = Astro.props;
+const { title, description, videoSlug, numeral, delayMs = 0 } = Astro.props;
 const posterSrc = `/videos/gesture-${videoSlug}-poster.jpg`;
 const webmSrc   = `/videos/gesture-${videoSlug}.webm`;
 const mp4Src    = `/videos/gesture-${videoSlug}.mp4`;
 ---
 <article class="tile reveal" style={`transition-delay: ${delayMs}ms;`}>
   <div class="tile__media" aria-label={`${title} gesture demo`}>
+    <span class="tile__numeral" aria-hidden="true">{numeral}</span>
     <img
       src={posterSrc}
       alt=""
@@ -51,16 +53,46 @@ const mp4Src    = `/videos/gesture-${videoSlug}.mp4`;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--shadow-sm);
+    --tile-glow-opacity: 0;
     transition:
       transform   var(--dur-mid) var(--ease-out),
       box-shadow  var(--dur-mid) var(--ease-out);
   }
+  /* Plum bottom-edge glow on hover. ::after sits inside the media frame, so
+     it doesn't translate when the card lifts. */
+  .tile__media::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--plum);
+    opacity: var(--tile-glow-opacity);
+    transition: opacity var(--dur-mid) var(--ease-out);
+    z-index: 3;
+    pointer-events: none;
+  }
   .tile:hover .tile__media {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
+    --tile-glow-opacity: 1;
   }
   @media (prefers-reduced-motion: reduce) {
     .tile:hover .tile__media { transform: none; }
+  }
+
+  /* Mono numeral pinned in the top-left of the dark video frame. */
+  .tile__numeral {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    z-index: 2;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--plum-tint);
+    letter-spacing: 0.04em;
   }
 
   .tile__poster,

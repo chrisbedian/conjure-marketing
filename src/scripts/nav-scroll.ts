@@ -4,7 +4,7 @@
  * (transitions defined in Nav.astro's scoped styles).
  */
 
-const SCROLL_THRESHOLD = 32;
+const SCROLL_THRESHOLD = 10;
 
 function initNavScroll() {
   const nav = document.getElementById('marketingNav');

@@ -215,58 +215,76 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* =========================================================================
-   Marketing nav — floating cream-glass capsule that tightens to a flush
-   band on scroll. Width is inset 8px inward from the layout-line column
-   on each side so the lines pass *beside* the nav (z=100), not under it.
-   The lines (z=50) would otherwise be hidden where the nav fills.
-     - viewport <= 1272: lines at 16px inset (column = vw - 32),
-       nav = calc(100% - 48px), max 1224     (8px gap each side)
-     - viewport >  1304: lines snap to 0/1272 of the 1272 container,
-       nav max 1256                            (8px gap each side)
-   The bottom border is always on (8% ink), regardless of scroll state —
-   bounded by the lines because it lives on the nav itself.
+   Marketing nav — ported from LumeGrid Header.astro.
+     - At rest (top of page): fully transparent, no border, no shadow.
+       The vertical lines pass straight through the (invisible) nav.
+     - On hover or once scrolled: cream-glass fill, blur, soft shadow.
+     - The `nav-h-line` (always visible, full viewport width) acts as the
+       always-on bottom border, intersecting the vertical lines as a grid.
+   Geometry mirrors LumeGrid so layout reads consistently:
+     outer width: calc(100% - 36px), max 1272px
+     padding-x:   20px
+     inner box:   max 1232px, mx-auto
    ========================================================================= */
 .marketing-nav {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   top: 8px;
-  width: calc(100% - 48px);
-  max-width: 1224px;
+  width: calc(100% - 36px);
+  max-width: 1272px;
   height: 64px;
   z-index: 100;
-  border-radius: 8px;
-  background: rgba(236, 233, 224, 0.72);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(5, 5, 7, 0.08);
+  padding: 0 20px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid transparent;
   box-shadow: none;
   transition:
-    top                 var(--dur-mid) var(--ease-in-out),
-    border-radius       var(--dur-mid) var(--ease-in-out),
-    backdrop-filter     var(--dur-mid) var(--ease-in-out),
-    -webkit-backdrop-filter var(--dur-mid) var(--ease-in-out),
-    box-shadow          var(--dur-mid) var(--ease-in-out);
+    top                     var(--dur-mid)  var(--ease-in-out),
+    background-color        var(--dur-base) var(--ease-in-out),
+    border-color            var(--dur-base) var(--ease-in-out),
+    box-shadow              var(--dur-base) var(--ease-in-out),
+    backdrop-filter         var(--dur-base) var(--ease-in-out),
+    -webkit-backdrop-filter var(--dur-base) var(--ease-in-out);
 }
 
-@media (min-width: 1304px) {
-  .marketing-nav { max-width: 1256px; }
+/* Hover (desktop) and scrolled both light up the cream-glass capsule. */
+.marketing-nav:hover,
+.marketing-nav.is-scrolled {
+  background: rgba(236, 233, 224, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
 }
 
 .marketing-nav.is-scrolled {
   top: 0;
-  border-radius: 0;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 2px 12px rgba(5, 5, 7, 0.04);
 }
 
 .nav-inner {
   height: 100%;
-  padding: 0 20px;
+  max-width: 1232px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 24px;
+}
+
+/* Always-visible horizontal divider, full viewport width — sits at the
+   bottom of the nav and intersects the layout vertical lines. */
+.nav-h-line {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 1px;
+  background-color: rgba(5, 5, 7, 0.06);
+  pointer-events: none;
+}
+@media (max-width: 639px) {
+  .nav-h-line { display: none; }
 }
 
 .nav-logo {

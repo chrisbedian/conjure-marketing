@@ -1,18 +1,15 @@
 ---
 /**
- * Marketing nav — floating cream-glass capsule that tightens to a flush band
- * on scroll. Ported from Lume Grid, adapted to Conjure's cream surface.
+ * Marketing nav — ported from LumeGrid (`src/components/Header.astro`).
  *
- *  - Default (top of page): floating capsule, 8px from top, 8px radius,
- *    backdrop-blur(12px), no border, no shadow.
- *  - Scrolled (>32px): top:0, radius:0, 1px bottom border, soft shadow,
- *    blur tightens to 16px.
+ *  - At rest (top of page): fully transparent. The layout-line column
+ *    (and the always-on horizontal divider below) read straight through.
+ *  - On hover or once scrolled: cream-glass fill, blur, soft shadow.
+ *  - The `nav-h-line` is the always-visible bottom divider, full viewport
+ *    width, intersecting the vertical layout lines as a grid (Stripe-style).
  *
- * The floating model means content flows under the nav — backdrop-blur
- * reveals the cream surface blurred behind the capsule.
- *
- * Styles live in `src/styles/marketing.css` (global, not scoped) so that
- * Vite HMR can never strand the cid-attribute selectors mid-update.
+ * Styles live in `src/styles/marketing.css` (global, not scoped) so Vite
+ * HMR can never strand cid-attribute selectors mid-update.
  */
 ---
 <nav class="marketing-nav" id="marketingNav" aria-label="Primary">
@@ -32,4 +29,6 @@
 
     <a class="nav-cta" href="https://app.onconjure.com">Open app</a>
   </div>
+
+  <div class="nav-h-line" aria-hidden="true"></div>
 </nav>

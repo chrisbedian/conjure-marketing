@@ -39,26 +39,51 @@
       </div>
 
       <div class="hero__top-right">
-        <div class="hero__mini" aria-label="A miniature loop showing selection, AI, and transformation">
+        <div class="hero__mini" aria-label="A miniature loop showing a reference image dragged onto a layer; the layer adopts the reference's appearance">
           <svg viewBox="0 0 360 280" class="hero__mini-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Reference swatch gradient: warm orange → pink → magenta -->
+              <linearGradient id="miniRef" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"   stop-color="#F4A261"/>
+                <stop offset="50%"  stop-color="#E76F89"/>
+                <stop offset="100%" stop-color="#B5377A"/>
+              </linearGradient>
+
+              <clipPath id="miniTargetClip">
+                <rect x="32" y="110" width="296" height="64" rx="4"/>
+              </clipPath>
+            </defs>
+
             <!-- canvas -->
             <rect x="0" y="0" width="360" height="280" rx="10" fill="#1A1A1F"/>
 
-            <!-- top toolbar hint -->
+            <!-- toolbar hint + corner dot -->
             <rect x="14" y="14" width="80" height="6" rx="3" fill="rgba(255,255,255,0.10)"/>
             <circle cx="338" cy="17" r="3" fill="rgba(255,255,255,0.18)"/>
 
-            <!-- abstract layers -->
-            <rect class="hero__mini-layer hero__mini-layer--a" x="32" y="60"  width="120" height="36" rx="4" fill="rgba(255,255,255,0.08)"/>
-            <rect class="hero__mini-layer hero__mini-layer--target" x="32" y="110" width="296" height="64" rx="4" fill="rgba(255,255,255,0.10)"/>
-            <rect class="hero__mini-layer hero__mini-layer--c" x="32" y="188" width="176" height="36" rx="4" fill="rgba(255,255,255,0.08)"/>
+            <!-- top decorative layer -->
+            <rect x="32" y="60" width="120" height="36" rx="4" fill="rgba(255,255,255,0.08)"/>
 
-            <!-- selection ring on target -->
+            <!-- target layer: starts empty (subtle gray), fills with the reference gradient -->
+            <g clip-path="url(#miniTargetClip)">
+              <rect x="32" y="110" width="296" height="64" rx="4" fill="rgba(255,255,255,0.08)"/>
+              <rect class="hero__mini-fill" x="32" y="110" width="296" height="64" rx="4" fill="url(#miniRef)" opacity="0"/>
+            </g>
+
+            <!-- bottom decorative layer -->
+            <rect x="32" y="188" width="176" height="36" rx="4" fill="rgba(255,255,255,0.08)"/>
+
+            <!-- selection ring on target (appears once dropped) -->
             <rect class="hero__mini-selection" x="29" y="107" width="302" height="70" rx="5"
                   fill="none" stroke="#8B2D5C" stroke-width="1.5" opacity="0"/>
 
-            <!-- AI dot -->
+            <!-- AI pulse dot at right edge of target -->
             <circle class="hero__mini-ai" cx="340" cy="142" r="3.5" fill="#8B2D5C" opacity="0"/>
+
+            <!-- reference swatch: a small chip that flies in, follows the cursor, then disappears -->
+            <g class="hero__mini-swatch">
+              <rect x="-22" y="-16" width="44" height="32" rx="3" fill="url(#miniRef)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+            </g>
 
             <!-- cursor -->
             <g class="hero__mini-cursor">
@@ -241,9 +266,11 @@
   }
 
   /* ------------------------------------------------------------------
-     Mini gesture loop — CSS+SVG, 5s repeating cycle. No video asset.
-     Sequence: cursor moves to target → selection blooms → AI dot pulses
-     → target washes plum-tint → holds → fades back.
+     Mini gesture loop — CSS+SVG, 6s repeating cycle. No video asset.
+     Story: cursor enters with a warm gradient swatch, drags it onto an
+     empty target layer, drops it. Selection blooms, AI dot pulses, the
+     target fills with the reference gradient. Hold. Reset. Loop.
+     "Drop a reference, the AI matches it" — without text.
      ------------------------------------------------------------------ */
   .hero__mini {
     width: 100%;
@@ -268,50 +295,80 @@
     height: auto;
   }
 
+  /* Cursor: enters from upper-right, drags to the target, holds, exits.
+     Path: (300, 40) → (180, 142) → fade out → restart. */
   .hero__mini-cursor {
-    animation: mini-cursor 5000ms var(--ease-in-out) infinite;
+    animation: mini-cursor 6000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-cursor {
-    0%,  8%   { transform: translate(280px, 36px); }
-    28%, 92%  { transform: translate(170px, 132px); }
-    100%      { transform: translate(280px, 36px); }
+    0%   { transform: translate(300px, 40px);  opacity: 0; }
+    4%   { opacity: 1; }
+    10%  { transform: translate(300px, 40px); }
+    37%  { transform: translate(180px, 142px); }   /* arrives at target */
+    73%  { transform: translate(180px, 142px); }   /* holds */
+    90%  { transform: translate(180px, 142px); opacity: 1; }
+    98%  { opacity: 0; }
+    100% { transform: translate(300px, 40px);  opacity: 0; }
   }
 
+  /* Swatch: appears with the cursor, follows it (offset 12,12), drops at ~50%. */
+  .hero__mini-swatch {
+    animation: mini-swatch 6000ms var(--ease-in-out) infinite;
+  }
+  @keyframes mini-swatch {
+    0%, 4%   { transform: translate(312px, 52px);  opacity: 0; }
+    8%       { transform: translate(312px, 52px);  opacity: 1; }
+    37%      { transform: translate(192px, 154px); opacity: 1; }
+    47%      { transform: translate(192px, 154px); opacity: 1; }
+    53%      { transform: translate(192px, 154px); opacity: 0; }   /* dropped */
+    100%     { transform: translate(312px, 52px);  opacity: 0; }
+  }
+
+  /* Selection ring: appears as cursor arrives, holds through the fill, fades. */
   .hero__mini-selection {
-    animation: mini-selection 5000ms var(--ease-in-out) infinite;
+    animation: mini-selection 6000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-selection {
-    0%,  28%  { opacity: 0; }
-    34%, 92%  { opacity: 1; }
-    96%, 100% { opacity: 0; }
+    0%,  35%  { opacity: 0; }
+    42%, 88%  { opacity: 1; }
+    95%, 100% { opacity: 0; }
   }
 
+  /* AI pulse: brief bloom right after drop. */
   .hero__mini-ai {
     transform-box: fill-box;
     transform-origin: center;
-    animation: mini-ai 5000ms var(--ease-in-out) infinite;
+    animation: mini-ai 6000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-ai {
-    0%,  36%  { opacity: 0; transform: scale(0.6); }
-    42%, 64%  { opacity: 1; transform: scale(1); }
-    70%, 100% { opacity: 0; transform: scale(0.6); }
+    0%, 50%  { opacity: 0;   transform: scale(0.6); }
+    55%      { opacity: 1;   transform: scale(1.1); }
+    62%      { opacity: 0.9; transform: scale(1); }
+    72%      { opacity: 0;   transform: scale(0.6); }
+    100%     { opacity: 0;   transform: scale(0.6); }
   }
 
-  .hero__mini-layer--target {
-    animation: mini-morph 5000ms var(--ease-in-out) infinite;
+  /* Target fill: fades in as the AI executes, holds, fades out on reset. */
+  .hero__mini-fill {
+    animation: mini-fill 6000ms var(--ease-in-out) infinite;
   }
-  @keyframes mini-morph {
-    0%,  44%  { fill: rgba(255, 255, 255, 0.10); }
-    60%, 92%  { fill: rgba(194, 139, 170, 0.30); }
-    100%      { fill: rgba(255, 255, 255, 0.10); }
+  @keyframes mini-fill {
+    0%,  55%  { opacity: 0; }
+    73%, 88%  { opacity: 1; }
+    95%, 100% { opacity: 0; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .hero__mini-cursor,
+    .hero__mini-swatch,
     .hero__mini-selection,
     .hero__mini-ai,
-    .hero__mini-layer--target { animation: none; }
-    .hero__mini-selection { opacity: 1; }
+    .hero__mini-fill { animation: none; }
+    .hero__mini-selection,
+    .hero__mini-fill { opacity: 1; }
+    .hero__mini-swatch,
+    .hero__mini-cursor,
+    .hero__mini-ai { opacity: 0; }
   }
 
   /* Hairlines bracket the full-width hero loop, full layout-column width. */

@@ -100,12 +100,11 @@ body::before {
   body::before { opacity: 0.015; }
 }
 
-/* Text selection — plum brand color. Browsers force semi-transparency, so
-   the highlight reads as a brighter plum over cream and as a softer plum
-   over the dark CTA band. White foreground stays legible on both. */
+/* Text selection — soft plum tint. Anthropic-style: low-alpha background,
+   no color override so the original text color stays put. Reads as a rosy
+   wash over cream and as a deep plum-tinged glow over the dark CTA band. */
 ::selection {
-  background: var(--plum);
-  color: #FAFAFA;
+  background: rgba(139, 45, 92, 0.22);
 }
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;

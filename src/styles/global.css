@@ -13,10 +13,9 @@
   box-sizing: border-box;
 }
 
-/* Text selection — match the marketing palette's plum brand color. */
+/* Text selection — soft plum tint, matches the marketing palette. */
 ::selection {
-  background: #8B2D5C;
-  color: #FAFAFA;
+  background: rgba(139, 45, 92, 0.22);
 }
 
 html,

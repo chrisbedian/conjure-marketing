@@ -350,13 +350,15 @@
     animation: mini-cursor 7000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-cursor {
-    0%   { transform: translate(310px, 28px);  opacity: 0; }
+    /* Tip is offset (-5, -7) from swatch center so the cursor body sits
+       over the middle of the dragged image rather than dangling off it. */
+    0%   { transform: translate(317px, 33px);  opacity: 0; }
     4%   { opacity: 1; }
-    6%   { transform: translate(310px, 28px); }
-    34%  { transform: translate(170px, 138px); }   /* arrives at card center */
-    40%  { transform: translate(170px, 138px); opacity: 1; }   /* holds while drop completes */
-    48%  { transform: translate(170px, 138px); opacity: 0; }   /* fade out — no return trip */
-    100% { transform: translate(170px, 138px); opacity: 0; }
+    6%   { transform: translate(317px, 33px); }
+    34%  { transform: translate(177px, 143px); }   /* arrives at card center */
+    46%  { transform: translate(177px, 143px); opacity: 1; }   /* hold past the drop (40-44%) */
+    54%  { transform: translate(177px, 143px); opacity: 0; }   /* then fade — no return trip */
+    100% { transform: translate(177px, 143px); opacity: 0; }
   }
 
   /* Reference chip: follows cursor with a slight offset; fades on drop. */

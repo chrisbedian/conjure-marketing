@@ -13,6 +13,12 @@
   box-sizing: border-box;
 }
 
+/* Text selection — match the marketing palette's plum brand color. */
+::selection {
+  background: #8B2D5C;
+  color: #FAFAFA;
+}
+
 html,
 body {
   margin: 0;

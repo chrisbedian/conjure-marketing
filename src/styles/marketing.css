@@ -99,6 +99,14 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   body::before { opacity: 0.015; }
 }
+
+/* Text selection — plum brand color. Browsers force semi-transparency, so
+   the highlight reads as a brighter plum over cream and as a softer plum
+   over the dark CTA band. White foreground stays legible on both. */
+::selection {
+  background: var(--plum);
+  color: #FAFAFA;
+}
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.1;

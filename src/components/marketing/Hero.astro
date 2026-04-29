@@ -65,10 +65,10 @@
               </linearGradient>
 
               <clipPath id="miniBtnClip">
-                <rect x="32" y="203" width="116" height="34" rx="6"/>
+                <rect x="32" y="227" width="116" height="34" rx="6"/>
               </clipPath>
               <clipPath id="miniImgClip">
-                <rect x="32" y="52" width="296" height="78" rx="6"/>
+                <rect x="32" y="52" width="296" height="102" rx="6"/>
               </clipPath>
               <clipPath id="miniRefClip">
                 <rect x="-22" y="-16" width="44" height="32" rx="4"/>
@@ -92,9 +92,9 @@
               <g clip-path="url(#miniImgClip)">
                 <!-- BEFORE: stylized illustration -->
                 <g class="hero__mini-img-illust">
-                  <rect x="32" y="52" width="296" height="78" rx="6" fill="rgba(255,255,255,0.05)"/>
-                  <path d="M32 130 L100 92 L150 110 L210 78 L270 108 L328 96 L328 130 Z" fill="rgba(255,255,255,0.08)"/>
-                  <circle cx="276" cy="74" r="6" fill="rgba(255,255,255,0.10)"/>
+                  <rect x="32" y="52" width="296" height="102" rx="6" fill="rgba(255,255,255,0.05)"/>
+                  <path d="M32 154 L100 116 L150 134 L210 102 L270 132 L328 120 L328 154 Z" fill="rgba(255,255,255,0.08)"/>
+                  <circle cx="276" cy="86" r="6" fill="rgba(255,255,255,0.10)"/>
                 </g>
 
                 <!-- AFTER: real sunset photograph
@@ -102,34 +102,34 @@
                 <image
                   class="hero__mini-img-photo"
                   href="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                  x="32" y="52" width="296" height="78"
+                  x="32" y="52" width="296" height="102"
                   preserveAspectRatio="xMidYMin slice"
                   opacity="0"
                 />
               </g>
 
               <!-- eyebrow: bar (before) cross-fades to "TRAVEL" (after) -->
-              <rect class="hero__mini-eyebrow-bar" x="32" y="142" width="48" height="6" rx="2" fill="rgba(194,139,170,0.55)"/>
-              <text class="hero__mini-eyebrow-text" x="32" y="148" opacity="0">TRAVEL</text>
+              <rect class="hero__mini-eyebrow-bar" x="32" y="166" width="48" height="6" rx="2" fill="rgba(194,139,170,0.55)"/>
+              <text class="hero__mini-eyebrow-text" x="32" y="172" opacity="0">TRAVEL</text>
 
               <!-- headline: two placeholder bars (before) cross-fade to a single line of real headline (after) -->
               <g class="hero__mini-headline-bars">
-                <rect x="32" y="164" width="180" height="9" rx="2.5" fill="rgba(255,255,255,0.85)"/>
-                <rect x="32" y="178" width="120" height="9" rx="2.5" fill="rgba(255,255,255,0.85)"/>
+                <rect x="32" y="188" width="180" height="9" rx="2.5" fill="rgba(255,255,255,0.85)"/>
+                <rect x="32" y="202" width="120" height="9" rx="2.5" fill="rgba(255,255,255,0.85)"/>
               </g>
-              <text class="hero__mini-headline-text" x="32" y="178" opacity="0">Three days in the Sierras.</text>
+              <text class="hero__mini-headline-text" x="32" y="202" opacity="0">Three days in the Sierras.</text>
 
               <!-- button: gray base; gradient fill + "Plan the route" label cross-fade in on the cascade beat -->
               <g clip-path="url(#miniBtnClip)">
-                <rect x="32" y="203" width="116" height="34" rx="6" fill="rgba(255,255,255,0.12)"/>
-                <rect class="hero__mini-fill" x="32" y="203" width="116" height="34" rx="6" fill="url(#miniBtnFill)" opacity="0"/>
+                <rect x="32" y="227" width="116" height="34" rx="6" fill="rgba(255,255,255,0.12)"/>
+                <rect class="hero__mini-fill" x="32" y="227" width="116" height="34" rx="6" fill="url(#miniBtnFill)" opacity="0"/>
               </g>
-              <rect class="hero__mini-btn-label-bar" x="56" y="216" width="68" height="8" rx="2" fill="rgba(255,255,255,0.95)"/>
-              <text class="hero__mini-btn-label-text" x="90" y="225" text-anchor="middle" opacity="0">Plan the route</text>
+              <rect class="hero__mini-btn-label-bar" x="56" y="240" width="68" height="8" rx="2" fill="rgba(255,255,255,0.95)"/>
+              <text class="hero__mini-btn-label-text" x="90" y="249" text-anchor="middle" opacity="0">Plan the route</text>
 
               <!-- secondary link: bar cross-fades to "Read the guide" -->
-              <rect class="hero__mini-link-bar" x="164" y="217" width="56" height="6" rx="2" fill="rgba(255,255,255,0.40)"/>
-              <text class="hero__mini-link-text" x="164" y="223" opacity="0">Read the guide</text>
+              <rect class="hero__mini-link-bar" x="164" y="241" width="56" height="6" rx="2" fill="rgba(255,255,255,0.40)"/>
+              <text class="hero__mini-link-text" x="164" y="247" opacity="0">Read the guide</text>
             </g>
 
             <!-- selection ring around the whole card -->
@@ -376,10 +376,10 @@
     0%   { transform: translate(317px, 33px);  opacity: 0; }
     3%   { opacity: 1; }
     5%   { transform: translate(317px, 33px); }
-    22%  { transform: translate(177px, 160px); }   /* arrives at the button */
-    30%  { transform: translate(177px, 160px); opacity: 1; }   /* hold past the drop */
-    38%  { transform: translate(177px, 160px); opacity: 0; }   /* then fade — no return trip */
-    100% { transform: translate(177px, 160px); opacity: 0; }
+    22%  { transform: translate(177px, 184px); }   /* arrives at the button */
+    30%  { transform: translate(177px, 184px); opacity: 1; }   /* hold past the drop */
+    38%  { transform: translate(177px, 184px); opacity: 0; }   /* then fade — no return trip */
+    100% { transform: translate(177px, 184px); opacity: 0; }
   }
 
   .hero__mini-swatch {
@@ -388,9 +388,9 @@
   @keyframes mini-swatch {
     0%, 3%   { transform: translate(322px,  40px); opacity: 0; }
     6%       { transform: translate(322px,  40px); opacity: 1; }
-    22%      { transform: translate(182px, 167px); opacity: 1; }
-    26%      { transform: translate(182px, 167px); opacity: 1; }
-    30%      { transform: translate(182px, 167px); opacity: 0; }   /* dropped */
+    22%      { transform: translate(182px, 191px); opacity: 1; }
+    26%      { transform: translate(182px, 191px); opacity: 1; }
+    30%      { transform: translate(182px, 191px); opacity: 0; }   /* dropped */
     100%     { transform: translate(322px,  40px); opacity: 0; }
   }
 

@@ -124,9 +124,6 @@
             <rect class="hero__mini-selection" x="17" y="37" width="326" height="222" rx="12"
                   fill="none" stroke="#8B2D5C" stroke-width="1.5" opacity="0"/>
 
-            <!-- AI pulse dot at the card's right edge -->
-            <circle class="hero__mini-ai" cx="346" cy="148" r="3.5" fill="#8B2D5C" opacity="0"/>
-
             <!-- reference photo chip: sky + hills + sun -->
             <g class="hero__mini-swatch">
               <g clip-path="url(#miniRefClip)">
@@ -139,7 +136,7 @@
 
             <!-- cursor -->
             <g class="hero__mini-cursor">
-              <path d="M0 0 L0 14 L3.5 10.5 L6.5 16 L8.5 15 L5.5 9.5 L10 9.5 Z"
+              <path d="M0 0 L0 13 L4 10 L6 14 L7.5 13.5 L5.5 9.5 L10 9.5 Z"
                     fill="#FAFAFA" stroke="#1A1A1F" stroke-width="0.5"/>
             </g>
           </svg>
@@ -386,20 +383,6 @@
     94%, 100% { opacity: 0; }
   }
 
-  /* AI pulse: brief bloom right after drop, before the cascade. */
-  .hero__mini-ai {
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: mini-ai 7000ms var(--ease-in-out) infinite;
-  }
-  @keyframes mini-ai {
-    0%, 44%  { opacity: 0;   transform: scale(0.6); }
-    48%      { opacity: 1;   transform: scale(1.1); }
-    54%      { opacity: 0.9; transform: scale(1); }
-    62%      { opacity: 0;   transform: scale(0.6); }
-    100%     { opacity: 0;   transform: scale(0.6); }
-  }
-
   /* Cascade beat 1 — button fills with the sunset gradient (~50%). */
   .hero__mini-fill {
     animation: mini-cascade-btn 7000ms var(--ease-in-out) infinite;
@@ -438,7 +421,6 @@
     .hero__mini-cursor,
     .hero__mini-swatch,
     .hero__mini-selection,
-    .hero__mini-ai,
     .hero__mini-fill,
     .hero__mini-eyebrow,
     .hero__mini-img-sky,
@@ -451,8 +433,7 @@
     .hero__mini-img-sun { opacity: 1; }
     .hero__mini-eyebrow { fill: rgba(244, 162, 97, 0.95); }
     .hero__mini-swatch,
-    .hero__mini-cursor,
-    .hero__mini-ai { opacity: 0; }
+    .hero__mini-cursor { opacity: 0; }
   }
 
   /* Hairlines bracket the full-width hero loop, full layout-column width. */

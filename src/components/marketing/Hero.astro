@@ -341,6 +341,12 @@
     overflow: hidden;
     box-shadow: var(--shadow-md);
     border: 1px solid rgba(26, 26, 31, 0.10);
+    /* Loop is decorative — keep the regular pointer everywhere inside,
+       so hovering the SVG <text> elements doesn't show the I-beam. */
+    cursor: default;
+  }
+  .hero__mini * {
+    cursor: inherit;
   }
   /* Below 900px the layout stacks single-column; let the mini fill the
      full column flush-left, matching the text above. */

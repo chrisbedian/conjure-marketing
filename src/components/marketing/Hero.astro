@@ -87,38 +87,49 @@
             <g class="hero__mini-card">
               <rect x="20" y="40" width="320" height="233" rx="10" fill="#23232B" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
 
-              <!-- image area: each shape has a base "before" version and a
-                   tinted overlay that fades in during the cascade. -->
+              <!-- image area: stylized illustration cross-fades into a real
+                   sunset photograph during the cascade. -->
               <g clip-path="url(#miniImgClip)">
-                <!-- sky -->
-                <rect x="32" y="52" width="296" height="78" rx="6" fill="rgba(255,255,255,0.05)"/>
-                <rect class="hero__mini-img-sky" x="32" y="52" width="296" height="78" rx="6" fill="url(#miniImgWash)" opacity="0"/>
+                <!-- BEFORE: stylized illustration -->
+                <g class="hero__mini-img-illust">
+                  <rect x="32" y="52" width="296" height="78" rx="6" fill="rgba(255,255,255,0.05)"/>
+                  <path d="M32 130 L100 92 L150 110 L210 78 L270 108 L328 96 L328 130 Z" fill="rgba(255,255,255,0.08)"/>
+                  <circle cx="276" cy="74" r="6" fill="rgba(255,255,255,0.10)"/>
+                </g>
 
-                <!-- mountain silhouette -->
-                <path d="M32 130 L100 92 L150 110 L210 78 L270 108 L328 96 L328 130 Z" fill="rgba(255,255,255,0.08)"/>
-                <path class="hero__mini-img-hills" d="M32 130 L100 92 L150 110 L210 78 L270 108 L328 96 L328 130 Z" fill="url(#miniRefHills)" opacity="0"/>
-
-                <!-- sun -->
-                <circle cx="276" cy="74" r="6" fill="rgba(255,255,255,0.10)"/>
-                <circle class="hero__mini-img-sun" cx="276" cy="74" r="6" fill="#FFE5C2" opacity="0"/>
+                <!-- AFTER: real sunset photograph
+                     Photo: Vincentiu Solomon on Unsplash (https://unsplash.com/photos/ln5drpv_ImI) -->
+                <image
+                  class="hero__mini-img-photo"
+                  href="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                  x="32" y="52" width="296" height="78"
+                  preserveAspectRatio="xMidYMid slice"
+                  opacity="0"
+                />
               </g>
 
-              <!-- eyebrow: starts plum-tinted, animates to warm orange -->
-              <rect class="hero__mini-eyebrow" x="32" y="142" width="48" height="6" rx="2" fill="rgba(194,139,170,0.55)"/>
+              <!-- eyebrow: bar (before) cross-fades to "TRAVEL" (after) -->
+              <rect class="hero__mini-eyebrow-bar" x="32" y="142" width="48" height="6" rx="2" fill="rgba(194,139,170,0.55)"/>
+              <text class="hero__mini-eyebrow-text" x="32" y="148" opacity="0">TRAVEL</text>
 
-              <!-- headline (two bars) — pushed down so the eyebrow has clear breathing room above -->
-              <rect x="32" y="164" width="180" height="9" rx="2.5" fill="rgba(255,255,255,0.85)"/>
-              <rect x="32" y="178" width="120" height="9" rx="2.5" fill="rgba(255,255,255,0.85)"/>
+              <!-- headline: two placeholder bars (before) cross-fade to a single line of real headline (after) -->
+              <g class="hero__mini-headline-bars">
+                <rect x="32" y="164" width="180" height="9" rx="2.5" fill="rgba(255,255,255,0.85)"/>
+                <rect x="32" y="178" width="120" height="9" rx="2.5" fill="rgba(255,255,255,0.85)"/>
+              </g>
+              <text class="hero__mini-headline-text" x="32" y="178" opacity="0">Three days in the Sierras.</text>
 
-              <!-- button: empty/gray initially, fills with gradient on AI execute -->
+              <!-- button: gray base; gradient fill + "Plan the route" label cross-fade in on the cascade beat -->
               <g clip-path="url(#miniBtnClip)">
                 <rect x="32" y="203" width="116" height="34" rx="6" fill="rgba(255,255,255,0.12)"/>
                 <rect class="hero__mini-fill" x="32" y="203" width="116" height="34" rx="6" fill="url(#miniBtnFill)" opacity="0"/>
               </g>
-              <rect x="56" y="216" width="68" height="8" rx="2" fill="rgba(255,255,255,0.95)"/>
+              <rect class="hero__mini-btn-label-bar" x="56" y="216" width="68" height="8" rx="2" fill="rgba(255,255,255,0.95)"/>
+              <text class="hero__mini-btn-label-text" x="90" y="225" text-anchor="middle" opacity="0">Plan the route</text>
 
-              <!-- secondary link -->
-              <rect x="164" y="217" width="56" height="6" rx="2" fill="rgba(255,255,255,0.40)"/>
+              <!-- secondary link: bar cross-fades to "Read the guide" -->
+              <rect class="hero__mini-link-bar" x="164" y="217" width="56" height="6" rx="2" fill="rgba(255,255,255,0.40)"/>
+              <text class="hero__mini-link-text" x="164" y="223" opacity="0">Read the guide</text>
             </g>
 
             <!-- selection ring around the whole card -->
@@ -345,10 +356,11 @@
     height: auto;
   }
 
-  /* Cursor: enters from upper-right, drags reference toward card center,
-     holds while the cascade runs, exits. */
+  /* Cursor: enters from upper-right, drags reference toward the button,
+     holds while the cascade runs, exits. Loop runtime extended 7s -> 9s
+     to give the 5-beat cascade room to breathe. */
   .hero__mini-cursor {
-    animation: mini-cursor 7000ms var(--ease-in-out) infinite;
+    animation: mini-cursor 9000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-cursor {
     /* Tip is offset (-5, -7) from swatch center so the cursor body sits
@@ -357,14 +369,13 @@
     4%   { opacity: 1; }
     6%   { transform: translate(317px, 33px); }
     34%  { transform: translate(177px, 160px); }   /* arrives at the button */
-    46%  { transform: translate(177px, 160px); opacity: 1; }   /* hold past the drop (40-44%) */
+    46%  { transform: translate(177px, 160px); opacity: 1; }   /* hold past the drop */
     54%  { transform: translate(177px, 160px); opacity: 0; }   /* then fade — no return trip */
     100% { transform: translate(177px, 160px); opacity: 0; }
   }
 
-  /* Reference chip: follows cursor with a slight offset; fades on drop. */
   .hero__mini-swatch {
-    animation: mini-swatch 7000ms var(--ease-in-out) infinite;
+    animation: mini-swatch 9000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-swatch {
     0%, 4%   { transform: translate(322px,  40px); opacity: 0; }
@@ -375,49 +386,148 @@
     100%     { transform: translate(322px,  40px); opacity: 0; }
   }
 
-  /* Selection ring around the whole card: blooms on arrival, holds through
-     the cascade, fades at the end. */
   .hero__mini-selection {
-    animation: mini-selection 7000ms var(--ease-in-out) infinite;
+    animation: mini-selection 9000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-selection {
     0%,  32%  { opacity: 0; }
-    40%, 88%  { opacity: 1; }
-    94%, 100% { opacity: 0; }
+    40%, 92%  { opacity: 1; }
+    96%, 100% { opacity: 0; }
   }
 
-  /* Cascade beat 1 — button fills with the sunset gradient (~50%). */
-  .hero__mini-fill {
-    animation: mini-cascade-btn 7000ms var(--ease-in-out) infinite;
+  /* ------------------------------------------------------------------
+     Cascade — 5 beats, each ~6% wide, staggered every 6%:
+       Beat 1 (50%): image (illustration -> photo)
+       Beat 2 (56%): eyebrow (bar -> "TRAVEL")
+       Beat 3 (62%): headline (two bars -> "Three days in the Sierras.")
+       Beat 4 (68%): button (gradient fill + "Plan the route" label)
+       Beat 5 (74%): secondary link (bar -> "Read the guide")
+     All "before" elements fade out, "after" elements fade in. Held to
+     ~92%, then snap back at the end of the loop while the selection
+     ring fades.
+     ------------------------------------------------------------------ */
+
+  /* Beat 1 — image */
+  .hero__mini-img-illust {
+    animation: mini-cascade-out-1 9000ms var(--ease-in-out) infinite;
   }
-  @keyframes mini-cascade-btn {
+  .hero__mini-img-photo {
+    animation: mini-cascade-in-1 9000ms var(--ease-in-out) infinite;
+  }
+  @keyframes mini-cascade-out-1 {
+    0%,  50%  { opacity: 1; }
+    56%, 92%  { opacity: 0; }
+    96%, 100% { opacity: 1; }
+  }
+  @keyframes mini-cascade-in-1 {
     0%,  50%  { opacity: 0; }
-    56%, 88%  { opacity: 1; }
-    94%, 100% { opacity: 0; }
+    56%, 92%  { opacity: 1; }
+    96%, 100% { opacity: 0; }
   }
 
-  /* Cascade beat 2 — eyebrow tag shifts from plum to warm orange (~56%). */
-  .hero__mini-eyebrow {
-    animation: mini-cascade-eyebrow 7000ms var(--ease-in-out) infinite;
+  /* Beat 2 — eyebrow */
+  .hero__mini-eyebrow-bar {
+    animation: mini-cascade-out-2 9000ms var(--ease-in-out) infinite;
   }
-  @keyframes mini-cascade-eyebrow {
-    0%,  56%  { fill: rgba(194, 139, 170, 0.55); }
-    62%, 88%  { fill: rgba(244, 162,  97, 0.95); }
-    94%, 100% { fill: rgba(194, 139, 170, 0.55); }
+  .hero__mini-eyebrow-text {
+    animation: mini-cascade-in-2 9000ms var(--ease-in-out) infinite;
+  }
+  @keyframes mini-cascade-out-2 {
+    0%,  56%  { opacity: 1; }
+    62%, 92%  { opacity: 0; }
+    96%, 100% { opacity: 1; }
+  }
+  @keyframes mini-cascade-in-2 {
+    0%,  56%  { opacity: 0; }
+    62%, 92%  { opacity: 1; }
+    96%, 100% { opacity: 0; }
   }
 
-  /* Cascade beat 3 — image elements rise together: warm sky tint, plum
-     hills overlay, cream sun. Sharing one timing window so they read as
-     a single beat (rather than three sub-beats). */
-  .hero__mini-img-sky,
-  .hero__mini-img-hills,
-  .hero__mini-img-sun {
-    animation: mini-cascade-img 7000ms var(--ease-in-out) infinite;
+  /* Beat 3 — headline */
+  .hero__mini-headline-bars {
+    animation: mini-cascade-out-3 9000ms var(--ease-in-out) infinite;
   }
-  @keyframes mini-cascade-img {
+  .hero__mini-headline-text {
+    animation: mini-cascade-in-3 9000ms var(--ease-in-out) infinite;
+  }
+  @keyframes mini-cascade-out-3 {
+    0%,  62%  { opacity: 1; }
+    68%, 92%  { opacity: 0; }
+    96%, 100% { opacity: 1; }
+  }
+  @keyframes mini-cascade-in-3 {
     0%,  62%  { opacity: 0; }
-    68%, 88%  { opacity: 1; }
-    94%, 100% { opacity: 0; }
+    68%, 92%  { opacity: 1; }
+    96%, 100% { opacity: 0; }
+  }
+
+  /* Beat 4 — button (gradient fill + label text). Existing .hero__mini-fill
+     is the gradient layer; -btn-label-bar fades out as -btn-label-text fades
+     in. All three share beat-4 timing. */
+  .hero__mini-fill {
+    animation: mini-cascade-in-4 9000ms var(--ease-in-out) infinite;
+  }
+  .hero__mini-btn-label-bar {
+    animation: mini-cascade-out-4 9000ms var(--ease-in-out) infinite;
+  }
+  .hero__mini-btn-label-text {
+    animation: mini-cascade-in-4 9000ms var(--ease-in-out) infinite;
+  }
+  @keyframes mini-cascade-out-4 {
+    0%,  68%  { opacity: 1; }
+    74%, 92%  { opacity: 0; }
+    96%, 100% { opacity: 1; }
+  }
+  @keyframes mini-cascade-in-4 {
+    0%,  68%  { opacity: 0; }
+    74%, 92%  { opacity: 1; }
+    96%, 100% { opacity: 0; }
+  }
+
+  /* Beat 5 — secondary link */
+  .hero__mini-link-bar {
+    animation: mini-cascade-out-5 9000ms var(--ease-in-out) infinite;
+  }
+  .hero__mini-link-text {
+    animation: mini-cascade-in-5 9000ms var(--ease-in-out) infinite;
+  }
+  @keyframes mini-cascade-out-5 {
+    0%,  74%  { opacity: 1; }
+    80%, 92%  { opacity: 0; }
+    96%, 100% { opacity: 1; }
+  }
+  @keyframes mini-cascade-in-5 {
+    0%,  74%  { opacity: 0; }
+    80%, 92%  { opacity: 1; }
+    96%, 100% { opacity: 0; }
+  }
+
+  /* SVG text styling — matches the page font conventions. */
+  .hero__mini-eyebrow-text {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    fill: rgba(244, 162, 97, 0.95);
+  }
+  .hero__mini-headline-text {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    fill: rgba(255, 255, 255, 0.95);
+  }
+  .hero__mini-btn-label-text {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    fill: #FFFFFF;
+  }
+  .hero__mini-link-text {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    fill: rgba(255, 255, 255, 0.6);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -425,16 +535,29 @@
     .hero__mini-swatch,
     .hero__mini-selection,
     .hero__mini-fill,
-    .hero__mini-eyebrow,
-    .hero__mini-img-sky,
-    .hero__mini-img-hills,
-    .hero__mini-img-sun { animation: none; }
+    .hero__mini-img-illust,
+    .hero__mini-img-photo,
+    .hero__mini-eyebrow-bar,
+    .hero__mini-eyebrow-text,
+    .hero__mini-headline-bars,
+    .hero__mini-headline-text,
+    .hero__mini-btn-label-bar,
+    .hero__mini-btn-label-text,
+    .hero__mini-link-bar,
+    .hero__mini-link-text { animation: none; }
+    /* Reduced motion shows the finished "after" state. */
     .hero__mini-selection,
     .hero__mini-fill,
-    .hero__mini-img-sky,
-    .hero__mini-img-hills,
-    .hero__mini-img-sun { opacity: 1; }
-    .hero__mini-eyebrow { fill: rgba(244, 162, 97, 0.95); }
+    .hero__mini-img-photo,
+    .hero__mini-eyebrow-text,
+    .hero__mini-headline-text,
+    .hero__mini-btn-label-text,
+    .hero__mini-link-text { opacity: 1; }
+    .hero__mini-img-illust,
+    .hero__mini-eyebrow-bar,
+    .hero__mini-headline-bars,
+    .hero__mini-btn-label-bar,
+    .hero__mini-link-bar,
     .hero__mini-swatch,
     .hero__mini-cursor { opacity: 0; }
   }

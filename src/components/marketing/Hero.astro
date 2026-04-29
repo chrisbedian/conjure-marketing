@@ -354,9 +354,9 @@
     4%   { opacity: 1; }
     6%   { transform: translate(310px, 28px); }
     34%  { transform: translate(170px, 138px); }   /* arrives at card center */
-    88%  { transform: translate(170px, 138px); opacity: 1; }
-    96%  { opacity: 0; }
-    100% { transform: translate(310px, 28px);  opacity: 0; }
+    40%  { transform: translate(170px, 138px); opacity: 1; }   /* holds while drop completes */
+    48%  { transform: translate(170px, 138px); opacity: 0; }   /* fade out — no return trip */
+    100% { transform: translate(170px, 138px); opacity: 0; }
   }
 
   /* Reference chip: follows cursor with a slight offset; fades on drop. */

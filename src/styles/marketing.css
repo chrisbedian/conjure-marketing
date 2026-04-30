@@ -392,7 +392,8 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--ink-soft);
   text-decoration: none;
   line-height: 1;
-  padding: 8px 12px;
+  padding: 10px 12px;
+  border: 1px solid transparent;          /* match .nav-cta's border so heights are equal */
   border-radius: 8px;
   background: transparent;
   transition:
@@ -435,6 +436,6 @@ h1, h2, h3, h4, h5, h6 {
   .nav-inner   { padding: 0 24px; gap: 16px; }
   .nav-links   { gap: 4px; }
   .nav-actions { gap: 6px; }
-  .nav-link    { padding: 6px 10px; }
+  .nav-link    { padding: 8px 10px; }
   .nav-cta     { padding: 8px 12px; font-size: 13px; }
 }

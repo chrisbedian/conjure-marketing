@@ -402,8 +402,8 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
   text-decoration: none;
   transition:
     background var(--dur-base) var(--ease-in-out),
@@ -430,5 +430,5 @@ h1, h2, h3, h4, h5, h6 {
   .nav-inner   { padding: 0 24px; gap: 16px; }
   .nav-links   { gap: 16px; }
   .nav-actions { gap: 12px; }
-  .nav-cta     { padding: 6px 14px; font-size: 13px; }
+  .nav-cta     { padding: 8px 18px; font-size: 13px; }
 }

@@ -384,6 +384,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 .nav-links a:hover { color: var(--ink); }
 
+/* Vertical divider between Blog and Log in (signed-out only).
+   ~50% of nav height, same low-alpha ink as the layout lines. */
+.nav-divider {
+  width: 1px;
+  height: 32px;
+  background-color: rgba(26, 26, 31, 0.10);
+  flex-shrink: 0;
+}
+
 .nav-cta {
   background: var(--plum);
   color: #FFF;
@@ -421,6 +430,7 @@ h1, h2, h3, h4, h5, h6 {
   .nav-links       { gap: 16px; }
   .nav-cta         { padding: 10px 14px; font-size: 13px; }
   .nav-link--login { display: none; }
+  .nav-divider     { display: none; }
 }
 
 /* =========================================================================

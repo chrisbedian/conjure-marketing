@@ -27,7 +27,10 @@ const { isSignedIn = false } = Astro.props;
     <div class="nav-links">
       <a href="/blog">Blog</a>
       {!isSignedIn && (
-        <a class="nav-link--login" href="https://app.onconjure.com/sign-in">Log in</a>
+        <Fragment>
+          <span class="nav-divider" aria-hidden="true"></span>
+          <a class="nav-link--login" href="https://app.onconjure.com/sign-in">Log in</a>
+        </Fragment>
       )}
     </div>
 

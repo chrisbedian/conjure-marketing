@@ -380,10 +380,15 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   color: var(--ink-soft);
   text-decoration: none;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
   line-height: 1;
   transition: color 150ms var(--ease-in-out);
 }
-.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
 
 /* Vertical divider between Blog and Log in (signed-out only).
    ~50% of nav height, same low-alpha ink as the layout lines. */

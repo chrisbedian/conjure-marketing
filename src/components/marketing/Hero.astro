@@ -376,7 +376,7 @@ const primaryLabel = isSignedIn ? 'Open Conjure'              : 'Request access'
      holds while the cascade runs, exits. Loop runtime extended 7s -> 9s
      to give the 5-beat cascade room to breathe. */
   .hero__mini-cursor {
-    animation: mini-cursor 9000ms var(--ease-in-out) infinite;
+    animation: mini-cursor 7000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-cursor {
     /* Tip is offset (-5, -7) from swatch center so the cursor body sits
@@ -393,7 +393,7 @@ const primaryLabel = isSignedIn ? 'Open Conjure'              : 'Request access'
   }
 
   .hero__mini-swatch {
-    animation: mini-swatch 9000ms var(--ease-in-out) infinite;
+    animation: mini-swatch 7000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-swatch {
     0%, 3%   { transform: translate(322px,  40px); opacity: 0; }
@@ -405,11 +405,11 @@ const primaryLabel = isSignedIn ? 'Open Conjure'              : 'Request access'
   }
 
   .hero__mini-selection {
-    animation: mini-selection 9000ms var(--ease-in-out) infinite;
+    animation: mini-selection 7000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-selection {
     0%,  20%  { opacity: 0; }
-    26%, 82%  { opacity: 1; }
+    26%, 77%  { opacity: 1; }
     100% { opacity: 0; }
   }
 
@@ -421,61 +421,61 @@ const primaryLabel = isSignedIn ? 'Open Conjure'              : 'Request access'
        Beat 4 (54%): button (gradient fill + "Plan the route" label)
        Beat 5 (60%): secondary link (bar -> "Read the guide")
      All "before" elements fade out, "after" elements fade in. Cascade
-     finishes by 66%; the finished card holds 66-82% (~1.4s at 9s loop).
+     finishes by 66%; the finished card holds 66-77% (~0.77s at 7s loop).
      Snap back at the end while the selection ring fades.
      ------------------------------------------------------------------ */
 
   /* Beat 1 — image */
   .hero__mini-img-illust {
-    animation: mini-cascade-out-1 9000ms var(--ease-in-out) infinite;
+    animation: mini-cascade-out-1 7000ms var(--ease-in-out) infinite;
   }
   .hero__mini-img-photo {
-    animation: mini-cascade-in-1 9000ms var(--ease-in-out) infinite;
+    animation: mini-cascade-in-1 7000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-cascade-out-1 {
     0%,  36%  { opacity: 1; }
-    42%, 82%  { opacity: 0; }
+    42%, 77%  { opacity: 0; }
     100% { opacity: 1; }
   }
   @keyframes mini-cascade-in-1 {
     0%,  36%  { opacity: 0; }
-    42%, 82%  { opacity: 1; }
+    42%, 77%  { opacity: 1; }
     100% { opacity: 0; }
   }
 
   /* Beat 2 — eyebrow */
   .hero__mini-eyebrow-bar {
-    animation: mini-cascade-out-2 9000ms var(--ease-in-out) infinite;
+    animation: mini-cascade-out-2 7000ms var(--ease-in-out) infinite;
   }
   .hero__mini-eyebrow-text {
-    animation: mini-cascade-in-2 9000ms var(--ease-in-out) infinite;
+    animation: mini-cascade-in-2 7000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-cascade-out-2 {
     0%,  42%  { opacity: 1; }
-    48%, 82%  { opacity: 0; }
+    48%, 77%  { opacity: 0; }
     100% { opacity: 1; }
   }
   @keyframes mini-cascade-in-2 {
     0%,  42%  { opacity: 0; }
-    48%, 82%  { opacity: 1; }
+    48%, 77%  { opacity: 1; }
     100% { opacity: 0; }
   }
 
   /* Beat 3 — headline */
   .hero__mini-headline-bars {
-    animation: mini-cascade-out-3 9000ms var(--ease-in-out) infinite;
+    animation: mini-cascade-out-3 7000ms var(--ease-in-out) infinite;
   }
   .hero__mini-headline-text {
-    animation: mini-cascade-in-3 9000ms var(--ease-in-out) infinite;
+    animation: mini-cascade-in-3 7000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-cascade-out-3 {
     0%,  48%  { opacity: 1; }
-    54%, 82%  { opacity: 0; }
+    54%, 77%  { opacity: 0; }
     100% { opacity: 1; }
   }
   @keyframes mini-cascade-in-3 {
     0%,  48%  { opacity: 0; }
-    54%, 82%  { opacity: 1; }
+    54%, 77%  { opacity: 1; }
     100% { opacity: 0; }
   }
 
@@ -483,40 +483,40 @@ const primaryLabel = isSignedIn ? 'Open Conjure'              : 'Request access'
      is the gradient layer; -btn-label-bar fades out as -btn-label-text fades
      in. All three share beat-4 timing. */
   .hero__mini-fill {
-    animation: mini-cascade-in-4 9000ms var(--ease-in-out) infinite;
+    animation: mini-cascade-in-4 7000ms var(--ease-in-out) infinite;
   }
   .hero__mini-btn-label-bar {
-    animation: mini-cascade-out-4 9000ms var(--ease-in-out) infinite;
+    animation: mini-cascade-out-4 7000ms var(--ease-in-out) infinite;
   }
   .hero__mini-btn-label-text {
-    animation: mini-cascade-in-4 9000ms var(--ease-in-out) infinite;
+    animation: mini-cascade-in-4 7000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-cascade-out-4 {
     0%,  54%  { opacity: 1; }
-    60%, 82%  { opacity: 0; }
+    60%, 77%  { opacity: 0; }
     100% { opacity: 1; }
   }
   @keyframes mini-cascade-in-4 {
     0%,  54%  { opacity: 0; }
-    60%, 82%  { opacity: 1; }
+    60%, 77%  { opacity: 1; }
     100% { opacity: 0; }
   }
 
   /* Beat 5 — secondary link */
   .hero__mini-link-bar {
-    animation: mini-cascade-out-5 9000ms var(--ease-in-out) infinite;
+    animation: mini-cascade-out-5 7000ms var(--ease-in-out) infinite;
   }
   .hero__mini-link-text {
-    animation: mini-cascade-in-5 9000ms var(--ease-in-out) infinite;
+    animation: mini-cascade-in-5 7000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-cascade-out-5 {
     0%,  60%  { opacity: 1; }
-    66%, 82%  { opacity: 0; }
+    66%, 77%  { opacity: 0; }
     100% { opacity: 1; }
   }
   @keyframes mini-cascade-in-5 {
     0%,  60%  { opacity: 0; }
-    66%, 82%  { opacity: 1; }
+    66%, 77%  { opacity: 1; }
     100% { opacity: 0; }
   }
 

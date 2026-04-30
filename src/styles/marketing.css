@@ -442,17 +442,105 @@ h1, h2, h3, h4, h5, h6 {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Mobile: keep all three children visible (no hamburger for v1). 24px
-   matches .m-section-left so the logo aligns with section content.
-   .nav-link--login is hidden on mobile to conserve space — signed-out
-   visitors find sign-in via the waitlist page or the app directly. */
+/* =========================================================================
+   Burger + drawer — visible at <=1135px in place of the inline links + CTA.
+   ========================================================================= */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 40px;
+  height: 35px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  /* Push to the right edge when the inline links + CTA are hidden. */
+  margin-left: auto;
+}
+.nav-burger__line {
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+  border-radius: 999px;
+  transition:
+    transform var(--dur-base) var(--ease-in-out),
+    opacity   var(--dur-base) var(--ease-in-out);
+}
+/* X state when drawer is open. */
+.nav-burger[aria-expanded="true"] .nav-burger__line:nth-child(1) {
+  transform: translateY(5.5px) rotate(45deg);
+}
+.nav-burger[aria-expanded="true"] .nav-burger__line:nth-child(2) {
+  opacity: 0;
+}
+.nav-burger[aria-expanded="true"] .nav-burger__line:nth-child(3) {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+.nav-drawer {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: var(--cream);
+  border-bottom: 1px solid rgba(26, 26, 31, 0.08);
+  padding: 16px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nav-drawer[hidden] { display: none; }
+
+.nav-drawer__link {
+  display: block;
+  padding: 14px 0;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(26, 26, 31, 0.06);
+  transition: color var(--dur-base) var(--ease-in-out);
+}
+.nav-drawer__link:hover { color: var(--plum-deep); }
+
+.nav-drawer__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  align-self: flex-start;
+  background-color: var(--plum);
+  color: #FFF;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color var(--dur-base) var(--ease-in-out);
+}
+.nav-drawer__cta:hover { background-color: var(--plum-deep); }
+
+/* Below 1136px, swap to burger nav: hide the inline group, show the burger. */
+@media (max-width: 1135px) {
+  .nav-links,
+  .nav-cta {
+    display: none;
+  }
+  .nav-burger {
+    display: inline-flex;
+  }
+}
+
+/* Mobile gutters: nav-inner padding tightens to 24px so the logo + burger
+   align with .m-section-left's mobile padding. Drawer follows. */
 @media (max-width: 767px) {
   .nav-inner       { padding: 0 24px; gap: 16px; }
-  .nav-links       { gap: 16px; }
-  .nav-cta         { height: 32px; padding: 0 14px; font-size: 13px; }
-  .nav-links a     { height: 32px; }
-  .nav-link--login { display: none; }
-  .nav-divider     { display: none; }
+  .nav-drawer      { padding: 16px 24px 24px; }
 }
 
 /* =========================================================================

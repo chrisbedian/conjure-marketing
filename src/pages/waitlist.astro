@@ -1,0 +1,129 @@
+---
+import '../styles/marketing.css';
+import LayoutLines from '../components/marketing/LayoutLines.astro';
+import Nav from '../components/marketing/Nav.astro';
+import Footer from '../components/marketing/Footer.astro';
+
+const { userId } = Astro.locals.auth();
+const isSignedIn = !!userId;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>Request access — Conjure</title>
+    <meta name="description" content="Conjure is in private beta. Drop your email and tell us what you build — we'll reach out when access opens." />
+    <meta property="og:title" content="Request access — Conjure" />
+    <meta property="og:description" content="Conjure is in private beta. Drop your email and tell us what you build." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://onconjure.com/waitlist" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+  </head>
+  <body>
+    <LayoutLines />
+    <Nav isSignedIn={isSignedIn} />
+
+    <main class="waitlist">
+      <div class="m-section-left">
+        <hr class="m-divider" />
+        <div class="m-section-left__inner waitlist__inner">
+          <div id="waitlistForm">
+            <p class="section-label">04 / Waitlist</p>
+            <h1 class="waitlist__title">Get early access.</h1>
+            <p class="waitlist__body">
+              Conjure is in private beta. We're letting designers in as we expand. Drop your email and tell us what you build — we'll reach out when there's a spot.
+            </p>
+
+            <form class="waitlist__form" id="waitlistFormEl" novalidate>
+              <label class="waitlist__field">
+                <span class="waitlist__field-label">Email</span>
+                <input type="email" name="email" required placeholder="you@example.com" autocomplete="email" />
+              </label>
+              <label class="waitlist__field">
+                <span class="waitlist__field-label">What do you design? <em>(optional)</em></span>
+                <input type="text" name="design_focus" placeholder="Brand systems, marketing sites, product UI…" autocomplete="off" />
+              </label>
+              <!-- Honeypot — bots fill hidden fields, real users don't. -->
+              <div class="waitlist__honey" aria-hidden="true">
+                <label>Website
+                  <input type="text" name="website" tabindex="-1" autocomplete="off" />
+                </label>
+              </div>
+              <button type="submit" class="m-btn m-btn--primary m-btn--md cta__btn">
+                Request access
+                <svg class="cta__btn-arrow" viewBox="0 0 14 14" aria-hidden="true">
+                  <path d="M3 11 L11 3 M5 3 L11 3 L11 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+              </button>
+              <p class="waitlist__error" id="waitlistError" role="alert" hidden></p>
+            </form>
+          </div>
+
+          <div id="waitlistSuccess" class="waitlist__success" hidden>
+            <p class="section-label">04 / Waitlist</p>
+            <h1 class="waitlist__title">You're on the list.</h1>
+            <p class="waitlist__body">
+              We'll email you when access opens. Usually within a few weeks.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+
+    <script>
+      import '../scripts/reveal';
+      import '../scripts/nav-scroll';
+    </script>
+    <script>
+      const form    = document.getElementById('waitlistFormEl') as HTMLFormElement | null;
+      const formWrap = document.getElementById('waitlistForm');
+      const success  = document.getElementById('waitlistSuccess');
+      const errorEl  = document.getElementById('waitlistError') as HTMLParagraphElement | null;
+      const submit   = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
+      const showError = (msg: string) => {
+        if (!errorEl) return;
+        errorEl.textContent = msg;
+        errorEl.hidden = false;
+      };
+
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (errorEl) errorEl.hidden = true;
+        if (submit) submit.disabled = true;
+
+        try {
+          const res = await fetch('/api/waitlist', {
+            method: 'POST',
+            body: new FormData(form),
+          });
+          const data = await res.json();
+          if (res.ok && data.ok) {
+            if (formWrap) formWrap.hidden = true;
+            if (success)  success.hidden  = false;
+            success?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            showError(data.error ?? 'Something went wrong. Please try again.');
+            if (submit) submit.disabled = false;
+          }
+        } catch (err) {
+          showError('Network error. Please try again.');
+          if (submit) submit.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>

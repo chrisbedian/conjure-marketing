@@ -4,7 +4,8 @@ import LayoutLines from '../components/marketing/LayoutLines.astro';
 import Nav from '../components/marketing/Nav.astro';
 import Footer from '../components/marketing/Footer.astro';
 
-export const prerender = true;
+const { userId } = Astro.locals.auth();
+const isSignedIn = !!userId;
 ---
 <!doctype html>
 <html lang="en">
@@ -24,7 +25,7 @@ export const prerender = true;
   </head>
   <body>
     <LayoutLines />
-    <Nav />
+    <Nav isSignedIn={isSignedIn} />
     <main class="legal m-container">
       <h1>Privacy</h1>
       <p>Our privacy policy is forthcoming. Reach out to <a href="mailto:hello@onconjure.com">hello@onconjure.com</a> for questions in the meantime.</p>

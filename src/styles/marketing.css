@@ -390,7 +390,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
-  padding: 8px 16px;
+  padding: 12px 16px;
   border-radius: 8px;
   text-decoration: none;
   transition:
@@ -413,9 +413,118 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Mobile: keep all three children visible (no hamburger for v1). 24px
-   matches .m-section-left so the logo aligns with section content. */
+   matches .m-section-left so the logo aligns with section content.
+   .nav-link--login is hidden on mobile to conserve space — signed-out
+   visitors find sign-in via the waitlist page or the app directly. */
 @media (max-width: 767px) {
-  .nav-inner { padding: 0 24px; gap: 16px; }
-  .nav-links { gap: 16px; }
-  .nav-cta   { padding: 6px 14px; font-size: 13px; }
+  .nav-inner       { padding: 0 24px; gap: 16px; }
+  .nav-links       { gap: 16px; }
+  .nav-cta         { padding: 10px 14px; font-size: 13px; }
+  .nav-link--login { display: none; }
+}
+
+/* =========================================================================
+   Waitlist page — left-anchored form on cream surface.
+   ========================================================================= */
+.waitlist {
+  background: var(--cream);
+  padding: 96px 0 120px;
+  position: relative;
+}
+@media (max-width: 767px) {
+  .waitlist { padding: 96px 0 80px; }
+}
+
+.waitlist__inner {
+  margin-top: 40px;
+}
+
+.waitlist__title {
+  margin-top: 24px;
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.waitlist__body {
+  margin-top: 24px;
+  color: var(--ink-soft);
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  line-height: 1.55;
+  max-width: 560px;
+}
+
+.waitlist__form {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 480px;
+}
+
+.waitlist__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.waitlist__field-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.waitlist__field-label em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--ink-quiet);
+}
+.waitlist__field input {
+  font: inherit;
+  font-size: 15px;
+  padding: 12px 14px;
+  border: 1px solid var(--cream-deep);
+  border-radius: 8px;
+  background: #FFFFFF;
+  color: var(--ink);
+  transition:
+    border-color var(--dur-base) var(--ease-in-out),
+    box-shadow   var(--dur-base) var(--ease-in-out);
+}
+.waitlist__field input::placeholder {
+  color: var(--ink-quiet);
+}
+.waitlist__field input:hover {
+  border-color: var(--ink-quiet);
+}
+.waitlist__field input:focus,
+.waitlist__field input:focus-visible {
+  outline: none;
+  border-color: var(--plum);
+  box-shadow: 0 0 0 3px var(--plum-wash);
+}
+
+/* Honeypot — visually hidden but still in the form. */
+.waitlist__honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.waitlist__form .m-btn {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+.waitlist__error {
+  color: var(--error);
+  font-size: 14px;
+  margin: 0;
+}
+
+.waitlist__success {
+  /* Success state inherits .waitlist__title / __body styles via class names
+     within the markup — no separate rules needed here. */
 }

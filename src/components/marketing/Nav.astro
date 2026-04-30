@@ -1,16 +1,17 @@
 ---
 /**
- * Marketing nav — ported from LumeGrid (`src/components/Header.astro`).
+ * Marketing nav — auth-aware CTAs (Supplement 14):
+ *   Signed out: Blog | Log in (text, hidden on mobile) | Request access
+ *   Signed in:  Blog | Open Conjure
  *
- *  - At rest (top of page): fully transparent. The layout-line column
- *    (and the always-on horizontal divider below) read straight through.
- *  - On hover or once scrolled: cream-glass fill, blur, soft shadow.
- *  - The `nav-h-line` is the always-visible bottom divider, full viewport
- *    width, intersecting the vertical layout lines as a grid (Stripe-style).
- *
- * Styles live in `src/styles/marketing.css` (global, not scoped) so Vite
- * HMR can never strand cid-attribute selectors mid-update.
+ * The auth state is determined server-side by the parent page reading
+ * Astro.locals.auth() and passing isSignedIn down. Page must be SSR
+ * (not prerendered) for that to populate.
  */
+interface Props {
+  isSignedIn?: boolean;
+}
+const { isSignedIn = false } = Astro.props;
 ---
 <nav class="marketing-nav" id="marketingNav" aria-label="Primary">
   <div class="nav-inner">
@@ -25,9 +26,16 @@
 
     <div class="nav-links">
       <a href="/blog">Blog</a>
+      {!isSignedIn && (
+        <a class="nav-link--login" href="https://app.onconjure.com/sign-in">Log in</a>
+      )}
     </div>
 
-    <a class="nav-cta" href="https://app.onconjure.com">Open app</a>
+    {isSignedIn ? (
+      <a class="nav-cta" href="https://app.onconjure.com">Open Conjure</a>
+    ) : (
+      <a class="nav-cta" href="/waitlist">Request access</a>
+    )}
   </div>
 
   <div class="nav-h-line" aria-hidden="true"></div>

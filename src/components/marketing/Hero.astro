@@ -40,8 +40,8 @@ const primaryLabel = isSignedIn ? 'Open Conjure'              : 'Request access'
         <div class="hero__cta-row">
           <a href={primaryHref} class="m-btn m-btn--primary m-btn--md cta__btn">
             {primaryLabel}
-            <svg class="cta__btn-arrow" viewBox="0 0 14 14" aria-hidden="true">
-              <path d="M3 11 L11 3 M5 3 L11 3 L11 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <svg class="cta__btn-arrow" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M 6 18 L 17 7 M 11 7 L 17 7 L 17 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </a>
           <a href="/blog" class="m-btn m-btn--ghost m-btn--md">Read the blog</a>
@@ -167,45 +167,6 @@ const primaryLabel = isSignedIn ? 'Open Conjure'              : 'Request access'
     </div>
   </div>
 
-  <div class="m-section-left">
-    <hr class="m-divider" />
-  </div>
-
-  <div class="m-section-left hero__media-wrap">
-    <div class="hero__loop" aria-label="A short loop of Conjure being used to edit a design">
-      <img
-        src="/videos/hero-loop-poster.jpg"
-        alt=""
-        class="hero__loop-poster"
-        decoding="async"
-        fetchpriority="high"
-      />
-      <video
-        class="hero__loop-video"
-        data-crossfade
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        poster="/videos/hero-loop-poster.jpg"
-      >
-        <source src="/videos/hero-loop.webm" type="video/webm" />
-        <source src="/videos/hero-loop.mp4"  type="video/mp4" />
-      </video>
-    </div>
-  </div>
-
-  <div class="m-section-left">
-    <hr class="m-divider" />
-    <p class="hero__loop-meta" aria-hidden="true">
-      <span>RECORDED IN CONJURE</span>
-      <span class="hero__loop-meta-sep">·</span>
-      <span>NO EDITS</span>
-      <span class="hero__loop-meta-sep">·</span>
-      <span>6.2s LOOP</span>
-    </p>
-  </div>
 </section>
 
 <style>
@@ -324,8 +285,8 @@ const primaryLabel = isSignedIn ? 'Open Conjure'              : 'Request access'
     gap: 10px;
   }
   .cta__btn-arrow {
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
     transition: transform var(--dur-base) var(--ease-out);
   }
   .cta__btn:hover .cta__btn-arrow {
@@ -580,59 +541,6 @@ const primaryLabel = isSignedIn ? 'Open Conjure'              : 'Request access'
     .hero__mini-cursor { opacity: 0; }
   }
 
-  /* Hairlines bracket the full-width hero loop, full layout-column width. */
-  .m-divider { margin-block: 64px; }
-  @media (max-width: 767px) {
-    .m-divider { margin-block: 40px; }
-  }
-
-  .hero__loop {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    background: var(--ink);
-    border: 1px solid rgba(26, 26, 31, 0.10);
-    box-shadow: var(--shadow-lg);
-    overflow: hidden;
-  }
-  .hero__loop-poster,
-  .hero__loop-video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .hero__loop-video {
-    opacity: 0;
-    transition: opacity 200ms var(--ease-in-out);
-  }
-  .hero__loop-video.is-playing {
-    opacity: 1;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hero__loop-video { opacity: 1; transition: none; }
-  }
-
-  /* Mono caption, sits just under the lower hairline like a film slate. */
-  .hero__loop-meta {
-    margin-top: 24px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--ink-quiet);
-    display: inline-flex;
-    gap: 10px;
-    align-items: center;
-    letter-spacing: 0.04em;
-  }
-  .hero__loop-meta-sep {
-    opacity: 0.5;
-  }
-  .hero .m-divider + .hero__loop-meta {
-    margin-top: 24px;
-  }
-
   /* Page-load staggered fade-in (hero only, runs once). */
   @media (prefers-reduced-motion: no-preference) {
     .hero__intro .section-label { animation: hero-fade-in 600ms var(--ease-out)   0ms both; }
@@ -641,7 +549,6 @@ const primaryLabel = isSignedIn ? 'Open Conjure'              : 'Request access'
     .hero__subtitle              { animation: hero-fade-in 700ms var(--ease-out) 280ms both; }
     .hero__cta-row               { animation: hero-fade-in 700ms var(--ease-out) 400ms both; }
     .hero__top-right             { animation: hero-fade-in 800ms var(--ease-out) 240ms both; }
-    .hero__media-wrap            { animation: hero-fade-in 800ms var(--ease-out) 560ms both; }
     @keyframes hero-fade-in {
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }

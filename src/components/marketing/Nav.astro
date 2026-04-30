@@ -51,9 +51,12 @@ const ctaLabel = isSignedIn ? 'Open Conjure'              : 'Request access';
       aria-expanded="false"
       aria-controls="navDrawer"
     >
-      <span class="nav-burger__line"></span>
-      <span class="nav-burger__line"></span>
-      <span class="nav-burger__line"></span>
+      <svg class="nav-burger__icon nav-burger__icon--menu" viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true">
+        <path d="M 4 7 L 20 7 M 10 12 L 20 12 M 4 17 L 20 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <svg class="nav-burger__icon nav-burger__icon--close" viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true">
+        <path d="M 7 7 L 17 17 M 17 7 L 7 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
     </button>
   </div>
 

@@ -5,25 +5,21 @@ const tiles = [
   {
     title: 'Selection',
     description: "Click to point. The AI works on what you've chosen, nothing else.",
-    videoSlug: 'selection',
     numeral: '01',
   },
   {
     title: 'Reference',
     description: 'Drop in an image. The AI matches the look without you describing it.',
-    videoSlug: 'reference',
     numeral: '02',
   },
   {
     title: 'Pins',
     description: 'Mark a spot. The AI focuses there — no other layer is at risk.',
-    videoSlug: 'pins',
     numeral: '03',
   },
   {
     title: 'Locks',
     description: "Lock what's done. The AI won't touch it, no matter what you ask for next.",
-    videoSlug: 'locks',
     numeral: '04',
   },
 ];
@@ -44,7 +40,6 @@ const tiles = [
         <GestureTile
           title={tile.title}
           description={tile.description}
-          videoSlug={tile.videoSlug}
           numeral={tile.numeral}
           delayMs={i * 120}
         />

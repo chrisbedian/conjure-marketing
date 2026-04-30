@@ -376,14 +376,14 @@ h1, h2, h3, h4, h5, h6 {
   justify-self: center;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 4px;
 }
 
 .nav-actions {
   justify-self: end;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 }
 
 .nav-link {
@@ -392,9 +392,17 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--ink-soft);
   text-decoration: none;
   line-height: 1;
-  transition: color 150ms var(--ease-in-out);
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: transparent;
+  transition:
+    color 150ms var(--ease-in-out),
+    background-color 150ms var(--ease-in-out);
 }
-.nav-link:hover { color: var(--ink); }
+.nav-link:hover {
+  color: var(--ink);
+  background: var(--plum-wash);
+}
 
 .nav-cta {
   background: var(--plum);
@@ -428,7 +436,8 @@ h1, h2, h3, h4, h5, h6 {
    matches .m-section-left so the logo aligns with section content. */
 @media (max-width: 767px) {
   .nav-inner   { padding: 0 24px; gap: 16px; }
-  .nav-links   { gap: 16px; }
-  .nav-actions { gap: 12px; }
+  .nav-links   { gap: 4px; }
+  .nav-actions { gap: 6px; }
+  .nav-link    { padding: 8px 16px; }
   .nav-cta     { padding: 8px 18px; font-size: 13px; }
 }

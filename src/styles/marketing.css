@@ -405,19 +405,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-cta {
-  background: var(--plum);
-  color: #FFF;
+  background: transparent;
+  color: var(--ink);
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
   padding: 10px 14px;
+  border: 1px solid var(--ink);
   border-radius: 12px;
   text-decoration: none;
   transition:
-    background var(--dur-base) var(--ease-in-out),
-    transform  var(--dur-base) var(--ease-in-out);
+    background-color var(--dur-base) var(--ease-in-out),
+    transform        var(--dur-base) var(--ease-in-out);
 }
-.nav-cta:hover { background: var(--plum-deep); }
+.nav-cta:hover { background: var(--plum-wash); }
 
 @media (prefers-reduced-motion: no-preference) {
   .nav-cta:hover { transform: scale(1.02); }

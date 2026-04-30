@@ -412,7 +412,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--plum);
+  background-color: var(--plum);
   color: #FFF;
   font-size: 15px;
   font-weight: 500;
@@ -421,9 +421,11 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 16px;
   border-radius: 8px;
   text-decoration: none;
+  /* Ease both directions (hover-in and hover-out) at the same 180ms
+     ease-in-out as the rest of the nav. */
   transition:
-    background var(--dur-base) var(--ease-in-out),
-    transform  var(--dur-base) var(--ease-in-out);
+    background-color var(--dur-base) var(--ease-in-out),
+    color            var(--dur-base) var(--ease-in-out);
 }
 .nav-cta:hover { background: var(--plum-deep); }
 

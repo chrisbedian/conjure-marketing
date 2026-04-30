@@ -376,6 +376,9 @@ h1, h2, h3, h4, h5, h6 {
   gap: 24px;
 }
 .nav-links a {
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
   font-size: 15px;
   font-weight: 500;
   color: var(--ink-soft);
@@ -439,6 +442,7 @@ h1, h2, h3, h4, h5, h6 {
   .nav-inner       { padding: 0 24px; gap: 16px; }
   .nav-links       { gap: 16px; }
   .nav-cta         { height: 32px; padding: 0 14px; font-size: 13px; }
+  .nav-links a     { height: 32px; }
   .nav-link--login { display: none; }
   .nav-divider     { display: none; }
 }

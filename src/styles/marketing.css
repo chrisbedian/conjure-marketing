@@ -392,8 +392,8 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--ink-soft);
   text-decoration: none;
   line-height: 1;
-  padding: 10px 22px;
-  border-radius: 999px;
+  padding: 8px 12px;
+  border-radius: 8px;
   background: transparent;
   transition:
     color 150ms var(--ease-in-out),
@@ -410,8 +410,8 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
-  padding: 10px 22px;
-  border-radius: 999px;
+  padding: 10px 14px;
+  border-radius: 12px;
   text-decoration: none;
   transition:
     background var(--dur-base) var(--ease-in-out),
@@ -438,6 +438,6 @@ h1, h2, h3, h4, h5, h6 {
   .nav-inner   { padding: 0 24px; gap: 16px; }
   .nav-links   { gap: 4px; }
   .nav-actions { gap: 6px; }
-  .nav-link    { padding: 8px 16px; }
-  .nav-cta     { padding: 8px 18px; font-size: 13px; }
+  .nav-link    { padding: 6px 10px; }
+  .nav-cta     { padding: 8px 12px; font-size: 13px; }
 }

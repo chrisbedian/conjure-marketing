@@ -376,7 +376,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: 24px;
 }
 .nav-links a {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--ink-soft);
   text-decoration: none;

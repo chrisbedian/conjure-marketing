@@ -1,11 +1,11 @@
 /**
  * Marketing-nav scripts:
  *   1. Toggles .is-scrolled on the nav after 10px of scroll.
- *   2. Wires the burger button (<=1135px) to toggle the drawer:
+ *   2. Wires the burger button (<=767px) to toggle the drawer:
  *      - aria-expanded on the burger drives the X animation
  *      - drawer's `hidden` attribute drives visibility
  *      - body scroll locks while the drawer is open
- *      - drawer auto-closes if the viewport widens past 1135px
+ *      - drawer auto-closes if the viewport widens past 767px
  *      - clicking a drawer link/CTA closes the drawer (so nav state
  *        is consistent across hash navigations + same-tab routes)
  *   3. Runs the nav entrance fade once via the Web Animations API.
@@ -17,7 +17,7 @@
  */
 
 const SCROLL_THRESHOLD = 10;
-const BURGER_BREAKPOINT = 1135;
+const BURGER_BREAKPOINT = 767;
 
 function initNavScroll() {
   const nav = document.getElementById('marketingNav');

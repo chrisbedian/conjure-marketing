@@ -130,7 +130,7 @@
 
             <!-- selection ring around the whole card -->
             <rect class="hero__mini-selection" x="17" y="37" width="326" height="239" rx="12"
-                  fill="none" stroke="#8B2D5C" stroke-width="1.5" opacity="0"/>
+                  fill="none" stroke="#2D4A6E" stroke-width="1.5" opacity="0"/>
 
             <!-- reference photo chip: sky + hills + sun -->
             <g class="hero__mini-swatch">
@@ -186,14 +186,14 @@
     }
   }
 
-  /* Status chip — mono "NOW IN PRIVATE BETA" with a pulsing plum dot. */
+  /* Status chip — mono "NOW IN PRIVATE BETA" with a pulsing Prussian-blue dot. */
   .hero__chip {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 6px 12px 6px 10px;
-    background: var(--plum-wash);
-    border: 1px solid rgba(139, 45, 92, 0.18);
+    background: var(--prussian-wash);
+    border: 1px solid rgba(45, 74, 110, 0.18);
     border-radius: 999px;
     margin-bottom: 24px;
   }
@@ -201,7 +201,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--plum);
+    background: var(--prussian);
     animation: chip-pulse 2400ms var(--ease-in-out) infinite;
   }
   .hero__chip-label {
@@ -209,11 +209,11 @@
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.04em;
-    color: var(--plum-deep);
+    color: var(--prussian-deep);
   }
   @keyframes chip-pulse {
-    0%, 100% { box-shadow: 0 0 0 0   rgba(139, 45, 92, 0.5); }
-    60%      { box-shadow: 0 0 0 6px rgba(139, 45, 92, 0);   }
+    0%, 100% { box-shadow: 0 0 0 0   rgba(45, 74, 110, 0.5); }
+    60%      { box-shadow: 0 0 0 6px rgba(45, 74, 110, 0);   }
   }
   @media (prefers-reduced-motion: reduce) {
     .hero__chip-dot { animation: none; }

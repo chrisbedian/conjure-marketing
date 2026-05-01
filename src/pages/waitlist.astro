@@ -1,5 +1,6 @@
 ---
 import '../styles/marketing.css';
+import { ClientRouter } from 'astro:transitions';
 import LayoutLines from '../components/marketing/LayoutLines.astro';
 import Nav from '../components/marketing/Nav.astro';
 import Footer from '../components/marketing/Footer.astro';
@@ -28,6 +29,7 @@ export const prerender = true;
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     />
+    <ClientRouter />
   </head>
   <body>
     <LayoutLines />

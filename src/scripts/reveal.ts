@@ -32,10 +32,8 @@ function initReveal() {
   targets.forEach((el) => observer.observe(el));
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initReveal, { once: true });
-} else {
-  initReveal();
-}
+/* astro:page-load fires on initial load AND after every ClientRouter
+   navigation, so observers re-attach to the new page's .reveal elements. */
+document.addEventListener('astro:page-load', initReveal);
 
 export {};

@@ -4,6 +4,35 @@
    into the blog, which uses its own BaseLayout + global.css.
    ========================================================================= */
 
+/* Disable ALL View Transitions cross-fade animations on page swaps. The
+   underlying DOM swap (and `transition:persist`) still happens — we're
+   only suppressing the visual cross-fade between snapshots. */
+::view-transition-old(*),
+::view-transition-new(*),
+::view-transition-group(*),
+::view-transition-image-pair(*) {
+  animation: none !important;
+}
+
+/* Page-content entrance animation for pages without their own choreography
+   (the splash hero handles its own staggered fade). Runs on initial load
+   AND on every soft-nav swap because the main element is freshly mounted.
+   Mirrors the hero entrance: 12px translateY rise, 600–700ms ease-out,
+   children staggered ~80–120ms apart. */
+@media (prefers-reduced-motion: no-preference) {
+  main.legal h1                  { animation: page-fade-in 700ms var(--ease-out)   0ms both; }
+  main.legal p                   { animation: page-fade-in 700ms var(--ease-out) 120ms both; }
+
+  main.waitlist .section-label   { animation: page-fade-in 600ms var(--ease-out)   0ms both; }
+  main.waitlist .waitlist__title { animation: page-fade-in 700ms var(--ease-out) 120ms both; }
+  main.waitlist .waitlist__body  { animation: page-fade-in 700ms var(--ease-out) 240ms both; }
+  main.waitlist .waitlist__form  { animation: page-fade-in 700ms var(--ease-out) 360ms both; }
+}
+@keyframes page-fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 :root {
   /* Surfaces */
   --cream:           #ECE9E0;
@@ -431,16 +460,12 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (prefers-reduced-motion: no-preference) {
   .nav-cta:hover { transform: scale(1.02); }
-
-  .nav-logo  { animation: nav-fade-in 600ms var(--ease-out)   0ms both; }
-  .nav-links { animation: nav-fade-in 600ms var(--ease-out)  80ms both; }
-  .nav-cta   { animation: nav-fade-in 600ms var(--ease-out)  80ms both; }
 }
 
-@keyframes nav-fade-in {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+/* Nav entrance is run via the Web Animations API in nav-scroll.ts so
+   it can't re-fire when View Transitions persist moves the nav across
+   page swaps (CSS keyframe animations re-trigger on DOM remount; WAAPI
+   animations are bound to the element instance and don't). */
 
 /* =========================================================================
    Burger + drawer — visible at <=1135px in place of the inline links + CTA.

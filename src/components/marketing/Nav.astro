@@ -2,7 +2,7 @@
 /**
  * Marketing nav.
  *
- * Above 1135px: Blog | divider | Log in | Request access (CTA)
+ * Above 1135px: Blog | divider | Log in | Get Started (CTA)
  * At <=1135px:  burger button → drawer with the same items stacked.
  *
  * The marketing site is fully static — auth state lives on the primary
@@ -10,7 +10,7 @@
  * users land on the app via the "Log in" link or by clicking through to it.
  */
 ---
-<nav class="marketing-nav" id="marketingNav" aria-label="Primary">
+<nav class="marketing-nav" id="marketingNav" aria-label="Primary" transition:persist="marketing-nav">
   <div class="nav-inner">
     <a class="nav-logo" href="/" aria-label="Conjure home">
       <svg viewBox="0 -2.5 24 24" width="28" height="28" fill="none" aria-hidden="true">
@@ -27,7 +27,7 @@
       <a class="nav-link--login" href="https://app.onconjure.com/sign-in">Log in</a>
     </div>
 
-    <a class="nav-cta" href="/waitlist">Request access</a>
+    <a class="nav-cta" href="/waitlist">Get Started</a>
 
     <button
       class="nav-burger"
@@ -51,6 +51,6 @@
   <div class="nav-drawer" id="navDrawer" hidden>
     <a class="nav-drawer__link" href="/blog">Blog</a>
     <a class="nav-drawer__link" href="https://app.onconjure.com/sign-in">Log in</a>
-    <a class="nav-drawer__cta" href="/waitlist">Request access</a>
+    <a class="nav-drawer__cta" href="/waitlist">Get Started</a>
   </div>
 </nav>

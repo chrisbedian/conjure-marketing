@@ -3,21 +3,7 @@
  * Hero — editorial, anthropic-inspired, two-column upper.
  *  - Left column (1.5fr): chip → headline → subhead → CTA row
  *  - Right column (1fr):  mini gesture loop (CSS+SVG, no asset required)
- *  - Below: full-width hero loop bracketed by hairlines (unchanged)
- *
- * Auth-aware primary CTA (Supplement 14):
- *   Signed in  → "Open Conjure" → app.onconjure.com
- *   Signed out → "Request access" → /waitlist
- *
- * Asset paths under /public/videos/ are wired but the founder's recordings
- * land later. Until then the loop frame shows --ink at the right ratio.
  */
-interface Props {
-  isSignedIn?: boolean;
-}
-const { isSignedIn = false } = Astro.props;
-const primaryHref  = isSignedIn ? 'https://app.onconjure.com' : '/waitlist';
-const primaryLabel = isSignedIn ? 'Open Conjure'              : 'Request access';
 ---
 <section class="hero">
   <div class="m-section-left hero__intro">
@@ -38,8 +24,8 @@ const primaryLabel = isSignedIn ? 'Open Conjure'              : 'Request access'
           An AI design tool for design professionals. Built around your gestures, not your prompts.
         </p>
         <div class="hero__cta-row">
-          <a href={primaryHref} class="m-btn m-btn--primary m-btn--md cta__btn">
-            {primaryLabel}
+          <a href="/waitlist" class="m-btn m-btn--primary m-btn--md cta__btn">
+            Request access
             <svg class="cta__btn-arrow" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M 6 18 L 17 7 M 11 7 L 17 7 L 17 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>

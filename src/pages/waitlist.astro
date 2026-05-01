@@ -4,8 +4,7 @@ import LayoutLines from '../components/marketing/LayoutLines.astro';
 import Nav from '../components/marketing/Nav.astro';
 import Footer from '../components/marketing/Footer.astro';
 
-const { userId } = Astro.locals.auth();
-const isSignedIn = !!userId;
+export const prerender = true;
 ---
 <!doctype html>
 <html lang="en">
@@ -32,7 +31,7 @@ const isSignedIn = !!userId;
   </head>
   <body>
     <LayoutLines />
-    <Nav isSignedIn={isSignedIn} />
+    <Nav />
 
     <main class="waitlist">
       <div class="m-section-left">

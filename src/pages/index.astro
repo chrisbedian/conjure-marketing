@@ -8,10 +8,7 @@ import Gestures from '../components/marketing/Gestures.astro';
 import CTA from '../components/marketing/CTA.astro';
 import Footer from '../components/marketing/Footer.astro';
 
-/* SSR (no prerender) — auth state is read per request via Clerk so the
-   nav + hero CTAs render correctly on first paint without flash. */
-const { userId } = Astro.locals.auth();
-const isSignedIn = !!userId;
+export const prerender = true;
 ---
 <!doctype html>
 <html lang="en">
@@ -45,9 +42,9 @@ const isSignedIn = !!userId;
   </head>
   <body>
     <LayoutLines />
-    <Nav isSignedIn={isSignedIn} />
+    <Nav />
     <main id="main">
-      <Hero isSignedIn={isSignedIn} />
+      <Hero />
       <Thesis />
       <Gestures />
       <CTA />

@@ -1,24 +1,14 @@
 ---
 /**
- * Marketing nav — auth-aware CTAs (Supplement 14) + burger menu (Supplement 16).
+ * Marketing nav.
  *
- * Above 1135px:
- *   Signed out: Blog | divider | Log in   |  Request access (CTA)
- *   Signed in:  Blog                       |  Open Conjure (CTA)
+ * Above 1135px: Blog | divider | Log in | Request access (CTA)
+ * At <=1135px:  burger button → drawer with the same items stacked.
  *
- * At <=1135px: the inline links + CTA hide; a burger appears on the right.
- * The burger toggles a drawer containing the same auth-aware items stacked.
- *
- * Auth state is determined server-side by the parent page reading
- * Astro.locals.auth() and passing isSignedIn down. Page must be SSR
- * (not prerendered) for that to populate.
+ * The marketing site is fully static — auth state lives on the primary
+ * (app.onconjure.com). The CTA always sends visitors to /waitlist; signed-in
+ * users land on the app via the "Log in" link or by clicking through to it.
  */
-interface Props {
-  isSignedIn?: boolean;
-}
-const { isSignedIn = false } = Astro.props as Props;
-const ctaHref  = isSignedIn ? 'https://app.onconjure.com' : '/waitlist';
-const ctaLabel = isSignedIn ? 'Open Conjure'              : 'Request access';
 ---
 <nav class="marketing-nav" id="marketingNav" aria-label="Primary">
   <div class="nav-inner">
@@ -33,15 +23,11 @@ const ctaLabel = isSignedIn ? 'Open Conjure'              : 'Request access';
 
     <div class="nav-links">
       <a href="/blog">Blog</a>
-      {!isSignedIn && (
-        <Fragment>
-          <span class="nav-divider" aria-hidden="true"></span>
-          <a class="nav-link--login" href="https://app.onconjure.com/sign-in">Log in</a>
-        </Fragment>
-      )}
+      <span class="nav-divider" aria-hidden="true"></span>
+      <a class="nav-link--login" href="https://app.onconjure.com/sign-in">Log in</a>
     </div>
 
-    <a class="nav-cta" href={ctaHref}>{ctaLabel}</a>
+    <a class="nav-cta" href="/waitlist">Request access</a>
 
     <button
       class="nav-burger"
@@ -64,9 +50,7 @@ const ctaLabel = isSignedIn ? 'Open Conjure'              : 'Request access';
 
   <div class="nav-drawer" id="navDrawer" hidden>
     <a class="nav-drawer__link" href="/blog">Blog</a>
-    {!isSignedIn && (
-      <a class="nav-drawer__link" href="https://app.onconjure.com/sign-in">Log in</a>
-    )}
-    <a class="nav-drawer__cta" href={ctaHref}>{ctaLabel}</a>
+    <a class="nav-drawer__link" href="https://app.onconjure.com/sign-in">Log in</a>
+    <a class="nav-drawer__cta" href="/waitlist">Request access</a>
   </div>
 </nav>

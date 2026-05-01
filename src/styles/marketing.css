@@ -232,7 +232,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.005em;
   font-size: 30px;
 }
-.wordmark--editorial.wordmark--hero { font-size: 80px; }
 
 .wordmark--working {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -244,7 +243,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .lockup { display: inline-flex; align-items: center; }
-.lockup--hero            { gap: 22px; }
 .lockup--marketing-nav   { gap: 8px; }
 .lockup--footer          { gap: 6px; }
 

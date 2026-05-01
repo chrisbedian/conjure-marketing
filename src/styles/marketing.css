@@ -651,11 +651,16 @@ h1, h2, h3, h4, h5, h6 {
   .nav-drawer      { padding: 16px 24px 24px; }
 }
 
+/* Standard mark above 640px, small-variant mark (gem r=1.75, stroke
+   1.5) at and below — designed for small sizes so the strokes don't
+   read thin. */
+.nav-mark--small { display: none; }
+
 /* On the smallest viewports the editorial register is too tall — fall
    back to the PJS working register with the small mark variant, same
    pattern as the application nav and footer. Italic Cormorant has a
    28px floor; below that we don't render it at all. */
-@media (max-width: 639px) {
+@media (max-width: 640px) {
   .marketing-nav { height: 64px; }
   .layout-lines  { top: 64px; }
   .nav-drawer    { top: 64px; }
@@ -666,7 +671,8 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.01em;
     font-size: 18px;
   }
-  .marketing-nav .lockup--marketing-nav svg { width: 28px; height: 28px; }
+  .nav-mark--standard { display: none; }
+  .nav-mark--small    { display: inline-block; }
 }
 
 /* =========================================================================

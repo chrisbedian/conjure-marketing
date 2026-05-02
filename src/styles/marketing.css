@@ -47,16 +47,18 @@
   --ink-muted:       #57575E;
   --ink-quiet:       #8A8A92;
 
-  /* Brand color is the ink ramp itself — buttons, links, focus rings,
-     CTA fills all draw from var(--ink) / var(--ink-soft). The brand is
-     paper and ink; vermilion (in the app) is the chromatic moment when
-     the machine gets loud. */
+  /* Brand color is the ink ramp itself — Iron Gall, locked. Buttons,
+     links, focus rings, CTA fills all draw from these semantic tokens.
+     The brand is paper and ink; vermilion is the chromatic moment when
+     the machine gets loud (used in the app, not on the marketing site). */
+  --color-accent:        var(--ink);
+  --color-accent-hover:  var(--ink-soft);
+  --color-link:          var(--ink);
+  --color-link-hover:    var(--ink-soft);
+  --color-ai-accent:     #B53024;
 
-  /* Reserved for future AI-moment punctuation only — not a UI accent. */
-  --ai-green:        #10B981;
-
-  /* Destructive / validation only — never a brand surface. Plum is brand; red is alarm. */
-  --error:           #EF4444;
+  /* Destructive / validation only — never a brand surface. */
+  --error:               #EF4444;
 
   /* Shadows. Re-tuned for the lifted ink — alpha bumped so shadows register
      at the same visual weight on cream as before. */
@@ -145,7 +147,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------- Focus ---------- */
 :focus { outline: none; }
 :focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   transition: outline-color 150ms var(--ease-in-out);
 }
@@ -298,11 +300,11 @@ h1, h2, h3, h4, h5, h6 {
     transform       var(--dur-base) var(--ease-in-out);
 }
 .m-btn--primary {
-  background: var(--ink);
-  color: #FFFFFF;
+  background: var(--color-accent);
+  color: #FAFAFA;
 }
 .m-btn--primary:hover {
-  background: var(--ink-soft);
+  background: var(--color-accent-hover);
 }
 .m-btn--ghost {
   background: transparent;
@@ -455,7 +457,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   transition: color var(--dur-base) var(--ease-in-out);
 }
-.nav-logo:hover { color: var(--ink-soft); }
+.nav-logo:hover { color: var(--color-link-hover); }
 
 .nav-links {
   flex: 1;
@@ -501,8 +503,8 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--ink);
-  color: #FFF;
+  background-color: var(--color-accent);
+  color: #FAFAFA;
   font-size: 15px;
   font-weight: 500;
   line-height: 1;
@@ -516,7 +518,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color var(--dur-base) var(--ease-in-out),
     color            var(--dur-base) var(--ease-in-out);
 }
-.nav-cta:hover { background: var(--ink-soft); }
+.nav-cta:hover { background: var(--color-accent-hover); }
 
 @media (prefers-reduced-motion: no-preference) {
   .nav-cta:hover { transform: scale(1.02); }
@@ -610,7 +612,7 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid rgba(26, 26, 31, 0.10);
   transition: color var(--dur-base) var(--ease-in-out);
 }
-.nav-drawer__link:hover { color: var(--ink-soft); }
+.nav-drawer__link:hover { color: var(--color-link-hover); }
 
 .nav-drawer__cta {
   display: inline-flex;
@@ -619,8 +621,8 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
   margin-top: 32px;
   align-self: flex-start;
-  background-color: var(--ink);
-  color: #FFF;
+  background-color: var(--color-accent);
+  color: #FAFAFA;
   font-size: 17px;
   font-weight: 500;
   line-height: 1;
@@ -630,7 +632,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   transition: background-color var(--dur-base) var(--ease-in-out);
 }
-.nav-drawer__cta:hover { background-color: var(--ink-soft); }
+.nav-drawer__cta:hover { background-color: var(--color-accent-hover); }
 
 /* Below 768px (Tailwind `md`), swap to burger nav: hide the inline group, show the burger. */
 @media (max-width: 767px) {
@@ -752,7 +754,7 @@ h1, h2, h3, h4, h5, h6 {
 .waitlist__field input:focus,
 .waitlist__field input:focus-visible {
   outline: none;
-  border-color: var(--ink);
+  border-color: var(--color-accent);
   box-shadow: 0 0 0 3px rgba(26, 26, 31, 0.20);
 }
 

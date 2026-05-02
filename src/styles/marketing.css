@@ -47,11 +47,11 @@
   --ink-muted:       #57575E;
   --ink-quiet:       #8A8A92;
 
-  /* Brand — verdigris (TRIAL). Primary accent for CTA fills, focus rings, link color. */
-  --verdigris:       #2D5E50;
-  --verdigris-deep:  #1F4A40;
-  --verdigris-light: #7AAB99;
-  --verdigris-wash:  rgba(45, 94, 80, 0.08);
+  /* Brand — Prussian Blue. Primary accent for CTA fills, focus rings, link color. */
+  --prussian:        #2D4A6E;
+  --prussian-deep:   #1F3A58;
+  --prussian-light:  #7896B5;
+  --prussian-wash:   rgba(45, 74, 110, 0.08);
 
   /* Reserved for future AI-moment punctuation only — not a UI accent. */
   --ai-green:        #10B981;
@@ -130,12 +130,12 @@ body::before {
   body::before { opacity: 0.015; }
 }
 
-/* Text selection — soft verdigris tint. Anthropic-style: low-alpha
+/* Text selection — soft Prussian Blue tint. Anthropic-style: low-alpha
    background, no color override so the original text color stays put.
-   Reads as a cool wash over cream and as a deep teal-tinged glow over
+   Reads as a cool wash over cream and as a deep blue-tinged glow over
    the dark CTA band. */
 ::selection {
-  background: rgba(45, 94, 80, 0.22);
+  background: rgba(45, 74, 110, 0.22);
 }
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
@@ -147,7 +147,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------- Focus ---------- */
 :focus { outline: none; }
 :focus-visible {
-  outline: 2px solid var(--verdigris);
+  outline: 2px solid var(--prussian);
   outline-offset: 3px;
   transition: outline-color 150ms var(--ease-in-out);
 }
@@ -300,11 +300,11 @@ h1, h2, h3, h4, h5, h6 {
     transform       var(--dur-base) var(--ease-in-out);
 }
 .m-btn--primary {
-  background: var(--verdigris);
+  background: var(--prussian);
   color: #FFFFFF;
 }
 .m-btn--primary:hover {
-  background: var(--verdigris-deep);
+  background: var(--prussian-deep);
 }
 .m-btn--ghost {
   background: transparent;
@@ -457,7 +457,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   transition: color var(--dur-base) var(--ease-in-out);
 }
-.nav-logo:hover { color: var(--verdigris-deep); }
+.nav-logo:hover { color: var(--prussian-deep); }
 
 .nav-links {
   flex: 1;
@@ -503,7 +503,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--verdigris);
+  background-color: var(--prussian);
   color: #FFF;
   font-size: 15px;
   font-weight: 500;
@@ -518,7 +518,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color var(--dur-base) var(--ease-in-out),
     color            var(--dur-base) var(--ease-in-out);
 }
-.nav-cta:hover { background: var(--verdigris-deep); }
+.nav-cta:hover { background: var(--prussian-deep); }
 
 @media (prefers-reduced-motion: no-preference) {
   .nav-cta:hover { transform: scale(1.02); }
@@ -612,7 +612,7 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid rgba(26, 26, 31, 0.10);
   transition: color var(--dur-base) var(--ease-in-out);
 }
-.nav-drawer__link:hover { color: var(--verdigris-deep); }
+.nav-drawer__link:hover { color: var(--prussian-deep); }
 
 .nav-drawer__cta {
   display: inline-flex;
@@ -621,7 +621,7 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
   margin-top: 32px;
   align-self: flex-start;
-  background-color: var(--verdigris);
+  background-color: var(--prussian);
   color: #FFF;
   font-size: 17px;
   font-weight: 500;
@@ -632,7 +632,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   transition: background-color var(--dur-base) var(--ease-in-out);
 }
-.nav-drawer__cta:hover { background-color: var(--verdigris-deep); }
+.nav-drawer__cta:hover { background-color: var(--prussian-deep); }
 
 /* Below 768px (Tailwind `md`), swap to burger nav: hide the inline group, show the burger. */
 @media (max-width: 767px) {
@@ -754,8 +754,8 @@ h1, h2, h3, h4, h5, h6 {
 .waitlist__field input:focus,
 .waitlist__field input:focus-visible {
   outline: none;
-  border-color: var(--verdigris);
-  box-shadow: 0 0 0 3px var(--verdigris-wash);
+  border-color: var(--prussian);
+  box-shadow: 0 0 0 3px var(--prussian-wash);
 }
 
 /* Honeypot — visually hidden but still in the form. */

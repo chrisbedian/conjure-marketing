@@ -47,11 +47,10 @@
   --ink-muted:       #57575E;
   --ink-quiet:       #8A8A92;
 
-  /* Brand — Verdigris. Primary accent for CTA fills, focus rings, link color. */
-  --verdigris:       #2D5E50;
-  --verdigris-deep:  #1F4A40;
-  --verdigris-light: #7AAB99;
-  --verdigris-wash:  rgba(45, 94, 80, 0.08);
+  /* Brand color is the ink ramp itself — buttons, links, focus rings,
+     CTA fills all draw from var(--ink) / var(--ink-soft). The brand is
+     paper and ink; vermilion (in the app) is the chromatic moment when
+     the machine gets loud. */
 
   /* Reserved for future AI-moment punctuation only — not a UI accent. */
   --ai-green:        #10B981;
@@ -130,12 +129,11 @@ body::before {
   body::before { opacity: 0.015; }
 }
 
-/* Text selection — soft Verdigris tint. Anthropic-style: low-alpha
+/* Text selection — soft ink tint. Anthropic-style: low-alpha
    background, no color override so the original text color stays put.
-   Reads as a cool wash over cream and as a deep teal-tinged glow over
-   the dark CTA band. */
+   The brand is paper and ink — selection just deepens the page. */
 ::selection {
-  background: rgba(45, 94, 80, 0.22);
+  background: rgba(26, 26, 31, 0.22);
 }
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
@@ -147,7 +145,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------- Focus ---------- */
 :focus { outline: none; }
 :focus-visible {
-  outline: 2px solid var(--verdigris);
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
   transition: outline-color 150ms var(--ease-in-out);
 }
@@ -300,11 +298,11 @@ h1, h2, h3, h4, h5, h6 {
     transform       var(--dur-base) var(--ease-in-out);
 }
 .m-btn--primary {
-  background: var(--verdigris);
+  background: var(--ink);
   color: #FFFFFF;
 }
 .m-btn--primary:hover {
-  background: var(--verdigris-deep);
+  background: var(--ink-soft);
 }
 .m-btn--ghost {
   background: transparent;
@@ -457,7 +455,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   transition: color var(--dur-base) var(--ease-in-out);
 }
-.nav-logo:hover { color: var(--verdigris-deep); }
+.nav-logo:hover { color: var(--ink-soft); }
 
 .nav-links {
   flex: 1;
@@ -503,7 +501,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--verdigris);
+  background-color: var(--ink);
   color: #FFF;
   font-size: 15px;
   font-weight: 500;
@@ -518,7 +516,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color var(--dur-base) var(--ease-in-out),
     color            var(--dur-base) var(--ease-in-out);
 }
-.nav-cta:hover { background: var(--verdigris-deep); }
+.nav-cta:hover { background: var(--ink-soft); }
 
 @media (prefers-reduced-motion: no-preference) {
   .nav-cta:hover { transform: scale(1.02); }
@@ -612,7 +610,7 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid rgba(26, 26, 31, 0.10);
   transition: color var(--dur-base) var(--ease-in-out);
 }
-.nav-drawer__link:hover { color: var(--verdigris-deep); }
+.nav-drawer__link:hover { color: var(--ink-soft); }
 
 .nav-drawer__cta {
   display: inline-flex;
@@ -621,7 +619,7 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
   margin-top: 32px;
   align-self: flex-start;
-  background-color: var(--verdigris);
+  background-color: var(--ink);
   color: #FFF;
   font-size: 17px;
   font-weight: 500;
@@ -632,7 +630,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   transition: background-color var(--dur-base) var(--ease-in-out);
 }
-.nav-drawer__cta:hover { background-color: var(--verdigris-deep); }
+.nav-drawer__cta:hover { background-color: var(--ink-soft); }
 
 /* Below 768px (Tailwind `md`), swap to burger nav: hide the inline group, show the burger. */
 @media (max-width: 767px) {
@@ -754,8 +752,8 @@ h1, h2, h3, h4, h5, h6 {
 .waitlist__field input:focus,
 .waitlist__field input:focus-visible {
   outline: none;
-  border-color: var(--verdigris);
-  box-shadow: 0 0 0 3px var(--verdigris-wash);
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(26, 26, 31, 0.20);
 }
 
 /* Honeypot — visually hidden but still in the form. */

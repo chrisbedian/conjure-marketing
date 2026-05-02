@@ -66,7 +66,7 @@
   --shadow-lg:       0 12px 32px rgba(26, 26, 31, 0.10), 0 32px 64px rgba(26, 26, 31, 0.12);
 
   /* Type */
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+  --font-sans: 'Cabinet Grotesk', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   --font-display: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino', Georgia, serif;
   --text-hero:   clamp(3rem, 6vw, 5.5rem);
@@ -179,7 +179,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------- Editorial display copy ----------
    Cormorant Garamond for hero + long-form section H2s + pull quotes.
    Stays off nav, buttons, forms, captions, eyebrows, footer, and UI
-   card titles — those keep Plus Jakarta Sans.
+   card titles — those go through var(--font-sans) (Cabinet Grotesk).
    HARD FLOOR: never render below 40px. Heavier weights look pinched;
    500 is the editorial weight, 600 is reserved for emphasis. */
 .display {
@@ -235,7 +235,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .wordmark--working {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1;
@@ -666,7 +666,7 @@ h1, h2, h3, h4, h5, h6 {
   .layout-lines  { top: 64px; }
   .nav-drawer    { top: 64px; }
   .marketing-nav .wordmark--editorial.wordmark--nav {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
     font-style: normal;
     font-weight: 600;
     letter-spacing: -0.01em;

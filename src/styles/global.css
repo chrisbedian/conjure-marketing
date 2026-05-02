@@ -13,9 +13,9 @@
   box-sizing: border-box;
 }
 
-/* Text selection — soft Prussian Blue tint, matches the marketing palette. */
+/* Text selection — soft Aubergine tint, matches the marketing palette. */
 ::selection {
-  background: rgba(45, 74, 110, 0.22);
+  background: rgba(58, 42, 72, 0.22);
 }
 
 html,

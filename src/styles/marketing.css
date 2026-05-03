@@ -34,39 +34,97 @@
 }
 
 :root {
-  /* Surfaces */
+  /* ===== Surfaces ===== */
   --cream:           #ECE9E0;
   --cream-soft:      #F4F1E9;
   --cream-deep:      #DDD9CD;
+  --paper:           #FAFAFA;  /* Mark / wordmark on dark, button text on ink */
 
-  /* Text + dark surfaces. Ink ramp lifts off pure black so dark surfaces read
-     as "designed dark gray," not "void." 16-pt luminance gap between --ink and
-     --ink-soft gives every dark surface a usable second layer. */
+  /* ===== Ink ramp =====
+     Lifts off pure black so dark surfaces read as "designed dark gray,"
+     not "void." 16-pt luminance gap between --ink and --ink-soft gives
+     every dark surface a usable second layer. */
   --ink:             #1A1A1F;
   --ink-soft:        #2A2A30;
   --ink-muted:       #57575E;
   --ink-quiet:       #8A8A92;
 
-  /* Brand color is the ink ramp itself — Iron Gall, locked. Buttons,
-     links, focus rings, CTA fills all draw from these semantic tokens.
-     The brand is paper and ink; vermilion is the chromatic moment when
-     the machine gets loud (used in the app, not on the marketing site). */
-  --color-accent:        var(--ink);
-  --color-accent-hover:  var(--ink-soft);
-  --color-link:          var(--ink);
-  --color-link-hover:    var(--ink-soft);
-  --color-ai-accent:     #B53024;
+  /* ===== Text token aliases (semantic, parallel to dark) ===== */
+  --color-text-primary: var(--ink);
+  --color-text-soft:    var(--ink-soft);
+  --color-text-muted:   var(--ink-muted);
+  --color-text-faint:   var(--ink-quiet);
 
-  /* Destructive / validation only — never a brand surface. */
-  --error:               #EF4444;
+  /* ===== Brand accent — ink =====
+     The brand IS the text. Buttons fill with ink, focus rings draw in
+     ink, eyebrows mark sections in ink. The chromatic moment is
+     vermilion (--ai-accent), shown only when the AI shows its hand. */
+  --color-accent:       var(--color-text-primary);
+  --color-accent-hover: var(--color-text-soft);
+  --color-accent-text:  var(--paper);  /* Text on dark/ink button fills */
 
-  /* Shadows. Re-tuned for the lifted ink — alpha bumped so shadows register
-     at the same visual weight on cream as before. */
+  /* ===== Wash ladder (rgba ink — alpha steps for layered tints) ===== */
+  --accent-wash-soft:   rgba(26, 26, 31, 0.04);
+  --accent-wash:        rgba(26, 26, 31, 0.08);
+  --accent-wash-dim:    rgba(26, 26, 31, 0.12);
+  --accent-wash-glow:   rgba(26, 26, 31, 0.16);
+  --accent-wash-strong: rgba(26, 26, 31, 0.20);
+
+  /* ===== Inline text links — ink, underlined ===== */
+  --color-link:         var(--color-text-primary);
+  --color-link-hover:   var(--color-text-soft);
+
+  /* ===== Borders — three weights ===== */
+  --color-border-soft:   rgba(26, 26, 31, 0.06);
+  --color-border:        var(--cream-deep);
+  --color-border-strong: var(--ink-quiet);
+
+  /* ===== Focus ring =====
+     Pattern: 1px solid border on the focused element in
+     --focus-ring-border, with a 3px outer ring in --focus-ring-color. */
+  --focus-ring-width:   3px;
+  --focus-ring-offset:  3px;
+  --focus-ring-color:   var(--accent-wash-strong);
+  --focus-ring-border:  var(--color-accent);
+
+  /* ===== Selection ===== */
+  --selection-bg:       rgba(26, 26, 31, 0.10);
+
+  /* ===== Shadows =====
+     Re-tuned for the lifted ink — alpha bumped so shadows register at
+     the same visual weight on cream as before. */
   --shadow-sm:       0 1px 2px rgba(26, 26, 31, 0.06), 0 1px 3px rgba(26, 26, 31, 0.08);
   --shadow-md:       0 4px 12px rgba(26, 26, 31, 0.08), 0 12px 32px rgba(26, 26, 31, 0.10);
   --shadow-lg:       0 12px 32px rgba(26, 26, 31, 0.10), 0 32px 64px rgba(26, 26, 31, 0.12);
 
-  /* Type */
+  /* ===== Radius scale ===== */
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-pill: 999px;
+
+  /* ===== Status / functional =====
+     Analog pigment tones — chosen to live alongside cream + ink without
+     reading as web-saturated stop-sign colors. Use for status only. */
+  --success:         #4A7A5C;
+  --warning:         #B07020;
+  --info:            #5C6E83;
+  --error:           #A84030;
+
+  /* ===== AI moment =====
+     Vermilion (cinnabar / mercuric sulfide). The only chromatic moment
+     in the system — declared here for parity with the brand kit. The
+     marketing site doesn't invoke it directly; it's the app's accent. */
+  --ai-accent:       #B53024;
+
+  /* ===== Favorite =====
+     Reserved site-wide for the favorite star — the only ochre allowed. */
+  --favorite:        #B8843D;
+  --favorite-bg:     rgba(184, 132, 61, 0.08);
+
+  /* ===== Type ===== */
   --font-sans: 'Cabinet Grotesk', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   --font-display: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino', Georgia, serif;
@@ -77,7 +135,7 @@
   --text-body:   1.0625rem;
   --text-small:  0.875rem;
 
-  /* Animation */
+  /* ===== Animation ===== */
   --ease-out:        cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out:     cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out-sharp:  cubic-bezier(0.25, 1, 0.5, 1);
@@ -87,7 +145,7 @@
   --dur-slow:    600ms;
   --dur-reveal:  800ms;
 
-  /* Layout */
+  /* ===== Layout ===== */
   --max-content: 1120px;
   --gutter:      1.5rem;
 }
@@ -135,7 +193,7 @@ body::before {
    background, no color override so the original text color stays put.
    The brand is paper and ink — selection just deepens the page. */
 ::selection {
-  background: rgba(26, 26, 31, 0.22);
+  background: var(--selection-bg);
 }
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
@@ -147,8 +205,8 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------- Focus ---------- */
 :focus { outline: none; }
 :focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
+  outline: 2px solid var(--focus-ring-border);
+  outline-offset: var(--focus-ring-offset);
   transition: outline-color 150ms var(--ease-in-out);
 }
 
@@ -288,7 +346,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   font-family: inherit;
   font-weight: 500;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: 1px solid transparent;
   cursor: pointer;
   text-decoration: none;
@@ -301,7 +359,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .m-btn--primary {
   background: var(--color-accent);
-  color: #FAFAFA;
+  color: var(--color-accent-text);
 }
 .m-btn--primary:hover {
   background: var(--color-accent-hover);
@@ -309,7 +367,7 @@ h1, h2, h3, h4, h5, h6 {
 .m-btn--ghost {
   background: transparent;
   color: var(--ink);
-  border-color: var(--cream-deep);
+  border-color: var(--color-border);
 }
 .m-btn--ghost:hover {
   border-color: var(--ink-muted);
@@ -504,13 +562,13 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   background-color: var(--color-accent);
-  color: #FAFAFA;
+  color: var(--color-accent-text);
   font-size: 15px;
   font-weight: 500;
   line-height: 1;
   height: 35px;
   padding: 0 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   text-decoration: none;
   /* Ease both directions (hover-in and hover-out) at the same 180ms
      ease-in-out as the rest of the nav. */
@@ -595,7 +653,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-drawer::-webkit-scrollbar-track { background: transparent; }
 .nav-drawer::-webkit-scrollbar-thumb {
   background-color: rgba(26, 26, 31, 0.18);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
 }
 .nav-drawer::-webkit-scrollbar-thumb:hover {
   background-color: rgba(26, 26, 31, 0.32);
@@ -622,13 +680,13 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 32px;
   align-self: flex-start;
   background-color: var(--color-accent);
-  color: #FAFAFA;
+  color: var(--color-accent-text);
   font-size: 17px;
   font-weight: 500;
   line-height: 1;
   height: 48px;
   padding: 0 22px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   text-decoration: none;
   transition: background-color var(--dur-base) var(--ease-in-out);
 }
@@ -737,9 +795,9 @@ h1, h2, h3, h4, h5, h6 {
   font: inherit;
   font-size: 15px;
   padding: 12px 14px;
-  border: 1px solid var(--cream-deep);
-  border-radius: 8px;
-  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--paper);
   color: var(--ink);
   transition:
     border-color var(--dur-base) var(--ease-in-out),
@@ -754,8 +812,8 @@ h1, h2, h3, h4, h5, h6 {
 .waitlist__field input:focus,
 .waitlist__field input:focus-visible {
   outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(26, 26, 31, 0.20);
+  border-color: var(--focus-ring-border);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
 }
 
 /* Honeypot — visually hidden but still in the form. */

@@ -15,7 +15,7 @@
 
 /* Text selection — soft ink tint, matches the marketing palette. */
 ::selection {
-  background: rgba(26, 26, 31, 0.22);
+  background: var(--selection-bg, rgba(26, 26, 31, 0.10));
 }
 
 html,

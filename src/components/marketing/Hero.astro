@@ -130,7 +130,7 @@
 
             <!-- selection ring around the whole card -->
             <rect class="hero__mini-selection" x="17" y="37" width="326" height="239" rx="12"
-                  fill="none" stroke="#1A1A1F" stroke-width="1.5" opacity="0"/>
+                  fill="none" stroke-width="1.5" opacity="0"/>
 
             <!-- reference photo chip: sky + hills + sun -->
             <g class="hero__mini-swatch">
@@ -145,7 +145,7 @@
             <!-- cursor -->
             <g class="hero__mini-cursor">
               <path d="M0 0 L0 13 L4 10 L6 14 L7.5 13.5 L5.5 9.5 L10 9.5 Z"
-                    fill="#FAFAFA" stroke="#1A1A1F" stroke-width="0.5"/>
+                    stroke-width="0.5"/>
             </g>
           </svg>
         </div>
@@ -192,9 +192,9 @@
     align-items: center;
     gap: 8px;
     padding: 6px 12px 6px 10px;
-    background: rgba(26, 26, 31, 0.08);
-    border: 1px solid rgba(26, 26, 31, 0.18);
-    border-radius: 999px;
+    background: var(--accent-wash);
+    border: 1px solid var(--accent-wash-glow);
+    border-radius: var(--radius-pill);
     margin-bottom: 24px;
   }
   .hero__chip-dot {
@@ -295,7 +295,7 @@
     width: 100%;
     max-width: 420px;
     margin-left: auto;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
     border: 1px solid rgba(26, 26, 31, 0.10);
@@ -326,6 +326,10 @@
   .hero__mini-cursor {
     animation: mini-cursor 7000ms var(--ease-in-out) infinite;
   }
+  .hero__mini-cursor path {
+    fill: var(--paper);
+    stroke: var(--ink);
+  }
   @keyframes mini-cursor {
     /* Tip is offset (-5, -7) from swatch center so the cursor body sits
        over the middle of the dragged image rather than dangling off it.
@@ -353,6 +357,7 @@
   }
 
   .hero__mini-selection {
+    stroke: var(--color-accent);
     animation: mini-selection 7000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-selection {
@@ -487,7 +492,7 @@
     font-family: var(--font-sans);
     font-size: 12px;
     font-weight: 500;
-    fill: #FFFFFF;
+    fill: var(--color-accent-text);
   }
   .hero__mini-link-text {
     font-family: var(--font-sans);

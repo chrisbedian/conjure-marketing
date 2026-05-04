@@ -105,7 +105,7 @@
               </g>
 
               <!-- eyebrow: bar (before) cross-fades to "TRAVEL" (after) -->
-              <rect class="hero__mini-eyebrow-bar" x="32" y="166" width="48" height="6" rx="2" fill="rgba(194,139,170,0.55)"/>
+              <rect class="hero__mini-eyebrow-bar" x="32" y="166" width="48" height="6" rx="2" fill="rgba(236, 233, 224, 0.55)"/>
               <text class="hero__mini-eyebrow-text" x="32" y="172" opacity="0">TRAVEL</text>
 
               <!-- headline: two placeholder bars (before) cross-fade to a single line of real headline (after) -->
@@ -357,7 +357,11 @@
   }
 
   .hero__mini-selection {
-    stroke: var(--color-accent);
+    /* The mini-loop canvas is a self-contained inverted band (#1A1A1F).
+       Per the kit's surface-pairing logic, the brand accent inverts to
+       cream on dark surfaces — using --color-accent here would render
+       the ring ink-on-ink and disappear. */
+    stroke: var(--cream);
     animation: mini-selection 7000ms var(--ease-in-out) infinite;
   }
   @keyframes mini-selection {

@@ -22,7 +22,10 @@
     padding: 120px 0;
     position: relative;
   }
-  /* Brand-accent hairline framing the top of the dark band. */
+  /* Hairline framing the top of the dark band — paper-tinted because
+     the brand accent (ink) would vanish into the band itself. Per the
+     kit's "Inverted band (ink) | Divider | rgba(255, 255, 255, 0.10)"
+     surface-pairing rule. */
   .cta::before {
     content: '';
     position: absolute;
@@ -30,8 +33,7 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--color-accent);
-    opacity: 0.55;
+    background: rgba(255, 255, 255, 0.10);
   }
   @media (max-width: 767px) {
     .cta { padding: 96px 0; }
@@ -64,6 +66,18 @@
   }
   .cta .m-btn {
     margin-top: 40px;
+  }
+
+  /* The primary button inverts on the dark band — cream fill + ink
+     text + cream-deep on hover, per the brand kit's
+     "Inverted band (ink)" surface-pairing rule. The default
+     .m-btn--primary uses ink fill, which would vanish into the band. */
+  .cta .m-btn--primary {
+    background: var(--cream);
+    color: var(--ink);
+  }
+  .cta .m-btn--primary:hover {
+    background: var(--cream-deep);
   }
 
   /* Animated arrow (matches the Hero primary CTA pattern). */

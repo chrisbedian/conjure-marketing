@@ -95,7 +95,7 @@
      the same visual weight on cream as before. */
   --shadow-sm:       0 1px 2px rgba(26, 26, 31, 0.06), 0 1px 3px rgba(26, 26, 31, 0.08);
   --shadow-md:       0 4px 12px rgba(26, 26, 31, 0.08), 0 12px 32px rgba(26, 26, 31, 0.10);
-  --shadow-lg:       0 12px 32px rgba(26, 26, 31, 0.10), 0 32px 64px rgba(26, 26, 31, 0.12);
+  --shadow-lg:       0 24px 64px rgba(26, 26, 31, 0.12), 0 4px 12px rgba(26, 26, 31, 0.08);
 
   /* ===== Radius scale ===== */
   --radius-xs:   4px;
@@ -225,7 +225,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-quiet);
   margin: 0;
@@ -310,7 +310,7 @@ h1, h2, h3, h4, h5, h6 {
    spans the full layout-line column at every viewport. */
 .m-divider {
   border: none;
-  border-top: 1px solid rgba(26, 26, 31, 0.10);
+  border-top: 1px solid var(--color-border-soft);
   margin: 0;
   width: 100%;
 }
@@ -445,7 +445,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: rgba(26, 26, 31, 0.08);
+  background-color: var(--color-border-soft);
 }
 .layout-line-left  { left: 16px; }
 .layout-line-right { right: 16px; }
@@ -503,7 +503,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(-50%);
   width: 100vw;
   height: 1px;
-  background-color: rgba(26, 26, 31, 0.08);
+  background-color: var(--color-border-soft);
   pointer-events: none;
 }
 
@@ -553,7 +553,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-divider {
   width: 1px;
   height: 32px;
-  background-color: rgba(26, 26, 31, 0.10);
+  background-color: var(--color-border-soft);
   flex-shrink: 0;
 }
 
@@ -645,18 +645,18 @@ h1, h2, h3, h4, h5, h6 {
   overflow-y: auto;
   /* Firefox */
   scrollbar-width: thin;
-  scrollbar-color: rgba(26, 26, 31, 0.18) transparent;
+  scrollbar-color: var(--accent-wash-glow) transparent;
 }
 .nav-drawer[hidden] { display: none; }
 /* WebKit (Chrome, Safari, Edge) */
 .nav-drawer::-webkit-scrollbar { width: 8px; }
 .nav-drawer::-webkit-scrollbar-track { background: transparent; }
 .nav-drawer::-webkit-scrollbar-thumb {
-  background-color: rgba(26, 26, 31, 0.18);
+  background-color: var(--accent-wash-glow);
   border-radius: var(--radius-pill);
 }
 .nav-drawer::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(26, 26, 31, 0.32);
+  background-color: var(--accent-wash-strong);
 }
 
 .nav-drawer__link {
@@ -667,7 +667,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid rgba(26, 26, 31, 0.10);
+  border-bottom: 1px solid var(--color-border-soft);
   transition: color var(--dur-base) var(--ease-in-out);
 }
 .nav-drawer__link:hover { color: var(--color-link-hover); }
@@ -716,13 +716,14 @@ h1, h2, h3, h4, h5, h6 {
 .nav-mark--small { display: none; }
 
 /* On the smallest viewports the editorial register is too tall — fall
-   back to the PJS working register with the small mark variant, same
-   pattern as the application nav and footer. Italic Cormorant has a
-   28px floor; below that we don't render it at all. */
+   back to the brand kit's "Application nav" lockup pattern: 22px small
+   mark + Cabinet Grotesk 600 18px wordmark + 6px gap. Italic Cormorant
+   has a 28px floor; below that we drop to the working register. */
 @media (max-width: 640px) {
   .marketing-nav { height: 64px; }
   .layout-lines  { top: 64px; }
   .nav-drawer    { top: 64px; }
+  .marketing-nav .lockup--marketing-nav { gap: 6px; }
   .marketing-nav .wordmark--editorial.wordmark--nav {
     font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
     font-style: normal;

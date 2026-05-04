@@ -117,10 +117,10 @@ src/
 │   │   ├── Nav.astro            # Sticky cream-opaque nav (full width)
 │   │   ├── LayoutLines.astro    # Fixed vertical hairlines, 1272px column
 │   │   ├── Hero.astro           # Two-column upper + full-width loop below
-│   │   ├── Thesis.astro         # Cream-soft band, plum strikethrough
+│   │   ├── Thesis.astro         # Cream-soft band, brand-accent strikethrough
 │   │   ├── Gestures.astro       # Header + 2-col grid of GestureTile
 │   │   ├── GestureTile.astro    # Anthropic-style card with media
-│   │   ├── CTA.astro            # Dark band, plum top hairline, arrow CTA
+│   │   ├── CTA.astro            # Dark band, brand-accent top hairline, arrow CTA
 │   │   └── Footer.astro         # Multi-row, mono credits
 │   └── SiteNav.astro            # Used by blog (BaseLayout), not marketing
 ├── layouts/
@@ -141,16 +141,12 @@ src/
 
 ### Colors
 
-- **Cream-led, light, breathing.** This site inverts the dark app's treatment.
-- `--cream: #ECE9E0` (primary surface — _do not_ use the app's `#D6D2C9`; this cooler value reads as not-Anthropic)
-- `--cream-soft: #F4F1E9` (Thesis section, alternates)
-- `--cream-deep: #DDD9CD` (hairline borders)
-- `--ink: #1A1A1F` (dark surface — Hero loop frame, CTA band, Footer; _not_ pure black, "designed dark gray")
-- `--ink-soft: #2A2A30` (elevated dark, body copy on cream)
-- `--ink-muted`, `--ink-quiet` (text)
-- **Brand accent: plum.** `--plum: #8B2D5C`, `--plum-deep`, `--plum-tint`, `--plum-wash`. Used for primary CTA fills, focus rings, inline links, eyebrow/section-label color, plum hairline at top of CTA band.
-- `--ai-green: #10B981` reserved for future AI-moment punctuation only — _not yet applied_.
-- `--error: #EF4444` declared, unused — discipline marker so future destructive UI doesn't reach for plum.
+See `/Users/chrisbedian/Documents/Projects/conjure-brand/AGENTS.md`
+and `tokens.css` for the canonical color system. Marketing is
+cream-only — no dark mode. Body is `--ink-soft` on `--cream`. The
+dark surface used in the Hero loop frame, CTA band, and Footer is
+`--ink` (`#1A1A1F`) — kept here only because it's the value the
+App-coordination flag below references.
 
 ### Typography
 

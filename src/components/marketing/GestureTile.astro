@@ -25,7 +25,7 @@ const { title, description, numeral, delayMs = 0 } = Astro.props;
   /* Anthropic-style hairline at the top of each card. */
   .tile__rule {
     border: none;
-    border-top: 1px solid rgba(26, 26, 31, 0.10);
+    border-top: 1px solid var(--color-border-soft);
     margin: 0 0 20px;
     width: 100%;
   }
@@ -41,7 +41,7 @@ const { title, description, numeral, delayMs = 0 } = Astro.props;
     font-size: 12px;
     font-weight: 500;
     color: var(--color-accent);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
   }
   .tile__title {
     font-family: var(--font-sans);

@@ -39,20 +39,20 @@
           <svg viewBox="0 0 360 297" class="hero__mini-svg" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <!-- Reference + cascade gradients — kit-aligned. Sky and
-                   button both use "denim wash" (one of the kit's avatar
-                   gradients, #4A6B8E → #6E89A8). Hills pull from the
-                   ink ramp so the silhouette stays inside the brand. -->
-              <linearGradient id="miniRefSky" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%"   stop-color="#4A6B8E"/>
-                <stop offset="100%" stop-color="#6E89A8"/>
+                   button both use "forest moss" (one of the kit's avatar
+                   gradients, 135° #3D6E51 → #5C8252). Hills pull from
+                   the ink ramp so the silhouette stays inside the brand. -->
+              <linearGradient id="miniRefSky" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"   stop-color="#3D6E51"/>
+                <stop offset="100%" stop-color="#5C8252"/>
               </linearGradient>
               <linearGradient id="miniRefHills" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%"   stop-color="#2A2A30"/>
                 <stop offset="100%" stop-color="#1A1A1F"/>
               </linearGradient>
               <linearGradient id="miniBtnFill" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%"   stop-color="#4A6B8E"/>
-                <stop offset="100%" stop-color="#6E89A8"/>
+                <stop offset="0%"   stop-color="#3D6E51"/>
+                <stop offset="100%" stop-color="#5C8252"/>
               </linearGradient>
 
               <clipPath id="miniBtnClip">
@@ -94,7 +94,7 @@
                      palette echoes the cool blue tones of the photo. -->
                 <image
                   class="hero__mini-img-photo"
-                  href="https://images.unsplash.com/photo-1641755222059-8086a4f8c850?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  href="https://images.unsplash.com/photo-1551801691-f0bce83d4f68?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   x="32" y="52" width="296" height="102"
                   preserveAspectRatio="xMidYMid slice"
                   opacity="0"
@@ -110,7 +110,7 @@
                 <rect x="32" y="188" width="180" height="9" rx="2.5" fill="rgba(255,255,255,0.85)"/>
                 <rect x="32" y="202" width="120" height="9" rx="2.5" fill="rgba(255,255,255,0.85)"/>
               </g>
-              <text class="hero__mini-headline-text" x="32" y="202" opacity="0">Three Days on the Uyuni Salt Flats</text>
+              <text class="hero__mini-headline-text" x="32" y="202" opacity="0">Three days in the Isle of Skye</text>
 
               <!-- button: gray base; gradient fill + "Plan the route" label cross-fade in on the cascade beat -->
               <g clip-path="url(#miniBtnClip)">
@@ -482,8 +482,7 @@
     letter-spacing: 0.08em;
     /* Cream tint — same hue family as the eyebrow-bar placeholder
        (BEFORE state), just higher alpha for emphasis. Warm cream
-       against cool denim wash harmonizes; the prior #F4A261 orange
-       clashed because orange and blue are complementary. */
+       reads cleanly against the forest-moss gradient. */
     fill: rgba(236, 233, 224, 0.95);
   }
   .hero__mini-headline-text {
@@ -502,7 +501,7 @@
   .hero__mini-link-text {
     font-family: var(--font-sans);
     font-size: 10px;
-    font-weight: 500;
+    font-weight: 600;
     fill: rgba(255, 255, 255, 0.6);
   }
 

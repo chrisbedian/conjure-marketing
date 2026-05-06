@@ -153,7 +153,10 @@
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
-html { -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; }
+html { -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; scroll-behavior: smooth; }
+/* Anchored sections push their content below the 80px sticky nav so
+   the heading doesn't land hidden under it. */
+:target { scroll-margin-top: 96px; }
 html, body { min-height: 100%; }
 body {
   font-family: var(--font-sans);

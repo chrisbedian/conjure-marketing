@@ -30,11 +30,6 @@
               <path d="M 5 12 L 19 12 M 13 6 L 19 12 L 13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </a>
-          <a href="#thesis" class="hero__scroll-cue" aria-label="Scroll to the next section">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
-              <path d="M 6 9 L 12 15 L 18 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
         </div>
       </div>
 
@@ -273,31 +268,6 @@
     align-items: center;
     gap: 16px;
     flex-wrap: wrap;
-  }
-
-  /* Soft scroll cue — chevron next to the primary CTA that gently
-     bounces to invite a scroll, smooth-anchors to the next section.
-     Reads as invitation, not a button: no fill, no border, low alpha
-     until hover. */
-  .hero__scroll-cue {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    color: var(--ink-quiet);
-    text-decoration: none;
-    transition: color var(--dur-base) var(--ease-in-out);
-  }
-  .hero__scroll-cue:hover { color: var(--ink); }
-  @media (prefers-reduced-motion: no-preference) {
-    .hero__scroll-cue svg {
-      animation: hero-scroll-cue 2400ms var(--ease-in-out) infinite;
-    }
-    @keyframes hero-scroll-cue {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(4px); }
-    }
   }
 
   /* Animated arrow inside the primary CTA. */

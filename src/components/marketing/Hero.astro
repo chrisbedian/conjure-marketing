@@ -25,9 +25,9 @@
         </p>
         <div class="hero__cta-row">
           <a href="/waitlist" class="m-btn m-btn--primary m-btn--md cta__btn">
-            Get Started
+            Request access
             <svg class="cta__btn-arrow" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M 6 18 L 17 7 M 11 7 L 17 7 L 17 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M 5 12 L 19 12 M 13 6 L 19 12 L 13 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </a>
           <a href="/blog" class="m-btn m-btn--ghost m-btn--md">Read the blog</a>
@@ -69,10 +69,12 @@
             <!-- canvas -->
             <rect x="0" y="0" width="360" height="297" fill="#1A1A1F"/>
 
-            <!-- toolbar hint + companion + corner dot -->
-            <rect x="14" y="14" width="60" height="5" rx="2.5" fill="rgba(255,255,255,0.10)"/>
-            <rect x="80" y="14" width="28" height="5" rx="2.5" fill="rgba(255,255,255,0.10)"/>
-            <circle cx="338" cy="16.5" r="3" fill="rgba(255,255,255,0.18)"/>
+            <!-- traffic-light dots — Mac-style window chrome at low
+                 alpha. Signals "this is a window" without committing
+                 to ambiguous tab/URL-bar shapes that read mid-cascade. -->
+            <circle cx="14" cy="16" r="3" fill="rgba(255,255,255,0.10)"/>
+            <circle cx="26" cy="16" r="3" fill="rgba(255,255,255,0.10)"/>
+            <circle cx="38" cy="16" r="3" fill="rgba(255,255,255,0.10)"/>
 
             <!-- the website card -->
             <g class="hero__mini-card">
@@ -168,12 +170,15 @@
     margin-bottom: 32px;
   }
 
-  /* Two-column upper hero. Stacks at <900px. */
+  /* Two-column upper hero. Stacks at <900px. The mini loop bottom-
+     aligns to the CTA-row bottom so the two columns share a baseline
+     instead of just a top edge — center alignment leaves the loop
+     reading as orphaned in the upper half of the row. */
   .hero__top {
     display: grid;
     grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
     gap: 64px;
-    align-items: center;
+    align-items: end;
     margin-bottom: 56px;
   }
   @media (max-width: 899px) {
@@ -252,6 +257,10 @@
     font-weight: 400;
     line-height: 1.5;
     max-width: 540px;
+    /* Avoid orphan-word last line ("constraints." alone). pretty
+       lets the browser redistribute the rag across the paragraph
+       so the last line isn't a single word. */
+    text-wrap: pretty;
   }
 
   .hero__cta-row {
@@ -477,8 +486,8 @@
   /* SVG text styling — matches the page font conventions. */
   .hero__mini-eyebrow-text {
     font-family: var(--font-mono);
-    font-size: 9px;
-    font-weight: 500;
+    font-size: 10px;
+    font-weight: 600;
     letter-spacing: 0.08em;
     /* Forest-moss flat — the lighter stop (#5C8252) of the same kit
        avatar gradient that paints the swatch sky and button fill, so

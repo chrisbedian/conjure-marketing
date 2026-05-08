@@ -169,10 +169,12 @@
     margin-bottom: 32px;
   }
 
-  /* Two-column upper hero. Stacks at <900px. The mini loop bottom-
-     aligns to the CTA-row bottom so the two columns share a baseline
-     instead of just a top edge — center alignment leaves the loop
-     reading as orphaned in the upper half of the row. */
+  /* Two-column upper hero. Stacks at <900px. While 2-col (mini hasn't
+     wrapped) the loop bottom-aligns to the CTA-row bottom via
+     align-items: end on the grid — text column is taller in this
+     range, so end-alignment puts loop bottom = row bottom = CTA
+     bottom. Stretch-back at the stacked breakpoint so the rows just
+     fill naturally. */
   .hero__top {
     display: grid;
     grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
@@ -184,6 +186,7 @@
     .hero__top {
       grid-template-columns: 1fr;
       gap: 40px;
+      align-items: stretch;
     }
   }
 

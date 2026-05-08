@@ -58,7 +58,7 @@
   /* ===== Brand accent — ink =====
      The brand IS the text. Buttons fill with ink, focus rings draw in
      ink, eyebrows mark sections in ink. The chromatic moment is
-     vermilion (--ai-accent), shown only when the AI shows its hand. */
+     ultramarine (--ai-accent), shown only when the AI shows its hand. */
   --color-accent:       var(--color-text-primary);
   --color-accent-hover: var(--color-text-soft);
   --color-accent-text:  var(--paper);  /* Text on dark/ink button fills */
@@ -114,10 +114,12 @@
   --error:           #A84030;
 
   /* ===== AI moment =====
-     Vermilion (cinnabar / mercuric sulfide). The only chromatic moment
-     in the system — declared here for parity with the brand kit. The
-     marketing site doesn't invoke it directly; it's the app's accent. */
-  --ai-accent:       #B53024;
+     Ultramarine — ground from lapis lazuli, mined in one Afghan
+     valley along the Silk Road, the rarest manuscript pigment.
+     The only chromatic moment in the system — declared here for
+     parity with the brand kit. The marketing site doesn't invoke
+     it directly; it's the app's accent. */
+  --ai-accent:       #1F4E94;
 
   /* ===== Favorite =====
      Reserved site-wide for the favorite star — the only ochre allowed. */

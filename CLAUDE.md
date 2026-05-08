@@ -15,9 +15,9 @@ lockup, copy voice, or styling decisions:
    Don't guess.
 
 The brand is paper and ink. Ink on cream in light mode, cream on
-warm dim in dark mode. Vermilion is the only chromatic moment,
+warm dim in dark mode. Ultramarine is the only chromatic moment,
 reserved for AI events. No other accent colors. No purple, no
-green, no chromatic family beyond vermilion.
+green, no chromatic family beyond ultramarine.
 
 ### Hard rules — never guess at these
 
